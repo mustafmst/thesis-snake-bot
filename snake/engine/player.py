@@ -1,5 +1,3 @@
-
-
 class Player:
     x = 10
     y = 10
@@ -7,7 +5,7 @@ class Player:
 
     def moveRight(self):
         self.x = self.x + self.speed
-    
+
     def moveLeft(self):
         self.x = self.x - self.speed
 

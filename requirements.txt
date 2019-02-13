@@ -1,2 +1,4 @@
+autopep8==1.4.3
 pkg-resources==0.0.0
+pycodestyle==2.5.0
 pygame==1.9.4
