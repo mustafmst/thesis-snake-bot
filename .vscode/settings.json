@@ -1,0 +1,8 @@
+{
+    "python.pythonPath": "env/bin/python",
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/env": true
+    }
+}
