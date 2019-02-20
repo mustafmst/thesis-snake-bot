@@ -1,11 +1,15 @@
 import pygame
 
-from snake.assets import get_absolute_file_path
+from snake import FIELD_SIZE
+from snake.assets import get_absolute_file_path, EMPTY_FIELD
 
 
 class GameBoard():
-    def __init__(self, size = (10,10)):
-        self.size = size
-    
-    def render(self):
-        pass
+    def __init__(self, config):
+        self.size = config["board_size"]
+        self._TILE = pygame.image.load(get_absolute_file_path(EMPTY_FIELD))
+
+    def render(self, display):
+        for x in range(self.size[0]):
+            for y in range(self.size[1]):
+                display.blit(self._TILE, (x*FIELD_SIZE, y*FIELD_SIZE))

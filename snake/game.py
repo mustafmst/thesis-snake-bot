@@ -3,6 +3,9 @@ import pygame
 from pygame.locals import *
 
 from snake import DEFAULT_CONFIG, FIELD_SIZE, PLAYER_MODE
+from snake.engine.objects import init_game_objects
+
+BLACK = (0,0,0)
 
 class Game:
 
@@ -13,12 +16,13 @@ class Game:
             self.DISPLAY = pygame.display.set_mode(
                 self.__get_resolution(config["board_size"]))
             pygame.display.set_caption("SNAKE - AI")
+        self._game_objects = init_game_objects(config)
 
     def run(self):
         self._game_loop()
 
     def _game_loop(self):
-        while(self._running):
+        while True:
             self._handle_events()
             self._proces()
             self._render()
@@ -35,6 +39,10 @@ class Game:
         pass
 
     def _render(self):
+        self.DISPLAY.fill(BLACK)
+        for obj in self._game_objects:
+            obj.render(self.DISPLAY)
+        pygame.display.flip()
         pass
     
     def _sleep(self):
