@@ -2,7 +2,7 @@ import sys, time
 import pygame
 from pygame.locals import *
 
-from snake import DEFAULT_CONFIG, FIELD_SIZE, PLAYER_MODE
+from snake import DEFAULT_CONFIG, FIELD_SIZE, PLAYER_MODE, SIDE_PANEL_WIDTH
 from snake.engine.objects import init_game_objects
 
 BLACK = (0,0,0)
@@ -53,4 +53,6 @@ class Game:
         sys.exit()
     
     def __get_resolution(self, board_size):
-        return (board_size[0]*FIELD_SIZE, board_size[1]*FIELD_SIZE)
+        return (
+            board_size[0]*FIELD_SIZE + SIDE_PANEL_WIDTH, 
+            board_size[1]*FIELD_SIZE)
