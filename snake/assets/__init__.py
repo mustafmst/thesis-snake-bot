@@ -3,6 +3,7 @@ from os import path, getcwd
 FRUIT = 'fruit.png'
 SNAKE_BODY = 'snake_body.png'
 SNAKE_HEAD = 'snake_head.png'
+EMPTY_FIELD = 'empty_field.png'
 
 RELATIVE_PATH = 'snake/assets'
 
