@@ -39,10 +39,16 @@ class Player:
         self.can_move_to(new_position)
         if not GameState.is_game_finished():
             self.__position = new_position
+            self.eat(self.__position)
 
     def can_move_to(self, new_position):
         if GameState.is_field_taken(new_position):
             GameState.finish_game()
+        
+    def eat(self, position):
+        if GameState.is_there_a_fruit(position):
+            GameState.remove_fruit()
+            GameState.add_point()
 
     def up(self):
         self.__direction = ( 0,-1)
