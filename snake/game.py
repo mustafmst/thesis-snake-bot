@@ -52,7 +52,7 @@ class Game:
         while True:
 
             self._handle_events()
-            self._proces()
+            self._proces(self.__CLOCK.get_rawtime())
             self._render()
             self._sleep()
 
@@ -68,7 +68,9 @@ class Game:
 
             self.__event_handler(event)
 
-    def _proces(self):
+    def _proces(self, delta):
+        for obj in self._game_objects:
+            obj.process(delta)
         pass
 
     def _render(self):
