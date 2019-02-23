@@ -15,7 +15,7 @@ class Logger:
         if Logger.__log_level >= level:
             print("[{}][{}] - {}".format(
                 time.ctime(),
-                sender.name,
+                sender.__name__,
                 message
             ))
 

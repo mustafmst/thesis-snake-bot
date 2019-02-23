@@ -5,6 +5,8 @@ from pygame.locals import *
 from snake import DEFAULT_CONFIG, FIELD_SIZE, PLAYER_MODE, SIDE_PANEL_WIDTH
 from snake.engine.objects import init_game_objects
 from snake.engine.input import get_input_handler, create_actions_dict
+from snake.utils.logger import Logger
+from snake.utils import logger_levels
 
 BLACK = (0,0,0)
 
@@ -36,6 +38,7 @@ class Game:
         self.__event_handler = get_input_handler(config,
             create_actions_dict(up,down,left,right))
         self.__CLOCK = pygame.time.Clock()
+        Logger.set_log_level(logger_levels.DEBUG)
 
     def run(self):
         self._game_loop()
@@ -53,7 +56,7 @@ class Game:
     def _handle_events(self):
         for event in pygame.event.get():
             if event.type == QUIT:
-                print("[{}] Quit event.".format(time.ctime()))
+                Logger.log_debug(self,"Quit event.")
                 self._quit()
             self.__event_handler(event)
 
