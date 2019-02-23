@@ -35,16 +35,20 @@ class Game:
         self._game_objects = init_game_objects(config)
         self.__event_handler = get_input_handler(config,
             create_actions_dict(up,down,left,right))
+        self.__CLOCK = pygame.time.Clock()
 
     def run(self):
         self._game_loop()
 
     def _game_loop(self):
+        self.__CLOCK.tick()
         while True:
             self._handle_events()
             self._proces()
             self._render()
-            #self._sleep()
+            self._sleep()
+            self.__CLOCK.tick()
+            print("FPS: {}".format(self.__CLOCK.get_fps()))
     
     def _handle_events(self):
         for event in pygame.event.get():
