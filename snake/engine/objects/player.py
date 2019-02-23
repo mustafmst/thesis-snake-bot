@@ -43,4 +43,7 @@ class Player:
         self.__direction = ( 1, 0)
 
     def render(self, display):
-        display.blit(self.__TILE, self.__position)
+        display.blit(
+            self.__TILE, 
+            self.__position
+        )

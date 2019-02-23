@@ -8,22 +8,8 @@ from snake.engine.input import get_input_handler, create_actions_dict
 from snake.utils.logger import Logger
 from snake.utils import logger_levels
 
+
 BLACK = (0,0,0)
-
-#----------------------------TMP
-def up():
-    Logger.log_info(message="UP", sender=None)
-
-def down():
-    Logger.log_info(message="DOWN", sender=None)
-
-def left():
-    Logger.log_info(message="LEFT", sender=None)
-
-def right():
-    Logger.log_info(message="RIGHT", sender=None)
-#-------------------------------
-
 
 class Game:
 
@@ -33,11 +19,7 @@ class Game:
 
         self._game_objects = init_game_objects(config)
         self.__player = get_player(config)
-        self.__event_handler = get_input_handler(config,
-            create_actions_dict(up,down,left,right)
-        )
         self.__CLOCK = pygame.time.Clock()
-        Logger.set_log_level(config["log_level"])
         
         if config["game_mode"] == PLAYER_MODE:
             self.__event_handler = get_input_handler(config,
