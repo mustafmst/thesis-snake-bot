@@ -12,16 +12,16 @@ BLACK = (0,0,0)
 
 #----------------------------TMP
 def up():
-    print("UP")
+    Logger.log_info(message="UP", sender=None)
 
 def down():
-    print("DOWN")
+    Logger.log_info(message="DOWN", sender=None)
 
 def left():
-    print("LEFT")
+    Logger.log_info(message="LEFT", sender=None)
 
 def right():
-    print("RIGHT")
+    Logger.log_info(message="RIGHT", sender=None)
 #-------------------------------
 
 
@@ -29,16 +29,20 @@ class Game:
 
     def __init__(self, config = DEFAULT_CONFIG):
         self._config = config
+
+        self._game_objects = init_game_objects(config)
+        self.__event_handler = get_input_handler(config,
+            create_actions_dict(up,down,left,right)
+        )
+        self.__CLOCK = pygame.time.Clock()
+        Logger.set_log_level(config["log_level"])
+        
         if config["game_mode"] == PLAYER_MODE:
             pygame.init()
             self.DISPLAY = pygame.display.set_mode(
-                self.__get_resolution(config["board_size"]))
+                self.__get_resolution(config["board_size"])
+            )
             pygame.display.set_caption("SNAKE - AI")
-        self._game_objects = init_game_objects(config)
-        self.__event_handler = get_input_handler(config,
-            create_actions_dict(up,down,left,right))
-        self.__CLOCK = pygame.time.Clock()
-        Logger.set_log_level(logger_levels.DEBUG)
 
     def run(self):
         self._game_loop()
@@ -46,18 +50,22 @@ class Game:
     def _game_loop(self):
         self.__CLOCK.tick()
         while True:
+
             self._handle_events()
             self._proces()
             self._render()
             self._sleep()
+
             self.__CLOCK.tick()
-            print("FPS: {}".format(self.__CLOCK.get_fps()))
+            Logger.log_fps(self, self.__CLOCK)
     
     def _handle_events(self):
         for event in pygame.event.get():
+
             if event.type == QUIT:
                 Logger.log_debug(self,"Quit event.")
                 self._quit()
+
             self.__event_handler(event)
 
     def _proces(self):
@@ -65,8 +73,10 @@ class Game:
 
     def _render(self):
         self.DISPLAY.fill(BLACK)
+
         for obj in self._game_objects:
             obj.render(self.DISPLAY)
+        
         pygame.display.flip()
         pass
     
@@ -80,4 +90,5 @@ class Game:
     def __get_resolution(self, board_size):
         return (
             board_size[0]*FIELD_SIZE + SIDE_PANEL_WIDTH, 
-            board_size[1]*FIELD_SIZE)
+            board_size[1]*FIELD_SIZE
+        )

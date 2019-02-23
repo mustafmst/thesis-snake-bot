@@ -12,12 +12,21 @@ class Logger:
 
     @staticmethod
     def log(level, sender, message):
-        if Logger.__log_level >= level:
+        if level >= Logger.__log_level:
             print("[{}][{}] - {}".format(
                 time.ctime(),
-                sender.__name__,
+                sender.__class__.__name__ if sender != None else "Game",
                 message
             ))
+
+    @staticmethod
+    def log_fps(sender, clock):
+        msg = "FPS: {}".format(clock.get_fps())
+        Logger.log(
+            logger_levels.FPS,
+            sender,
+            msg
+        )
 
     @staticmethod
     def log_debug(sender, message):
