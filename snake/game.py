@@ -3,7 +3,7 @@ import pygame
 from pygame.locals import *
 
 from snake import DEFAULT_CONFIG, FIELD_SIZE, PLAYER_MODE, SIDE_PANEL_WIDTH
-from snake.engine.objects import init_game_objects
+from snake.engine.objects import init_game_objects, get_player
 from snake.engine.input import get_input_handler, create_actions_dict
 from snake.utils.logger import Logger
 from snake.utils import logger_levels
@@ -28,9 +28,11 @@ def right():
 class Game:
 
     def __init__(self, config = DEFAULT_CONFIG):
+        Logger.set_log_level(config["log_level"])
         self._config = config
 
         self._game_objects = init_game_objects(config)
+        self.__player = get_player(config)
         self.__event_handler = get_input_handler(config,
             create_actions_dict(up,down,left,right)
         )
@@ -38,6 +40,14 @@ class Game:
         Logger.set_log_level(config["log_level"])
         
         if config["game_mode"] == PLAYER_MODE:
+            self.__event_handler = get_input_handler(config,
+                create_actions_dict(
+                    self.__player.up,
+                    self.__player.down,
+                    self.__player.left,
+                    self.__player.right
+                )
+            )
             pygame.init()
             self.DISPLAY = pygame.display.set_mode(
                 self.__get_resolution(config["board_size"])
