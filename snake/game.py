@@ -44,7 +44,7 @@ class Game:
             self._handle_events()
             self._proces()
             self._render()
-            self._sleep()
+            #self._sleep()
     
     def _handle_events(self):
         for event in pygame.event.get():
@@ -54,7 +54,6 @@ class Game:
             self.__event_handler(event)
 
     def _proces(self):
-        print("[{}] Proces.".format(time.ctime()))
         pass
 
     def _render(self):

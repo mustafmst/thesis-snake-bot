@@ -10,7 +10,6 @@ class UserInput:
     def __call__(self, event):
         if event.type == KEYDOWN:
             if (event.key == K_RIGHT):
-                print(event)
                 self.__actions[RIGHT_ACTION]()
 
             if (event.key == K_LEFT):
