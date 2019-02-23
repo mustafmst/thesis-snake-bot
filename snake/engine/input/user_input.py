@@ -1,30 +1,23 @@
 from pygame.locals import *
 
-from snake.engine.input import Input
+from snake.engine.input.actions import *
 
 
-class UserInput(Input):
-    def __init__(self, up_action, down_action, left_action, right_action, escape_action):
-        return super().__init__(
-            up_action, 
-            down_action, 
-            left_action, 
-            right_action, 
-            escape_action)
-    
-    def handle_events(self):
-        keys = pygame.key.get_pressed()
-        if (keys[K_RIGHT]):
-            self.right()
+class UserInput:
+    def __init__(self, actions):
+        self.__actions = actions
 
-        if (keys[K_LEFT]):
-            self.left()
+    def __call__(self, event):
+        if event.type == KEYDOWN:
+            if (event.key == K_RIGHT):
+                print(event)
+                self.__actions[RIGHT_ACTION]()
 
-        if (keys[K_UP]):
-            self.up()
+            if (event.key == K_LEFT):
+                self.__actions[LEFT_ACTION]()
 
-        if (keys[K_DOWN]):
-            self.down()
+            if (event.key == K_UP):
+                self.__actions[UP_ACTION]()
 
-        if (keys[K_ESCAPE]):
-            self.escape
+            if (event.key == K_DOWN):
+                self.__actions[DOWN_ACTION]()

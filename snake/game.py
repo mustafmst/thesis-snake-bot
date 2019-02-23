@@ -4,8 +4,24 @@ from pygame.locals import *
 
 from snake import DEFAULT_CONFIG, FIELD_SIZE, PLAYER_MODE, SIDE_PANEL_WIDTH
 from snake.engine.objects import init_game_objects
+from snake.engine.input import get_input_handler, create_actions_dict
 
 BLACK = (0,0,0)
+
+#----------------------------TMP
+def up():
+    print("UP")
+
+def down():
+    print("DOWN")
+
+def left():
+    print("LEFT")
+
+def right():
+    print("RIGHT")
+#-------------------------------
+
 
 class Game:
 
@@ -17,6 +33,8 @@ class Game:
                 self.__get_resolution(config["board_size"]))
             pygame.display.set_caption("SNAKE - AI")
         self._game_objects = init_game_objects(config)
+        self.__event_handler = get_input_handler(config,
+            create_actions_dict(up,down,left,right))
 
     def run(self):
         self._game_loop()
@@ -33,6 +51,7 @@ class Game:
             if event.type == QUIT:
                 print("[{}] Quit event.".format(time.ctime()))
                 self._quit()
+            self.__event_handler(event)
 
     def _proces(self):
         print("[{}] Proces.".format(time.ctime()))
