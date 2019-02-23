@@ -3,11 +3,13 @@ import pygame
 from snake import FIELD_SIZE
 from snake.assets import get_absolute_file_path, EMPTY_FIELD
 from snake.utils.logger import Logger
+from snake.engine.state.game_state import GameState
 
 
 class GameBoard():
     def __init__(self, config):
         self.size = config["board_size"]
+        GameState.init_empty_fields(self.size)
         self._TILE = pygame.image.load(
             get_absolute_file_path(EMPTY_FIELD)
         )

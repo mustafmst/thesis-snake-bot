@@ -3,6 +3,7 @@ from pygame import image
 from snake.assets import get_absolute_file_path, SNAKE_HEAD
 from snake.utils.logger import Logger
 from snake import FIELD_SIZE
+from snake.engine.state.game_state import GameState
 
 
 class Player:
@@ -24,11 +25,24 @@ class Player:
                 self.__direction[1]
             )
 
+    def render(self, display):
+        display.blit(
+            self.__TILE, 
+            self.__position
+        )
+
     def move(self, x, y):
-        self.__position = (
+        new_position = (
             self.__position[0] + x * FIELD_SIZE, 
             self.__position[1] + y * FIELD_SIZE
         )
+        self.can_move_to(new_position)
+        if not GameState.is_game_finished():
+            self.__position = new_position
+
+    def can_move_to(self, new_position):
+        if GameState.is_field_taken(new_position):
+            GameState.finish_game()
 
     def up(self):
         self.__direction = ( 0,-1)
@@ -41,9 +55,3 @@ class Player:
 
     def right(self):
         self.__direction = ( 1, 0)
-
-    def render(self, display):
-        display.blit(
-            self.__TILE, 
-            self.__position
-        )

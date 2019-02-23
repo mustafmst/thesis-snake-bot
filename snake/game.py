@@ -7,6 +7,7 @@ from snake.engine.objects import init_game_objects, get_player
 from snake.engine.input import get_input_handler, create_actions_dict
 from snake.utils.logger import Logger
 from snake.utils import logger_levels
+from snake.engine.state.game_state import GameState
 
 
 BLACK = (0,0,0)
@@ -15,6 +16,7 @@ class Game:
 
     def __init__(self, config = DEFAULT_CONFIG):
         Logger.set_log_level(config["log_level"])
+        self.__running = True
         self._config = config
 
         self._game_objects = init_game_objects(config)
@@ -43,14 +45,16 @@ class Game:
 
     def _game_loop(self):
         self.__CLOCK.tick()
-        while True:
-
+        while self.__running:
             self._handle_events()
-            self._proces(self.__CLOCK.get_rawtime())
-            self._render()
+            if not GameState.is_game_finished():
+                if not self.__running:
+                    continue
+                self._proces(self.__CLOCK.get_rawtime())
+                self._render()
 
-            self.__CLOCK.tick()
-            Logger.log_fps(self, self.__CLOCK)
+                self.__CLOCK.tick()
+                Logger.log_fps(self, self.__CLOCK)
     
     def _handle_events(self):
         for event in pygame.event.get():
@@ -76,8 +80,8 @@ class Game:
         pass
 
     def _quit(self):
+        self.__running = False
         pygame.quit()
-        sys.exit()
     
     def __get_resolution(self, board_size):
         return (
