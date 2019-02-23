@@ -10,6 +10,6 @@ SIDE_PANEL_WIDTH = 100
 DEFAULT_CONFIG = dict(
     board_size = (20,20),
     game_mode = PLAYER_MODE,
-    sleep = 0.01,
+    move_sleep = 360,
     log_level = logger_levels.DEBUG
 )

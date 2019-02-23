@@ -43,8 +43,10 @@ class Game:
                 self.__get_resolution(config["board_size"])
             )
             pygame.display.set_caption("SNAKE - AI")
+        Logger.log_trace(self, "Game initialized")
 
     def run(self):
+        Logger.log_trace(self, "Starting game")
         self._game_loop()
 
     def _game_loop(self):
@@ -54,7 +56,6 @@ class Game:
             self._handle_events()
             self._proces(self.__CLOCK.get_rawtime())
             self._render()
-            self._sleep()
 
             self.__CLOCK.tick()
             Logger.log_fps(self, self.__CLOCK)
@@ -81,9 +82,6 @@ class Game:
         
         pygame.display.flip()
         pass
-    
-    def _sleep(self):
-        time.sleep(self._config["sleep"])
 
     def _quit(self):
         pygame.quit()

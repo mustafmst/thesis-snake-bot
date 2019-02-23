@@ -9,6 +9,7 @@ class GameBoard():
     def __init__(self, config):
         self.size = config["board_size"]
         self._TILE = pygame.image.load(get_absolute_file_path(EMPTY_FIELD))
+        Logger.log_trace(self, "GameBoard initialized")
 
     def process(self, delta):
         pass
