@@ -1,10 +1,14 @@
-class Input:
-    def __init__(self, up_action, down_action, left_action, right_action, escape_action):
-        self.up = up_action
-        self.down = down_action
-        self.left = left_action
-        self.right = right_action
-        self.escape = escape_action
+from snake.engine.input.user_input import UserInput
+from snake.engine.input.actions import *
 
-    def handle_events(self):
-        pass
+
+def create_actions_dict(up, down, left, right):
+    return dict(
+        UP_ACTION = up,
+        DOWN_ACTION = down,
+        LEFT_ACTION = left,
+        RIGHT_ACTION = right
+    )
+
+def get_input_handler(config, actions):
+    return UserInput(actions)
