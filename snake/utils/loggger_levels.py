@@ -1,0 +1,4 @@
+DEBUG = 0
+TRACE = 1
+INFO = 2
+NONE = 3
