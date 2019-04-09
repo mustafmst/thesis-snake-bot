@@ -4,7 +4,7 @@ import json
 builder = NeuralNetworkBuilder()
 
 builder.with_input_shape((2, 2))
-builder.with_dense_Layer(16)
+builder.with_dense_layer(16)
 
 model = builder.build()
 

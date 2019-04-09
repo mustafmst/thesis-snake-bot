@@ -9,7 +9,7 @@ class NeuralNetworkBuilder:
     def with_input_shape(self, shape):
         self.model.add(keras.layers.Flatten(input_shape=shape))
 
-    def with_dense_Layer(self, size):
+    def with_dense_layer(self, size):
         self.model.add(keras.layers.Dense(size,
                                           kernel_initializer='random_uniform',
                                           bias_initializer='random_uniform'))
