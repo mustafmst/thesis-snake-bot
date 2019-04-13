@@ -9,14 +9,14 @@ class UserInput:
 
     def __call__(self, event):
         if event.type == KEYDOWN:
-            if (event.key == K_RIGHT):
+            if event.key == K_RIGHT:
                 self.__actions[RIGHT_ACTION]()
 
-            if (event.key == K_LEFT):
+            if event.key == K_LEFT:
                 self.__actions[LEFT_ACTION]()
 
-            if (event.key == K_UP):
+            if event.key == K_UP:
                 self.__actions[UP_ACTION]()
 
-            if (event.key == K_DOWN):
+            if event.key == K_DOWN:
                 self.__actions[DOWN_ACTION]()

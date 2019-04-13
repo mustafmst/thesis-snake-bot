@@ -7,6 +7,16 @@ class GameState:
     __has_finished = False
     __empty_fields = []
     __fruit_position = None
+    __game_config = None
+    __player = None
+
+    @staticmethod
+    def register_player(player):
+        GameState.__player = player
+
+    @staticmethod
+    def set_game_config(config):
+        GameState.__game_config = config
 
     @staticmethod
     def add_fruit(field_id):
@@ -20,13 +30,17 @@ class GameState:
     
     @staticmethod
     def is_there_a_fruit(position):
-        if GameState.__fruit_position is not None:
+        if GameState.fruit_exist():
             return position == GameState.__fruit_position
         return False
 
     @staticmethod
     def fruit_exist():
         return GameState.__fruit_position is not None
+
+    @staticmethod
+    def get_fruit_position():
+        return GameState.__fruit_position
 
     @staticmethod
     def init_empty_fields(size):
@@ -68,3 +82,13 @@ class GameState:
     @staticmethod
     def is_game_finished():
         return GameState.__has_finished
+
+    @staticmethod
+    def get_state():
+        board_size = GameState.__game_config["board_size"]
+        state = [[0 for i in range(board_size[0])] for j in range(board_size[1])]
+        if GameState.__player is not None:
+            player_position = GameState.__player.get_position()
+            state[int(player_position[0]/FIELD_SIZE)][int(player_position[1]/FIELD_SIZE)] = 1000
+        return state
+

@@ -8,14 +8,18 @@ from snake.engine.state.game_state import GameState
 
 class Player:
     def __init__(self, config):
+        GameState.register_player(self)
         self.__board_size = config["board_size"]
         self.__move_sleep = config["move_sleep"]
-        self.__position = (0, 0)
+        self.__position = (16, 16)
         self.__direction = (1,0)
         self.__ellapsed_from_move = 0
         self.__TILE = image.load(get_absolute_file_path(SNAKE_HEAD))
         Logger.log_trace(self, "Player initialized")
-    
+
+    def get_position(self):
+        return self.__position
+
     def process(self, delta):
         self.__ellapsed_from_move = self.__ellapsed_from_move + delta
         if self.__ellapsed_from_move > self.__move_sleep:

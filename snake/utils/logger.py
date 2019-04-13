@@ -13,8 +13,9 @@ class Logger:
     @staticmethod
     def log(level, sender, message):
         if level >= Logger.__log_level:
-            print("[{}][{}] - {}".format(
+            print("[{}][{}][{}] - {}".format(
                 time.ctime(),
+                level,
                 sender.__class__.__name__ if sender != None else "Game",
                 message
             ))
