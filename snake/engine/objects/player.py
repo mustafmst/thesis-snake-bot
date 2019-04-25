@@ -11,7 +11,7 @@ class Player:
         GameState.register_player(self)
         self.__board_size = config["board_size"]
         self.__move_sleep = config["move_sleep"]
-        self.__position = (16, 16)
+        self.__position = (3*FIELD_SIZE, 3*FIELD_SIZE)
         self.__direction = (1,0)
         self.__ellapsed_from_move = 0
         self.__TILE = image.load(get_absolute_file_path(SNAKE_HEAD))
