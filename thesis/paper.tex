@@ -1,10 +1,14 @@
 \documentclass[12pt, oneside]{report}
 
-\usepackage[left=2.5cm, top=2.5cm, bottom=2.5cm, right=2.5cm]{geometry}
+\usepackage[left=3.5cm, top=2.5cm, bottom=2.5cm, right=2.5cm]{geometry}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{polski}
 \usepackage[polish]{babel}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+
+\usepackage{natbib}
 
 
 \begin{document}  
@@ -80,25 +84,65 @@ Zakład Technologii Gier
 \end{center}
 \vfill
 \tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \chapter{Wprowadzenie}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \chapter{Sieci neuronowe}
-\section{Czym są?}
+\section{Czym są sieci neuronowe?}
+
+Sieci neuronowe są to systemy przetwarzania informacji wzorowane na procesach i strukturach obserwowanych w ludzkim mózgu. Pierwszą sztuczną siecią neuronową był perceprton progowy, który został wymyślony w roku 1943 przez Warrena Sturgisa McCullocha i Waltera Pittsa. Wymyślona wtedy koncepcja jest nadal bardzo aktualna i wykorzystywana do dziś. Teraźniejszy poziom zaawansowania komputerów i ich moc obliczeniowa wywołały swego rodzaju renesans badań nad sieciami neuronowymi.
+
+Tak samo jak nasz mózg składa się z setek miliardów komórek neuronowych tak sztuczne sieci neuronowe są tworzone przez setki lub tysiące sztucznych neuronów, które są najmniejszymi elementami przetwarzającymi informację. Są one prymitywną interpretacją sposobu działania prawdziwych, biologicznych neuronów i składają się z wielu wejść oraz jednego wyjścia. Budowa takiego pojedynczego elementu sieci przedstawiona jest poniżej (Rysunek \ref{fig: 2.1}).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=5cm]{fig211.png}
+	\caption{Schemat budowy sztucznego neuronu}
+	\label{fig: 2.1}
+\end{figure}
+
+Każde wejście sztucznego neuronu posiada też swoją wagę, która jest potem używana do obliczenia jego wyjścia. W takim wypadku funkcję każdego pojedynczego elementu sieci możemy zapisać jako
+
+\begin{equation}\label{eq: 2.1}
+y = \sum^{n}_{i=1} x_{i}w_{i}
+\end{equation}
+
+
+Topologia połączeń oraz ich parametry stanowią program działania sieci \cite{tadeusiewicz1993sieci}. Sygnały wejściowe są przepuszczane przez chmurę połączonych ze sobą neuronów, które następnie przeliczają te sygnały i przekazują swoje rozwiązania dalej w głąb sieci.
+
+
+
 \section{Jakie problemy rozwiązują?}
 \section{Metody nauczania}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Algorytm genetyczny}
 \section{Powstanie algorytmu genetycznego}
 \section{Problem kodowania rozwiązania}
 \section{Zastosowania}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \chapter{Wykorzystanie algorytmu genetycznego w nauczaniu sieci neuronowych}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Samouczący się bot do gry zręcznościowej}
 \section{Stos technologiczny}
 \section{Struktura projektu}
-\section{Zastosowane techniki sztucznej inteligencji}
+\section{Zastosowane techniki sztucznej inteligencji}\textsl{}
 \section{Opis działania}
 
 \chapter{Wnioski}
+
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{plain}
+\bibliography{bibliography}
 \end{document}
