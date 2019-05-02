@@ -3,15 +3,15 @@
 \contentsline {chapter}{\numberline {2}Sieci neuronowe}{4}
 \contentsline {section}{\numberline {2.1}Czym s\IeC {\k a} sieci neuronowe?}{4}
 \contentsline {section}{\numberline {2.2}Zastosowania sieci neuronowych}{5}
-\contentsline {section}{\numberline {2.3}Metody nauczania}{5}
-\contentsline {chapter}{\numberline {3}Algorytm genetyczny}{6}
-\contentsline {section}{\numberline {3.1}Powstanie algorytmu genetycznego}{6}
-\contentsline {section}{\numberline {3.2}Problem kodowania rozwi\IeC {\k a}zania}{6}
-\contentsline {section}{\numberline {3.3}Zastosowania}{6}
-\contentsline {chapter}{\numberline {4}Wykorzystanie algorytmu genetycznego w nauczaniu sieci neuronowych}{7}
-\contentsline {chapter}{\numberline {5}Samoucz\IeC {\k a}cy si\IeC {\k e} bot do gry zr\IeC {\k e}czno\IeC {\'s}ciowej}{8}
-\contentsline {section}{\numberline {5.1}Stos technologiczny}{8}
-\contentsline {section}{\numberline {5.2}Struktura projektu}{8}
-\contentsline {section}{\numberline {5.3}Zastosowane techniki sztucznej inteligencji}{8}
-\contentsline {section}{\numberline {5.4}Opis dzia\IeC {\l }ania}{8}
-\contentsline {chapter}{\numberline {6}Wnioski}{9}
+\contentsline {section}{\numberline {2.3}Metody nauczania sieci neuronowych}{5}
+\contentsline {chapter}{\numberline {3}Algorytm genetyczny}{7}
+\contentsline {section}{\numberline {3.1}Powstanie algorytmu genetycznego}{7}
+\contentsline {section}{\numberline {3.2}Problem kodowania rozwi\IeC {\k a}zania}{7}
+\contentsline {section}{\numberline {3.3}Zastosowania}{7}
+\contentsline {chapter}{\numberline {4}Wykorzystanie algorytmu genetycznego w nauczaniu sieci neuronowych}{8}
+\contentsline {chapter}{\numberline {5}Samoucz\IeC {\k a}cy si\IeC {\k e} bot do gry zr\IeC {\k e}czno\IeC {\'s}ciowej}{9}
+\contentsline {section}{\numberline {5.1}Stos technologiczny}{9}
+\contentsline {section}{\numberline {5.2}Struktura projektu}{9}
+\contentsline {section}{\numberline {5.3}Zastosowane techniki sztucznej inteligencji}{9}
+\contentsline {section}{\numberline {5.4}Opis dzia\IeC {\l }ania}{9}
+\contentsline {chapter}{\numberline {6}Wnioski}{10}

@@ -20,4 +20,9 @@ Ryszard Tadeusiewicz.
 \newblock {\em Sieci neuronowe}, volume 180.
 \newblock Akademicka Oficyna Wydawnicza Warszawa, 1993.
 
+\bibitem{roelants2017deeplearning}
+Valentino Zocca, Gianmario Spacagna, Daniel Slater, and Peter Roelants.
+\newblock {\em Python Deep Learning}.
+\newblock Packt Publishing, 2017.
+
 \end{thebibliography}
