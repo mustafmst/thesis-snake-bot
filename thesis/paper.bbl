@@ -1,5 +1,20 @@
 \begin{thebibliography}{1}
 
+\bibitem{kalogirou2000applications}
+Soteris~A Kalogirou.
+\newblock Applications of artificial neural-networks for energy systems.
+\newblock {\em Applied energy}, 67(1-2):17--35, 2000.
+
+\bibitem{lipton2015learning}
+Zachary~C Lipton, David~C Kale, Charles Elkan, and Randall Wetzel.
+\newblock Learning to diagnose with lstm recurrent neural networks.
+\newblock {\em arXiv preprint arXiv:1511.03677}, 2015.
+
+\bibitem{murray1995applications}
+Allan~F. Murray.
+\newblock {\em Application of neural networks}.
+\newblock Kluwer Academic Publishers, 1995.
+
 \bibitem{tadeusiewicz1993sieci}
 Ryszard Tadeusiewicz.
 \newblock {\em Sieci neuronowe}, volume 180.
