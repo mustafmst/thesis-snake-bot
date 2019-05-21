@@ -9,11 +9,16 @@ class GameState:
     __fruit_position = None
     __game_config = None
     __player = None
+    __tail = None
     __was_fruit_eaten = False
 
     @staticmethod
     def register_player(player):
         GameState.__player = player
+
+    @staticmethod
+    def register_tail(tail):
+        GameState.__tail = tail
 
     @staticmethod
     def set_game_config(config):
@@ -99,6 +104,11 @@ class GameState:
         state = [[0 for i in range(board_size[0])] for j in range(board_size[1])]
         if GameState.__player is not None:
             player_position = GameState.__player.get_position()
-            state[int(player_position[0]/FIELD_SIZE)][int(player_position[1]/FIELD_SIZE)] = 1000
+            state[int(player_position[0]/FIELD_SIZE)][int(player_position[1]/FIELD_SIZE)] = 0.4
+        if GameState.__tail is not None:
+            for t in GameState.__tail.get_tail_blocks():
+                state[int(t[0]/FIELD_SIZE)][int(t[1]/FIELD_SIZE)] = 0.2
+        if GameState.__fruit_position is not None:
+            state[int(GameState.__fruit_position[0] / FIELD_SIZE)][int(GameState.__fruit_position[1] / FIELD_SIZE)] = 1
         return state
 

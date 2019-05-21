@@ -6,6 +6,7 @@ from snake.engine.state.game_state import GameState
 
 class Tail:
     def __init__(self, player):
+        GameState.register_tail(self)
         self.__player = player
         self.__tail_blocks = [player.get_position()]
         self.__newest_block = player.get_position()
@@ -33,3 +34,8 @@ class Tail:
                     body_element
                 )
         pass
+
+    def get_tail_blocks(self):
+        blocks = self.__tail_blocks.copy()
+        blocks.pop(len(blocks)-1)
+        return blocks
