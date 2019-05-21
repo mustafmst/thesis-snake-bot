@@ -7,7 +7,7 @@ from snake.utils.logger import Logger
 from snake.engine.state.game_state import GameState
 
 
-class GameBoard():
+class GameBoard:
     def __init__(self, config):
         self.size = config["board_size"]
         GameState.init_empty_fields(self.size)
@@ -42,7 +42,3 @@ class GameBoard():
                         self.__FRUIT_TILE, 
                         tmp_pos
                     )
-
-    
-    def create_fruit(self):
-        pass

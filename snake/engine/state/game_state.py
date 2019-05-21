@@ -9,6 +9,7 @@ class GameState:
     __fruit_position = None
     __game_config = None
     __player = None
+    __was_fruit_eaten = False
 
     @staticmethod
     def register_player(player):
@@ -26,7 +27,16 @@ class GameState:
 
     @staticmethod
     def remove_fruit():
+        GameState.__was_fruit_eaten = True
         GameState.__fruit_position = None
+
+    @staticmethod
+    def finish_eating():
+        GameState.__was_fruit_eaten = False
+
+    @staticmethod
+    def is_eating():
+        return GameState.__was_fruit_eaten
     
     @staticmethod
     def is_there_a_fruit(position):
