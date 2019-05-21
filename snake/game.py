@@ -40,6 +40,7 @@ class Game:
     def run(self):
         Logger.log_trace(self, "Starting game")
         self.__game_loop()
+        return GameState.get_points()
 
     def __game_loop(self):
         self.__CLOCK.tick()

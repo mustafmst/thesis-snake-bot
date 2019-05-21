@@ -14,12 +14,13 @@ class Tail:
 
     def process(self, delta):
         if self.__newest_block != self.__player.get_position():
+            GameState.take_up_field(self.__newest_block)
             new_pos = self.__player.get_position()
             self.__tail_blocks.append(new_pos)
             self.__newest_block = new_pos
             is_eating = GameState.is_eating()
             if not is_eating:
-                self.__tail_blocks.pop(0)
+                GameState.release_field(self.__tail_blocks.pop(0))
             else:
                 GameState.finish_eating()
         pass
