@@ -1,6 +1,6 @@
 import random
 
-from geneticAI.geneticAlgorithm.specimen import Specimen
+from geneticAI.geneticAlgorithm.candidate import Candidate
 
 
 def get_random_specimen(temporary_population):
@@ -21,7 +21,7 @@ class GeneticAlgorithm:
 
     def __generate_population(self):
         for i in range(self.__config['population_size']):
-            self.__population.append(Specimen(self.__config))
+            self.__population.append(Candidate(self.__config))
         pass
 
     def __check_if_best(self, candidate):

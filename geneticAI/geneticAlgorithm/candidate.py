@@ -1,7 +1,7 @@
 import random
 
 
-class Specimen:
+class Candidate:
     """
     Todo:
     implement creating model based on configurations
@@ -24,7 +24,7 @@ class Specimen:
     implement real crossing
     """
     def cross_with(self, other):
-        return Specimen(other.__config)
+        return Candidate(other.__config)
 
     """
     Todo
