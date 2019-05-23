@@ -8,7 +8,7 @@ class Candidate:
     """
     def __init__(self, config):
         self.__score = None
-        self.__config = config
+        self.__config = dict(config)
         pass
 
     """
