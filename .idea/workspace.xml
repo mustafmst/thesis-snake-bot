@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="643a0e2b-ba96-409e-855a-27edc7c23f8e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/geneticAI/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geneticAI/geneticAlgorithm/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geneticAI/geneticAlgorithm/algorithm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geneticAI/geneticAlgorithm/specimen.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ga_run.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geneticAI/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/geneticAI/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geneticAI/geneticAlgorithm/algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/geneticAI/geneticAlgorithm/algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geneticAI/geneticAlgorithm/specimen.py" beforeDir="false" afterPath="$PROJECT_DIR$/geneticAI/geneticAlgorithm/specimen.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +22,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/geneticAI/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="10" column="6" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+            <state relative-caret-position="176">
+              <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -31,8 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/geneticAI/geneticAlgorithm/specimen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+            <state relative-caret-position="288">
+              <caret line="18" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -40,8 +40,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/geneticAI/geneticAlgorithm/algorithm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="19" column="12" lean-forward="true" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+            <state relative-caret-position="200">
+              <caret line="31" column="53" selection-start-line="31" selection-start-column="53" selection-end-line="31" selection-end-column="53" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ga_run.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -95,6 +110,7 @@
         <option value="$PROJECT_DIR$/snake/engine/state/game_state.py" />
         <option value="$PROJECT_DIR$/snake/engine/objects/tail.py" />
         <option value="$PROJECT_DIR$/geneticAI/geneticAlgorithm/__init__.py" />
+        <option value="$PROJECT_DIR$/ga_run.py" />
         <option value="$PROJECT_DIR$/geneticAI/geneticAlgorithm/algorithm.py" />
         <option value="$PROJECT_DIR$/geneticAI/config.py" />
         <option value="$PROJECT_DIR$/geneticAI/geneticAlgorithm/specimen.py" />
@@ -162,7 +178,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.ai_play.pyw">
+  <component name="RunManager" selected="Python.ga_run">
     <configuration name="ai_play.pyw" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="thesis-snake-bot" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -176,6 +192,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ai_play.pyw" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ga_run" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="thesis-snake-bot" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ga_run.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -208,9 +245,11 @@
     <list>
       <item itemvalue="Python.ai_play.pyw" />
       <item itemvalue="Python.run_snake.pyw" />
+      <item itemvalue="Python.ga_run" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.ga_run" />
         <item itemvalue="Python.ai_play.pyw" />
         <item itemvalue="Python.run_snake.pyw" />
       </list>
@@ -271,12 +310,12 @@
     <frame x="1920" y="27" width="2560" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1059761" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1059761" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3278328" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49980277" weight="0.3278328" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49980277" visible="true" weight="0.3278328" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39933994" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -304,6 +343,16 @@
           <url>file://$PROJECT_DIR$/snake/game.py</url>
           <line>69</line>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/geneticAI/geneticAlgorithm/algorithm.py</url>
+          <line>71</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/geneticAI/geneticAlgorithm/algorithm.py</url>
+          <line>32</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -484,24 +533,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ga_run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/geneticAI/geneticAlgorithm/algorithm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" column="12" lean-forward="true" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+        <state relative-caret-position="200">
+          <caret line="31" column="53" selection-start-line="31" selection-start-column="53" selection-end-line="31" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/geneticAI/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" column="6" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        <state relative-caret-position="176">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/geneticAI/geneticAlgorithm/specimen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+        <state relative-caret-position="288">
+          <caret line="18" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
         </state>
       </provider>
     </entry>
