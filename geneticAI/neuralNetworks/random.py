@@ -14,6 +14,10 @@ class NeuralNetworkBuilder:
                                           kernel_initializer='random_uniform',
                                           bias_initializer='random_uniform'))
 
+    def with_layer(self, layer_type, layer_size):
+        if layer_type == 'dense':
+            self.with_dense_layer(layer_size)
+
     def build(self):
         self.model.add(keras.layers.Dense(4, activation=tf.nn.softmax,
                                           bias_initializer='random_uniform'))

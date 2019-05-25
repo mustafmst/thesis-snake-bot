@@ -104,7 +104,7 @@ class GameState:
         state = [[0 for i in range(board_size[0])] for j in range(board_size[1])]
         if GameState.__player is not None:
             player_position = GameState.__player.get_position()
-            state[int(player_position[0]/FIELD_SIZE)][int(player_position[1]/FIELD_SIZE)] = 0.4
+            state[int(player_position[0]/FIELD_SIZE)][int(player_position[1]/FIELD_SIZE)] = 2
         if GameState.__tail is not None:
             for t in GameState.__tail.get_tail_blocks():
                 state[int(t[0]/FIELD_SIZE)][int(t[1]/FIELD_SIZE)] = 0.2

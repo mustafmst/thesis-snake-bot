@@ -31,5 +31,6 @@ ai_config["neural_network"] = model
 
 from snake.game import Game
 
-game = Game(config=ai_config)
-game.run()
+if __name__ == '__main__':
+    game = Game(config=ai_config)
+    game.run()
