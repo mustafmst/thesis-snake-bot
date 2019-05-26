@@ -43,6 +43,7 @@ class Player:
         self.can_move_to(new_position)
         if not GameState.is_game_finished():
             self.__position = new_position
+            GameState.add_move()
             self.eat(self.__position)
 
     def can_move_to(self, new_position):

@@ -11,6 +11,11 @@ class GameState:
     __player = None
     __tail = None
     __was_fruit_eaten = False
+    __moves_count = 0
+
+    @staticmethod
+    def add_move():
+        GameState.__moves_count += 1
 
     @staticmethod
     def register_player(player):
@@ -34,6 +39,7 @@ class GameState:
     def remove_fruit():
         GameState.__was_fruit_eaten = True
         GameState.__fruit_position = None
+        GameState.__moves_count = 0
 
     @staticmethod
     def finish_eating():
@@ -96,6 +102,10 @@ class GameState:
     
     @staticmethod
     def is_game_finished():
+        board = GameState.__game_config['board_size']
+        fields = board[0] * board[1]
+        if GameState.__moves_count > fields:
+            GameState.finish_game()
         return GameState.__has_finished
 
     @staticmethod
@@ -104,11 +114,11 @@ class GameState:
         state = [[0 for i in range(board_size[0])] for j in range(board_size[1])]
         if GameState.__player is not None:
             player_position = GameState.__player.get_position()
-            state[int(player_position[0]/FIELD_SIZE)][int(player_position[1]/FIELD_SIZE)] = 2
+            state[int(player_position[0]/FIELD_SIZE)][int(player_position[1]/FIELD_SIZE)] = 1
         if GameState.__tail is not None:
             for t in GameState.__tail.get_tail_blocks():
                 state[int(t[0]/FIELD_SIZE)][int(t[1]/FIELD_SIZE)] = 0.2
         if GameState.__fruit_position is not None:
-            state[int(GameState.__fruit_position[0] / FIELD_SIZE)][int(GameState.__fruit_position[1] / FIELD_SIZE)] = 1
+            state[int(GameState.__fruit_position[0] / FIELD_SIZE)][int(GameState.__fruit_position[1] / FIELD_SIZE)] = 2
         return state
 

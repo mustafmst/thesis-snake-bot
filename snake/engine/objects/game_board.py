@@ -24,7 +24,7 @@ class GameBoard:
         if not GameState.fruit_exist():
             self.__fruit_pos = GameState.add_fruit(
                 random.randint(
-                    0, GameState.get_empty_fields_count()
+                    0, GameState.get_empty_fields_count()-1
                 )
             )
 
