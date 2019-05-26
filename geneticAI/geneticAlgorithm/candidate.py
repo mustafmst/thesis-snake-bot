@@ -1,8 +1,23 @@
-import random
+from multiprocessing import Process, Queue
 import numpy as np
 
 import geneticAI.neuralNetworks.random as randomNN
 from snake.game import Game
+
+
+def game_function(queue, config):
+    game = Game(config)
+    result = game.run()
+    queue.put(result)
+
+
+def play_game_in_process(config):
+    q = Queue()
+    p = Process(target=game_function, args=(q, config))
+    p.start()
+    p.join()
+    return q.get()
+
 
 class Candidate:
     """
@@ -25,15 +40,10 @@ class Candidate:
         self.__model = builder.build()
         pass
 
-    """
-    Todo:
-    implement real playing using snake
-    """
     def __play_game(self):
         game_config = dict(self.__config['base_game_config'])
         game_config["neural_network"] = self.__model
-        game = Game(game_config)
-        self.__score = game.run()
+        self.__score = play_game_in_process(game_config)
         pass
 
     """
