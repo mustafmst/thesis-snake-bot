@@ -40,7 +40,12 @@ class Game:
 
     def run(self):
         Logger.log_trace(self, "Starting game")
-        self.__game_loop()
+        # noinspection PyBroadException
+        try:
+            self.__game_loop()
+        except Exception:
+            print('Error while playing')
+            self.__quit()
         return GameState.get_points()
 
     def __game_loop(self):
@@ -61,6 +66,7 @@ class Game:
 
     def __handle_events(self):
         if self.__config["game_mode"] == AI_MODE:
+            Logger.log_debug(self, "Handle AI event")
             self.__event_handler()
         if self.__config['display_mode'] == DISPLAY_ON:
             for event in pygame.event.get():

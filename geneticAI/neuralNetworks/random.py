@@ -17,10 +17,13 @@ class NeuralNetworkBuilder:
     def with_layer(self, layer_type, layer_size):
         if layer_type == 'dense':
             self.with_dense_layer(layer_size)
+        pass
 
-    def build(self):
+    def build(self, genotype=None):
         self.model.add(keras.layers.Dense(4, activation=tf.nn.softmax,
                                           bias_initializer='random_uniform'))
+        if genotype is not None:
+            self.model.set_weights(genotype)
         self.model.compile(optimizer=tf.train.AdamOptimizer(),
                            loss='sparse_categorical_crossentropy',
                            metrics=['accuracy'])
