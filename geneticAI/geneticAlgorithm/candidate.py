@@ -1,31 +1,16 @@
-from multiprocessing import Process, Queue
-from keras.models import Model
 import numpy as np
-import random
 
 import geneticAI.neuralNetworks.random as randomNN
 from snake.game import Game
 from geneticAI.geneticAlgorithm.crossing_handler import cross_candidates
 
 
-def game_function(queue, config, genotype):
-    import tensorflow
-    import keras
-
+def game_function(config, genotype):
     game_config = config['base_game_config']
     game_config["neural_network"] = create_model(config, genotype)
     game = Game(game_config)
     result = game.run()
-    #return result
-    queue.put(result)
-
-
-def play_game_in_process(config, genotype):
-    q = Queue()
-    p = Process(target=game_function, args=(q, config, genotype))
-    p.start()
-    p.join()
-    return q.get()
+    return result
 
 
 def create_model(config, genotype):
@@ -43,6 +28,7 @@ class Candidate:
     Todo:
     implement creating model based on configurations
     """
+
     def __init__(self, config, genotype=None):
         self.__score = None
         self.__config = dict(config)
@@ -57,13 +43,14 @@ class Candidate:
     def __play_game(self):
         game_config = dict(self.__config)
         # game_config["neural_network"] = self.__create_model()
-        self.__score = play_game_in_process(game_config, self.__genotype)  # random.randint(0, 100)
+        self.__score = game_function(game_config, self.__genotype)  # random.randint(0, 100)
         pass
 
     """
     Todo:
     implement real crossing
     """
+
     def cross_with(self, other):
         genotype = cross_candidates(self.__genotype, other.get_genotype())
         return Candidate(self.__config, genotype)
@@ -71,12 +58,13 @@ class Candidate:
     """
     Todo
     """
+
     def mutate(self):
         self.__score = None
         pass
 
     def get_score(self):
-        #if self.__score is None:
+        # if self.__score is None:
         try:
             self.__play_game()
         except KeyboardInterrupt:

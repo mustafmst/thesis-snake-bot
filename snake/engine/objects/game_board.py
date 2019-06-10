@@ -10,7 +10,8 @@ from snake.engine.state.game_state import GameState
 class GameBoard:
     def __init__(self, config):
         self.size = config["board_size"]
-        GameState.init_empty_fields(self.size)
+        self.__game_state = config["gamestate"]
+        self.__game_state.init_empty_fields(self.size)
         self._TILE = pygame.image.load(
             get_absolute_file_path(EMPTY_FIELD)
         )
@@ -21,10 +22,10 @@ class GameBoard:
         Logger.log_trace(self, "GameBoard initialized")
 
     def process(self, delta):
-        if not GameState.fruit_exist():
-            self.__fruit_pos = GameState.add_fruit(
+        if not self.__game_state.fruit_exist():
+            self.__fruit_pos = self.__game_state.add_fruit(
                 random.randint(
-                    0, GameState.get_empty_fields_count()-1
+                    0, self.__game_state.get_empty_fields_count()-1
                 )
             )
 

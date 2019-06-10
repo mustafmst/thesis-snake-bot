@@ -3,122 +3,102 @@ from snake import FIELD_SIZE
 
 
 class GameState:
-    __points = 0
-    __has_finished = False
-    __empty_fields = []
-    __fruit_position = None
-    __game_config = None
-    __player = None
-    __tail = None
-    __was_fruit_eaten = False
-    __moves_count = 0
+    def __init__(self):
+        self.__points = 0
+        self.__has_finished = False
+        self.__empty_fields = []
+        self.__fruit_position = None
+        self.__game_config = None
+        self.__player = None
+        self.__tail = None
+        self.__was_fruit_eaten = False
+        self.__moves_count = 0
 
-    @staticmethod
-    def add_move():
-        GameState.__moves_count += 1
+    def add_move(self):
+        self.__moves_count += 1
 
-    @staticmethod
-    def register_player(player):
-        GameState.__player = player
+    def register_player(self, player):
+        self.__player = player
 
-    @staticmethod
-    def register_tail(tail):
-        GameState.__tail = tail
+    def register_tail(self, tail):
+        self.__tail = tail
 
-    @staticmethod
-    def set_game_config(config):
-        GameState.__game_config = config
+    def set_game_config(self, config):
+        self.__game_config = config
 
-    @staticmethod
-    def add_fruit(field_id):
-        pos = GameState.__empty_fields[field_id]
-        GameState.__fruit_position = pos
+    def add_fruit(self, field_id):
+        pos = self.__empty_fields[field_id]
+        self.__fruit_position = pos
         return pos
 
-    @staticmethod
-    def remove_fruit():
-        GameState.__was_fruit_eaten = True
-        GameState.__fruit_position = None
-        GameState.__moves_count = 0
+    def remove_fruit(self):
+        self.__was_fruit_eaten = True
+        self.__fruit_position = None
+        self.__moves_count = 0
 
-    @staticmethod
-    def finish_eating():
-        GameState.__was_fruit_eaten = False
+    def finish_eating(self):
+        self.__was_fruit_eaten = False
 
-    @staticmethod
-    def is_eating():
-        return GameState.__was_fruit_eaten
-    
-    @staticmethod
-    def is_there_a_fruit(position):
-        if GameState.fruit_exist():
-            return position == GameState.__fruit_position
+    def is_eating(self):
+        return self.__was_fruit_eaten
+
+    def is_there_a_fruit(self, position):
+        if self.fruit_exist():
+            return position == self.__fruit_position
         return False
 
-    @staticmethod
-    def fruit_exist():
-        return GameState.__fruit_position is not None
+    def fruit_exist(self):
+        return self.__fruit_position is not None
 
-    @staticmethod
-    def get_fruit_position():
-        return GameState.__fruit_position
+    def get_fruit_position(self):
+        return self.__fruit_position
 
-    @staticmethod
-    def init_empty_fields(size):
+    def init_empty_fields(self, size):
         for x in range(size[0]):
             for y in range(size[1]):
-                GameState.__empty_fields.append(
+                self.__empty_fields.append(
                     (x*FIELD_SIZE, y*FIELD_SIZE)
                 )
 
-    @staticmethod
-    def take_up_field(field):
-        GameState.__empty_fields.remove(field)
-    
-    @staticmethod
-    def release_field(field):
-        GameState.__empty_fields.append(field)
+    def take_up_field(self, field):
+        self.__empty_fields.remove(field)
 
-    @staticmethod
-    def is_field_taken(field):
-        return field not in GameState.__empty_fields
-    
-    @staticmethod
-    def get_empty_fields_count():
-        return len(GameState.__empty_fields)
+    def release_field(self, field):
+        self.__empty_fields.append(field)
 
-    @staticmethod
-    def get_points():
-        return GameState.__points
+    def is_field_taken(self, field):
+        return field not in self.__empty_fields
 
-    @staticmethod
-    def add_point():
-        GameState.__points = GameState.__points + 1
-    
-    @staticmethod
-    def finish_game():
+    def get_empty_fields_count(self):
+        return len(self.__empty_fields)
+
+    def get_points(self):
+        return self.__points
+
+    def add_point(self):
+        self.__points = self.__points + 1
+
+    def finish_game(self):
         Logger.log_info(None, "GAME OVER!")
-        GameState.__has_finished = True
-    
-    @staticmethod
-    def is_game_finished():
-        board = GameState.__game_config['board_size']
-        fields = board[0] * board[1]
-        if GameState.__moves_count > fields:
-            GameState.finish_game()
-        return GameState.__has_finished
+        self.__has_finished = True
 
-    @staticmethod
-    def get_state():
-        board_size = GameState.__game_config["board_size"]
+    def is_game_finished(self):
+        board = self.__game_config['board_size']
+        fields = board[0] * board[1]
+        if self.__moves_count > fields:
+            self.finish_game()
+        return self.__has_finished
+
+    def get_state(self):
+        board_size = self.__game_config["board_size"]
         state = [[0 for i in range(board_size[0])] for j in range(board_size[1])]
-        if GameState.__player is not None:
-            player_position = GameState.__player.get_position()
+        if self.__player is not None:
+            player_position = self.__player.get_position()
             state[int(player_position[0]/FIELD_SIZE)][int(player_position[1]/FIELD_SIZE)] = 1
-        if GameState.__tail is not None:
-            for t in GameState.__tail.get_tail_blocks():
+        if self.__tail is not None:
+            for t in self.__tail.get_tail_blocks():
                 state[int(t[0]/FIELD_SIZE)][int(t[1]/FIELD_SIZE)] = 0.2
-        if GameState.__fruit_position is not None:
-            state[int(GameState.__fruit_position[0] / FIELD_SIZE)][int(GameState.__fruit_position[1] / FIELD_SIZE)] = 2
+        if self.__fruit_position is not None:
+            state[int(self.__fruit_position[0] / FIELD_SIZE)][int(self.__fruit_position[1] / FIELD_SIZE)] = 2
         return state
 

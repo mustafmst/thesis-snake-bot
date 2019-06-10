@@ -16,5 +16,5 @@ def create_actions_dict(up, down, left, right):
 
 def get_input_handler(config, actions):
     if config["game_mode"] == AI_MODE:
-        return AIInput(actions=actions, neural_network=config["neural_network"], state_provider=GameState)
+        return AIInput(actions=actions, neural_network=config["neural_network"], state_provider=config["gamestate"])
     return UserInput(actions)

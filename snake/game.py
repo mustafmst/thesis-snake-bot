@@ -3,7 +3,7 @@ from pygame.locals import *
 
 from snake import DEFAULT_CONFIG, get_resolution, PLAYER_MODE, AI_MODE, DISPLAY_ON
 from snake.engine.input import get_input_handler, create_actions_dict
-from snake.engine.objects import init_game_objects, get_player
+from snake.engine.objects import init_game_objects, Player
 from snake.engine.state.game_state import GameState
 from snake.utils.logger import Logger
 
@@ -13,13 +13,15 @@ BLACK = (0, 0, 0)
 class Game:
 
     def __init__(self, config=DEFAULT_CONFIG):
+        self.__game_state = GameState()
         Logger.set_log_level(config["log_level"])
         self.__running = True
         self.__config = config
-        GameState.set_game_config(config)
+        self.__config["gamestate"] = self.__game_state
+        self.__game_state.set_game_config(config)
 
         self._game_objects = init_game_objects(config)
-        self.__player = get_player(config)
+        self.__player = next(o for o in self._game_objects if type(o) is Player)
         self.__CLOCK = pygame.time.Clock()
 
         self.__event_handler = get_input_handler(config,
@@ -43,16 +45,19 @@ class Game:
         # noinspection PyBroadException
         try:
             self.__game_loop()
-        except Exception:
+        except Exception as e:
             print('Error while playing')
+            print(e)
             self.__quit()
-        return GameState.get_points()
+        finally:
+            self.clear_all()
+        return self.__game_state.get_points()
 
     def __game_loop(self):
         self.__CLOCK.tick()
         while self.__running:
             self.__handle_events()
-            if not GameState.is_game_finished():
+            if not self.__game_state.is_game_finished():
                 if not self.__running:
                     continue
                 self.__process(self.__CLOCK.get_rawtime())
@@ -95,3 +100,7 @@ class Game:
     def __quit(self):
         self.__running = False
         pygame.quit()
+
+    def clear_all(self):
+        for o in self._game_objects:
+            del o

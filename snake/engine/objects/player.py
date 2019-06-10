@@ -3,12 +3,12 @@ from pygame import image
 from snake.assets import get_absolute_file_path, SNAKE_HEAD
 from snake.utils.logger import Logger
 from snake import FIELD_SIZE
-from snake.engine.state.game_state import GameState
 
 
 class Player:
     def __init__(self, config):
-        GameState.register_player(self)
+        self.__game_state = config["gamestate"]
+        self.__game_state.register_player(self)
         self.__board_size = config["board_size"]
         self.__move_sleep = config["move_sleep"]
         self.__position = (3*FIELD_SIZE, 3*FIELD_SIZE)
@@ -41,19 +41,19 @@ class Player:
             self.__position[1] + y * FIELD_SIZE
         )
         self.can_move_to(new_position)
-        if not GameState.is_game_finished():
+        if not self.__game_state.is_game_finished():
             self.__position = new_position
-            GameState.add_move()
+            self.__game_state.add_move()
             self.eat(self.__position)
 
     def can_move_to(self, new_position):
-        if GameState.is_field_taken(new_position):
-            GameState.finish_game()
+        if self.__game_state.is_field_taken(new_position):
+            self.__game_state.finish_game()
         
     def eat(self, position):
-        if GameState.is_there_a_fruit(position):
-            GameState.remove_fruit()
-            GameState.add_point()
+        if self.__game_state.is_there_a_fruit(position):
+            self.__game_state.remove_fruit()
+            self.__game_state.add_point()
 
     def up(self):
         self.__direction = ( 0,-1)

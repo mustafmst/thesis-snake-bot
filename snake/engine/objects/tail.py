@@ -5,8 +5,9 @@ from snake.engine.state.game_state import GameState
 
 
 class Tail:
-    def __init__(self, player):
-        GameState.register_tail(self)
+    def __init__(self, config, player):
+        self.__game_state = config["gamestate"]
+        self.__game_state.register_tail(self)
         self.__player = player
         self.__tail_blocks = [player.get_position()]
         self.__newest_block = player.get_position()
@@ -15,15 +16,15 @@ class Tail:
 
     def process(self, delta):
         if self.__newest_block != self.__player.get_position():
-            GameState.take_up_field(self.__newest_block)
+            self.__game_state.take_up_field(self.__newest_block)
             new_pos = self.__player.get_position()
             self.__tail_blocks.append(new_pos)
             self.__newest_block = new_pos
-            is_eating = GameState.is_eating()
+            is_eating = self.__game_state.is_eating()
             if not is_eating:
-                GameState.release_field(self.__tail_blocks.pop(0))
+                self.__game_state.release_field(self.__tail_blocks.pop(0))
             else:
-                GameState.finish_eating()
+                self.__game_state.finish_eating()
         pass
 
     def render(self, display):
