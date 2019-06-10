@@ -29,10 +29,8 @@ class Candidate:
         self.__score = None
         self.__config = dict(config)
         self.__genotype = genotype
-        if self.__genotype is None:
-            self.__genotype = create_model(self.__config, self.__genotype).get_weights()
-
-        self.__model = create_model(self.__config, self.__genotype)
+        self.__model = None
+        print("[{}] Candidate is created!".format(str(datetime.now())))
         pass
 
     def get_genotype(self):
@@ -40,15 +38,27 @@ class Candidate:
 
     def __play_game(self):
         print("[{}] Candidate is playing!".format(str(datetime.now())))
-        game_config = dict(self.__config)
-        self.__score = game_function(game_config, self.__model)
+        try:
+            self.initiate_model()
+            game_config = dict(self.__config)
+            self.__score = game_function(game_config, self.__model)
+        finally:
+            del self.__model
         pass
+
+    def initiate_model(self):
+        if self.__genotype is None:
+            self.__model = create_model(self.__config, self.__genotype)
+            self.__genotype = self.__model.get_weights()
+        else:
+            self.__model = create_model(self.__config, self.__genotype)
 
     def cross_with(self, other):
         genotype = cross_candidates(self.__genotype, other.get_genotype())
         return Candidate(self.__config, genotype)
 
     def save_model(self, file_name):
+        self.initiate_model()
         self.__model.save(file_name)
         pass
 

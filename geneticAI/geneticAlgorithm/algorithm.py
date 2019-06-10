@@ -1,5 +1,6 @@
 import random
 from datetime import datetime
+import tensorflow as tf
 
 from geneticAI.geneticAlgorithm.candidate import Candidate
 from geneticAI.geneticAlgorithm.statistics import AlgorithmStatistics
@@ -41,6 +42,7 @@ class GeneticAlgorithm:
                 self.__best_score = winner.get_score()
                 self.__best_network = winner
             result_population.append(winner)
+            tf.keras.backend.clear_session()
         self.__population = result_population[:]
 
     def __cross(self):
@@ -71,10 +73,12 @@ class GeneticAlgorithm:
 
     def run(self):
         self.__generate_population()
-        for i in range(self.__config['generations']):
-            print("[{}] ==> Start {} generation".format(str(datetime.now()), i))
-            self.__select()
-            self.__cross()
-            self.__mutate()
-            self.__log_best_score(i)
-        self.__save_best_network()
+        try:
+            for i in range(self.__config['generations']):
+                print("[{}] ==> Start {} generation".format(str(datetime.now()), i))
+                self.__select()
+                self.__cross()
+                self.__mutate()
+                self.__log_best_score(i)
+        finally:
+            self.__save_best_network()

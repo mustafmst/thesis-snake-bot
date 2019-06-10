@@ -14,7 +14,7 @@ RUN_CONFIG = dict(
         ('dense', 256),
         ('dense', 256)
     ],
-    population_size=100,
+    population_size=200,
     generations=100,
     generation_mutation_rate=0
 )
