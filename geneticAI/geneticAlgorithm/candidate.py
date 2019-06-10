@@ -1,13 +1,14 @@
 import numpy as np
+from datetime import datetime
 
 import geneticAI.neuralNetworks.random as NN
 from snake.game import Game
 from geneticAI.geneticAlgorithm.crossing_handler import cross_candidates
 
 
-def game_function(config, genotype):
+def game_function(config, model):
     game_config = config['base_game_config']
-    game_config["neural_network"] = create_model(config, genotype)
+    game_config["neural_network"] = model
     game = Game(game_config)
     result = game.run()
     return result
@@ -30,19 +31,26 @@ class Candidate:
         self.__genotype = genotype
         if self.__genotype is None:
             self.__genotype = create_model(self.__config, self.__genotype).get_weights()
+
+        self.__model = create_model(self.__config, self.__genotype)
         pass
 
     def get_genotype(self):
         return self.__genotype
 
     def __play_game(self):
+        print("[{}] Candidate is playing!".format(str(datetime.now())))
         game_config = dict(self.__config)
-        self.__score = game_function(game_config, self.__genotype)
+        self.__score = game_function(game_config, self.__model)
         pass
 
     def cross_with(self, other):
         genotype = cross_candidates(self.__genotype, other.get_genotype())
         return Candidate(self.__config, genotype)
+
+    def save_model(self, file_name):
+        self.__model.save(file_name)
+        pass
 
     """
     Todo

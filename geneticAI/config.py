@@ -10,9 +10,11 @@ ai_config['display_mode'] = DISPLAY_OFF
 RUN_CONFIG = dict(
     base_game_config=ai_config,
     network_schema=[
-        ('dense', 2)
+        ('dense', 256),
+        ('dense', 256),
+        ('dense', 256)
     ],
-    population_size=4,
-    generations=4,
-    generation_mutation_rate=10
+    population_size=100,
+    generations=100,
+    generation_mutation_rate=0
 )

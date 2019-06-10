@@ -1,6 +1,8 @@
 import random
+from datetime import datetime
 
 from geneticAI.geneticAlgorithm.candidate import Candidate
+from geneticAI.geneticAlgorithm.statistics import AlgorithmStatistics
 
 
 def get_random_specimen(temporary_population):
@@ -14,6 +16,7 @@ class GeneticAlgorithm:
         self.__new_population = []
         self.__best_network = None
         self.__best_score = 0
+        self._statistic_helper = AlgorithmStatistics(run_config)
         pass
 
     def __generate_population(self):
@@ -22,6 +25,7 @@ class GeneticAlgorithm:
         pass
 
     def __select(self):
+        print("[{}] ==> SELECT STAGE!".format(str(datetime.now())))
         temporary_population = self.__population[:]
         result_population = []
         while len(temporary_population) > 1:
@@ -33,13 +37,14 @@ class GeneticAlgorithm:
                 winner = first
             else:
                 winner = second
-            if winner.get_score() > self.__best_score:
+            if winner.get_score() >= self.__best_score:
                 self.__best_score = winner.get_score()
                 self.__best_network = winner
             result_population.append(winner)
         self.__population = result_population[:]
 
     def __cross(self):
+        print("[{}] ==> CROSS STAGE!".format(str(datetime.now())))
         temporary_population = self.__population[:]
         self.__new_population = []
         while len(temporary_population) > 1:
@@ -50,29 +55,24 @@ class GeneticAlgorithm:
         pass
 
     def __mutate(self):
+        print("[{}] ==> MUTATION STAGE!".format(str(datetime.now())))
         for i in range(self.__config['generation_mutation_rate']):
             get_random_specimen(self.__new_population[:]).mutate()
         self.__population = self.__population + self.__new_population
         pass
 
     def __log_best_score(self, generation):
+        self._statistic_helper.log_generation_result(self.__best_score, generation)
         print('[{}] Best score: {}'.format(generation, self.__best_score))
 
-    """
-    Todo:
-    """
-    def __get_best_network(self):
-        pass
-
-    """
-    Todo:
-    """
     def __save_best_network(self):
+        self._statistic_helper.save_model(self.__best_network)
         pass
 
     def run(self):
         self.__generate_population()
         for i in range(self.__config['generations']):
+            print("[{}] ==> Start {} generation".format(str(datetime.now()), i))
             self.__select()
             self.__cross()
             self.__mutate()

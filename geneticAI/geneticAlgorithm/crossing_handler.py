@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import numpy as np
 import random
 
@@ -31,7 +33,7 @@ def cross_gene(gene_one: np.ndarray, gene_two: np.ndarray) -> np.ndarray:
 
 
 def cross_candidates(first, second):
-    print("Crossing!")
+    print("[{}] Crossing two candidates!".format(str(datetime.now())))
     genotype_one = first
     genotype_two = second
     if len(genotype_one) != len(genotype_two):
