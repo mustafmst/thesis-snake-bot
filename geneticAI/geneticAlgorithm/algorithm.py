@@ -8,9 +8,6 @@ def get_random_specimen(temporary_population):
 
 
 class GeneticAlgorithm:
-    """
-    Todo:
-    """
     def __init__(self, run_config):
         self.__config = run_config
         self.__population = []
@@ -24,25 +21,22 @@ class GeneticAlgorithm:
             self.__population.append(Candidate(self.__config))
         pass
 
-    def __check_if_best(self, candidate):
-        if candidate.get_score() > self.__best_score:
-            self.__best_score = candidate.get_score()
-            self.__best_network = candidate
-
     def __select(self):
         temporary_population = self.__population[:]
         result_population = []
         while len(temporary_population) > 1:
             first = get_random_specimen(temporary_population)
             second = get_random_specimen(temporary_population)
-            self.__check_if_best(first)
-            self.__check_if_best(second)
             if first.get_score() == second.get_score():
-                result_population.append([first, second][random.randint(0, 1)])
+                winner = [first, second][random.randint(0, 1)]
             elif first.get_score() > second.get_score():
-                result_population.append(first)
+                winner = first
             else:
-                result_population.append(second)
+                winner = second
+            if winner.get_score() > self.__best_score:
+                self.__best_score = winner.get_score()
+                self.__best_network = winner
+            result_population.append(winner)
         self.__population = result_population[:]
 
     def __cross(self):
@@ -61,9 +55,6 @@ class GeneticAlgorithm:
         self.__population = self.__population + self.__new_population
         pass
 
-    """
-    Todo:
-    """
     def __log_best_score(self, generation):
         print('[{}] Best score: {}'.format(generation, self.__best_score))
 

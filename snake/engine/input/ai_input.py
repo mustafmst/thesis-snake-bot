@@ -16,7 +16,7 @@ class AIInput:
         }
 
     def __call__(self):
-        move = self.__neural_network.predict(np.array([self.__state_provider.get_state()]), verbose=1)
+        move = self.__neural_network.predict(np.array([self.__state_provider.get_state()]), verbose=0)
 
         action = self.__translation[move.argmax()]
         Logger.log_info(self, 'Action: {}'.format(action))

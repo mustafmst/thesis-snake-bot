@@ -1,6 +1,6 @@
 import numpy as np
 
-import geneticAI.neuralNetworks.random as randomNN
+import geneticAI.neuralNetworks.random as NN
 from snake.game import Game
 from geneticAI.geneticAlgorithm.crossing_handler import cross_candidates
 
@@ -16,7 +16,7 @@ def game_function(config, genotype):
 def create_model(config, genotype):
     board_size = config['base_game_config']['board_size']
     input_shape = np.array([[0 for i in range(board_size[0])] for j in range(board_size[1])]).shape
-    builder = randomNN.NeuralNetworkBuilder()
+    builder = NN.NeuralNetworkBuilder()
     builder.with_input_shape(input_shape)
     for layer in config['network_schema']:
         builder.with_layer(layer[0], layer[1])
@@ -24,11 +24,6 @@ def create_model(config, genotype):
 
 
 class Candidate:
-    """
-    Todo:
-    implement creating model based on configurations
-    """
-
     def __init__(self, config, genotype=None):
         self.__score = None
         self.__config = dict(config)
@@ -42,14 +37,8 @@ class Candidate:
 
     def __play_game(self):
         game_config = dict(self.__config)
-        # game_config["neural_network"] = self.__create_model()
-        self.__score = game_function(game_config, self.__genotype)  # random.randint(0, 100)
+        self.__score = game_function(game_config, self.__genotype)
         pass
-
-    """
-    Todo:
-    implement real crossing
-    """
 
     def cross_with(self, other):
         genotype = cross_candidates(self.__genotype, other.get_genotype())
@@ -64,9 +53,6 @@ class Candidate:
         pass
 
     def get_score(self):
-        # if self.__score is None:
-        try:
+        if self.__score is None:
             self.__play_game()
-        except KeyboardInterrupt:
-            print("znowu...")
         return self.__score
