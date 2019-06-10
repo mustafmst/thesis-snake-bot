@@ -20,20 +20,20 @@ def cross_gene(gene_one: np.ndarray, gene_two: np.ndarray) -> np.ndarray:
     else:
         crossing_point = random.randint(0, gene_one.shape[0])
         if random.randint(0,100) > 50:
-            first_half = gene_one[0:crossing_point]
-            second_half = gene_two[crossing_point:len(gene_two)]
+            new_gene = gene_one.copy()
+            for i in range(crossing_point, len(gene_two)-1):
+                new_gene[i] = gene_two[i]
         else:
-            first_half = gene_two[0:crossing_point]
-            second_half = gene_one[crossing_point:len(gene_one)]
-        new_gene = np.concatenate((first_half, second_half))
-
+            new_gene = gene_two.copy()
+            for i in range(crossing_point, len(gene_one)-1):
+                new_gene[i] = gene_one[i]
     return new_gene
 
 
 def cross_candidates(first, second):
     print("Crossing!")
-    genotype_one = first.get_genotype()
-    genotype_two = second.get_genotype()
+    genotype_one = first
+    genotype_two = second
     if len(genotype_one) != len(genotype_two):
         raise CrossingException("Whole genotype size mismatch")
 

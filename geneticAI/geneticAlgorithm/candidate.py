@@ -8,18 +8,34 @@ from snake.game import Game
 from geneticAI.geneticAlgorithm.crossing_handler import cross_candidates
 
 
-def game_function(queue, config):
-    game = Game(config)
+def game_function(queue, config, genotype):
+    import tensorflow
+    import keras
+
+    game_config = config['base_game_config']
+    game_config["neural_network"] = create_model(config, genotype)
+    game = Game(game_config)
     result = game.run()
+    #return result
     queue.put(result)
 
 
-def play_game_in_process(config):
+def play_game_in_process(config, genotype):
     q = Queue()
-    p = Process(target=game_function, args=(q, config))
+    p = Process(target=game_function, args=(q, config, genotype))
     p.start()
     p.join()
     return q.get()
+
+
+def create_model(config, genotype):
+    board_size = config['base_game_config']['board_size']
+    input_shape = np.array([[0 for i in range(board_size[0])] for j in range(board_size[1])]).shape
+    builder = randomNN.NeuralNetworkBuilder()
+    builder.with_input_shape(input_shape)
+    for layer in config['network_schema']:
+        builder.with_layer(layer[0], layer[1])
+    return builder.build(genotype=genotype)
 
 
 class Candidate:
@@ -31,27 +47,17 @@ class Candidate:
         self.__score = None
         self.__config = dict(config)
         self.__genotype = genotype
-        self.__create_model()
+        if self.__genotype is None:
+            self.__genotype = create_model(self.__config, self.__genotype).get_weights()
         pass
 
     def get_genotype(self):
-        return self.__model.get_weights()
-
-    def __create_model(self):
-        board_size = self.__config['base_game_config']['board_size']
-        input_shape = np.array([[0 for i in range(board_size[0])] for j in range(board_size[1])]).shape
-        builder = randomNN.NeuralNetworkBuilder()
-        builder.with_input_shape(input_shape)
-        for layer in self.__config['network_schema']:
-            builder.with_layer(layer[0], layer[1])
-        self.__model: Model = builder.build(genotype=self.__genotype)
-        # a = self.__model.get_weights()
-        pass
+        return self.__genotype
 
     def __play_game(self):
-        game_config = dict(self.__config['base_game_config'])
-        game_config["neural_network"] = self.__model
-        self.__score = play_game_in_process(game_config)  # random.randint(0, 100)
+        game_config = dict(self.__config)
+        # game_config["neural_network"] = self.__create_model()
+        self.__score = play_game_in_process(game_config, self.__genotype)  # random.randint(0, 100)
         pass
 
     """
@@ -59,7 +65,7 @@ class Candidate:
     implement real crossing
     """
     def cross_with(self, other):
-        genotype = cross_candidates(self, other)
+        genotype = cross_candidates(self.__genotype, other.get_genotype())
         return Candidate(self.__config, genotype)
 
     """

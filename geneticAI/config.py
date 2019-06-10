@@ -10,10 +10,9 @@ ai_config['log_level'] = logger_levels.DEBUG
 RUN_CONFIG = dict(
     base_game_config=ai_config,
     network_schema=[
-        ('dense', 256),
-        ('dense', 256)
+        ('dense', 2)
     ],
-    population_size=12,
-    generations=12,
+    population_size=4,
+    generations=4,
     generation_mutation_rate=10
 )
