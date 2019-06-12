@@ -2,6 +2,7 @@ import numpy as np
 from datetime import datetime
 
 import geneticAI.neuralNetworks.random as NN
+from geneticAI.geneticAlgorithm.mutation_handler import mutate_genotype
 from snake.game import Game
 from geneticAI.geneticAlgorithm.crossing_handler import cross_candidates
 
@@ -62,12 +63,10 @@ class Candidate:
         self.__model.save(file_name)
         pass
 
-    """
-    Todo
-    """
-
     def mutate(self):
+        print("[{}] Candidate is mutating!".format(str(datetime.now())))
         self.__score = None
+        self.__genotype = mutate_genotype(self.__genotype)
         pass
 
     def get_score(self):
