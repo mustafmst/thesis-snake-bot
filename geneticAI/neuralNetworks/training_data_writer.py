@@ -20,7 +20,7 @@ def get_action(x, y):
 
 class TrainingDataWriter:
     FOLDER_NAME = "logs"
-    
+
     def __init__(self, config):
         self.__config = config
         self.__game_state = self.__config["gamestate"]
