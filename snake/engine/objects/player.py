@@ -2,11 +2,14 @@ from pygame import image
 
 from snake.assets import get_absolute_file_path, SNAKE_HEAD
 from snake.utils.logger import Logger
-from snake import FIELD_SIZE
+from snake import FIELD_SIZE, PLAYER_MODE
+from geneticAI.neuralNetworks.training_data_writer import TrainingDataWriter
 
 
 class Player:
     def __init__(self, config):
+        self.__config = config
+        self.__training_data_writer = TrainingDataWriter(config)
         self.__game_state = config["gamestate"]
         self.__game_state.register_player(self)
         self.__board_size = config["board_size"]
@@ -42,6 +45,8 @@ class Player:
         )
         self.can_move_to(new_position)
         if not self.__game_state.is_game_finished():
+            if self.__config["game_mode"] == PLAYER_MODE:
+                self.__training_data_writer.write_data(x, y)
             self.__position = new_position
             self.__game_state.add_move()
             self.eat(self.__position)

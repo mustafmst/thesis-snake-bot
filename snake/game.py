@@ -48,6 +48,7 @@ class Game:
         except Exception as e:
             print('Error while playing')
             print(e)
+            raise
             self.__quit()
         finally:
             self.clear_all()

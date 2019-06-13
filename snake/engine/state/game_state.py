@@ -1,5 +1,5 @@
 from snake.utils.logger import Logger
-from snake import FIELD_SIZE
+from snake import FIELD_SIZE, PLAYER_VALUE, TAIL_VALUE, FRUIT_VALUE
 
 
 class GameState:
@@ -94,11 +94,11 @@ class GameState:
         state = [[0 for i in range(board_size[0])] for j in range(board_size[1])]
         if self.__player is not None:
             player_position = self.__player.get_position()
-            state[int(player_position[0]/FIELD_SIZE)][int(player_position[1]/FIELD_SIZE)] = 1
+            state[int(player_position[0]/FIELD_SIZE)][int(player_position[1]/FIELD_SIZE)] = PLAYER_VALUE
         if self.__tail is not None:
             for t in self.__tail.get_tail_blocks():
-                state[int(t[0]/FIELD_SIZE)][int(t[1]/FIELD_SIZE)] = 0.2
+                state[int(t[0]/FIELD_SIZE)][int(t[1]/FIELD_SIZE)] = TAIL_VALUE
         if self.__fruit_position is not None:
-            state[int(self.__fruit_position[0] / FIELD_SIZE)][int(self.__fruit_position[1] / FIELD_SIZE)] = 2
+            state[int(self.__fruit_position[0] / FIELD_SIZE)][int(self.__fruit_position[1] / FIELD_SIZE)] = FRUIT_VALUE
         return state
 

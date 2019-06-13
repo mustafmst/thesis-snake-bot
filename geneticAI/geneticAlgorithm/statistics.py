@@ -7,8 +7,10 @@ class AlgorithmStatistics:
     FOLDER_NAME = "statistics/"
     MODEL_SUFFIX = "-model"
     RESULT_SUFFIX = "-results"
+    CONFIG_SUFFIX = "-game_config"
 
     def __init__(self, config):
+        self.__config = config
         self.__prefix = "{}_pop{}_gen{}_mut{}".format(
             datetime.datetime.now().strftime("%Y%m%d:%H:%M"),
             config["population_size"],
@@ -25,6 +27,15 @@ class AlgorithmStatistics:
                                           '{}{}.h5'.format(
                                               self.__prefix,
                                               self.MODEL_SUFFIX)))
+        with open(os.path.join(
+            os.getcwd(),
+            self.FOLDER_NAME,
+            '{}{}.json'.format(
+                self.__prefix,
+                self.CONFIG_SUFFIX
+            )
+        )) as config_file:
+            json.dump(self.__config["base_game_config"], config_file, indent=4)
         pass
 
     def log_generation_result(self, best_result, generation):
