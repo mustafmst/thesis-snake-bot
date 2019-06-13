@@ -19,10 +19,14 @@ def get_action(x, y):
 
 
 class TrainingDataWriter:
+    FOLDER_NAME = "logs"
+    
     def __init__(self, config):
         self.__config = config
         self.__game_state = self.__config["gamestate"]
         self.__session_data = []
+        if not os.path.isdir(os.path.join(os.getcwd(), self.FOLDER_NAME)):
+            os.mkdir(os.path.join(os.getcwd(), self.FOLDER_NAME))
 
     def write_data(self, x, y):
         action = get_action(x, y)
@@ -33,7 +37,7 @@ class TrainingDataWriter:
         data = (input, output)
         self.__session_data.append(data)
         with open(
-                os.path.join(os.getcwd(), "{}-{}.json".format(datetime.now().strftime("%Y%m%d:%H:%M"), "training")),
+                os.path.join(os.getcwd(), self.FOLDER_NAME, "{}-{}.json".format(datetime.now().strftime("%Y%m%d:%H:%M"), "training")),
                 'w') as training_json:
             json.dump(dict(
                 board=self.__config["board_size"],

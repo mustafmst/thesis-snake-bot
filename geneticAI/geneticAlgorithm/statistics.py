@@ -4,7 +4,7 @@ import os
 
 
 class AlgorithmStatistics:
-    FOLDER_NAME = "statistics/"
+    FOLDER_NAME = "logs"
     MODEL_SUFFIX = "-model"
     RESULT_SUFFIX = "-results"
     CONFIG_SUFFIX = "-game_config"
