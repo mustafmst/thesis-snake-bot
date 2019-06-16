@@ -34,7 +34,7 @@ class AlgorithmStatistics:
                 self.__prefix,
                 self.CONFIG_SUFFIX
             )
-        )) as config_file:
+        ), 'w') as config_file:
             json.dump(self.__config["base_game_config"], config_file, indent=4)
         pass
 

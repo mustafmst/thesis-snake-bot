@@ -4,14 +4,21 @@ import tensorflow as tf
 
 from geneticAI.geneticAlgorithm.candidate import Candidate
 from geneticAI.geneticAlgorithm.statistics import AlgorithmStatistics
+from geneticAI.geneticAlgorithm.multiprocessing_handler import start_session, run_function_in_process, wait_for_all
 
 
 def get_random_specimen(temporary_population):
     return temporary_population.pop(random.randint(0, len(temporary_population) - 1))
 
 
+def cross_candidates(candidates, queue):
+    queue.put(candidates[0].cross_with(candidates[1]))
+    queue.put(candidates[1].cross_with(candidates[0]))
+
+
 class GeneticAlgorithm:
     def __init__(self, run_config):
+        tf.enable_eager_execution()
         self.__config = run_config
         self.__population = []
         self.__new_population = []
@@ -49,11 +56,15 @@ class GeneticAlgorithm:
         print("[{}] ==> CROSS STAGE!".format(str(datetime.now())))
         temporary_population = self.__population[:]
         self.__new_population = []
+        session = start_session()
         while len(temporary_population) > 1:
             first = get_random_specimen(temporary_population)
             second = get_random_specimen(temporary_population)
+            # run_function_in_process(cross_candidates, [first, second], session)
             self.__new_population.append(first.cross_with(second))
             self.__new_population.append(second.cross_with(first))
+        # for candidate in wait_for_all(session):
+        #     self.__new_population.append(candidate)
         pass
 
     def __mutate(self):
