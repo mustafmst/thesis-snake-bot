@@ -35,7 +35,8 @@ class AlgorithmStatistics:
                 self.CONFIG_SUFFIX
             )
         ), 'w') as config_file:
-            json.dump(self.__config["base_game_config"], config_file, indent=4)
+            config = self.__config["base_game_config"]
+            json.dump(dict(board_size=config["board_size"]), config_file, indent=4)
         pass
 
     def log_generation_result(self, best_result, generation):

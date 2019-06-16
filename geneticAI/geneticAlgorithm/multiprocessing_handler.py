@@ -1,4 +1,7 @@
-from multiprocessing import Process, Queue
+from multiprocessing import Process, Queue, Pool
+from queue import Empty
+
+from geneticAI.geneticAlgorithm.candidate import Candidate
 
 
 def start_session():
@@ -15,11 +18,16 @@ def run_function_in_process(func, args, session):
     return session
 
 
-def wait_for_all(session):
-    for process in session["processes"]:
-        process.join()
+def wait_for_all(session, config):
     result = []
     queue: Queue = session["queue"]
-    while(not queue.empty()):
-        result.append(queue.get())
+    while True:
+        try:
+            item = queue.get(timeout=1)
+            result.append(Candidate(config, item))
+        except Empty:
+            break
+    for p in session["processes"]:
+        p.join()
+        del p
     return result

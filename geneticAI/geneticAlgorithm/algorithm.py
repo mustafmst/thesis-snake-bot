@@ -1,6 +1,7 @@
 import random
 from datetime import datetime
 import tensorflow as tf
+from multiprocessing import Queue
 
 from geneticAI.geneticAlgorithm.candidate import Candidate
 from geneticAI.geneticAlgorithm.statistics import AlgorithmStatistics
@@ -11,14 +12,16 @@ def get_random_specimen(temporary_population):
     return temporary_population.pop(random.randint(0, len(temporary_population) - 1))
 
 
-def cross_candidates(candidates, queue):
-    queue.put(candidates[0].cross_with(candidates[1]))
-    queue.put(candidates[1].cross_with(candidates[0]))
+def cross_candidates(candidates, queue: Queue):
+    first = candidates[0].cross_with(candidates[1])
+    second = candidates[1].cross_with(candidates[0])
+    queue.put(first)
+    queue.put(second)
+    pass
 
 
 class GeneticAlgorithm:
     def __init__(self, run_config):
-        tf.enable_eager_execution()
         self.__config = run_config
         self.__population = []
         self.__new_population = []
@@ -60,11 +63,11 @@ class GeneticAlgorithm:
         while len(temporary_population) > 1:
             first = get_random_specimen(temporary_population)
             second = get_random_specimen(temporary_population)
-            # run_function_in_process(cross_candidates, [first, second], session)
-            self.__new_population.append(first.cross_with(second))
-            self.__new_population.append(second.cross_with(first))
-        # for candidate in wait_for_all(session):
-        #     self.__new_population.append(candidate)
+            run_function_in_process(cross_candidates, [first, second], session)
+            # self.__new_population.append(first.cross_with(second))
+            # self.__new_population.append(second.cross_with(first))
+        for candidate in wait_for_all(session, self.__config):
+            self.__new_population.append(candidate)
         pass
 
     def __mutate(self):

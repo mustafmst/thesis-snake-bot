@@ -28,7 +28,7 @@ def create_model(config, genotype):
 class Candidate:
     def __init__(self, config, genotype=None):
         self.__score = None
-        self.__config = dict(config)
+        self.__config = config
         self.__genotype = genotype
         self.__model = None
         print("[{}] Candidate is created!".format(str(datetime.now())))
@@ -56,7 +56,8 @@ class Candidate:
 
     def cross_with(self, other):
         genotype = cross_candidates(self.__genotype, other.get_genotype())
-        return Candidate(self.__config, genotype)
+        return genotype
+        # return Candidate(self.__config, genotype)
 
     def save_model(self, file_name):
         self.initiate_model()
