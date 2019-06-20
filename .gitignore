@@ -114,3 +114,9 @@ venv.bak/
 weights.json
 
 .idea/workspace.xml
+thesis/paper.bbl
+thesis/paper.blg
+thesis/paper.fdb_latexmk
+thesis/paper.fls
+thesis/paper.run.xml
+thesis/paper.bcf

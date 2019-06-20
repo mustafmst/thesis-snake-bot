@@ -4,5 +4,8 @@
         "**/__pycache__": true,
         "**/.pytest_cache": true,
         "**/env": true
-    }
+    },
+    "cSpell.words": [
+        "samouczącego"
+    ]
 }
