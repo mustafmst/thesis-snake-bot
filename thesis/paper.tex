@@ -101,21 +101,33 @@ Tak samo jak nasz mózg składa się z setek miliardów komórek neuronowych tak
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=5cm]{fig211.png}
+	\includegraphics[width=7cm]{fig211.png}
 	\caption{Schemat budowy sztucznego neuronu}
 	\label{fig: 2.1}
 \end{figure}
 
-Każde wejście sztucznego neuronu posiada też swoją wagę, która jest potem używana do obliczenia jego wyjścia. W takim wypadku funkcję każdego pojedynczego elementu sieci możemy zapisać jako
+Każde wejście sztucznego neuronu posiada też swoją wagę, która jest potem używana do obliczenia jego wyjścia. W takim wypadku funkcję każdego pojedynczego elementu sieci możemy zapisać jako (Równanie \ref{eq: 2.1})
 
 \begin{equation}\label{eq: 2.1}
 y = \sum^{n}_{i=1} x_{i}w_{i}
 \end{equation}
 
+Dodatkowo każdy neuron posiada swoją wartość przesunięcia (ang. \textit{bias}) sygnału. Funkcja wyjścia zaprezentowana powyżej z uwzględnieniem tej wartości będzie wyglądać (Równanie \ref{eq: 2.2}):
+
+\begin{equation}\label{eq: 2.2}
+  y = \sum^{n}_{i=1} x_{i}w_{i} + b
+  \end{equation}
 
 Topologia połączeń oraz ich parametry stanowią program działania sieci \cite{tadeusiewicz1993sieci}. Sygnały wejściowe są przepuszczane przez chmurę połączonych ze sobą neuronów, które następnie przeliczają te sygnały i przekazują swoje rozwiązania dalej w głąb sieci. Tak przetworzone dane dają w wyniku pewną ilość sygnałów wyjściowych z sieci które razem są rozwiązaniem problemu, do którego została wyuczona.
 
-Możemy wyodrębnić kilka podstawowych rodzajów sieci neuronowych na podstawie ich topologii takie jak sieci jedno warstwowe, wielowarstwowe, jednokierunkowe czy rekurencyjne. Każda z tych wariacji jest skuteczna w rozwiązywaniu innych problemów.
+Możemy wyodrębnić kilka podstawowych rodzajów sieci neuronowych na podstawie ich topologii takie jak sieci jedno warstwowe, wielowarstwowe, jednokierunkowe czy rekurencyjne. Każda z tych wariacji jest skuteczna w rozwiązywaniu innych problemów. Dla przykładu sieci jednowarstwowe, które w praktyce składają się z dwóch warstw (warstwa wejściowa nie przetwarza a jedynie przekazuje dane wejściowe do sieci), nadają się do klasyfikowania informacji, które jesteśmy w stanie rozdzielić liniowo. Sieci wielowarstwowe różnią się od jednowarstwowych jedynie dodatkowymi warstwami ukrytymi. W klasycznych sieciach neuronowych połączenia pomiędzy neuronami istnieją jedynie między warstwami. Obraz poniżej prezentuje przykładową wielowarstwową sztuczną sieć neuronową (Rysunek \ref{fig: 2.2})
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=12cm]{fig212.png}
+	\caption{Schemat wielowarstwowej sieci neuronowej}
+	\label{fig: 2.2}
+\end{figure}
 
 Aby jednoznacznie określić konkretną sztuczną sieć neuronową możemy się posłużyć uproszczonym modelem opisanym przez trzy podstawowe cechy takiej sieci. Tymi cechami są architektura, proces uczenia i funkcja aktywacji. Architektura opisuje dokładnie topologię sieci, w tym jej rodzaj oraz liczby warstw i neuronów w każdej warstwie. Uczenie jest opisem procesu zastosowanego do rozwinięcia parametrów sieci. Określa ono poszczególne techniki użyte do tego celu jak na przykład uczenie przez wzmacnianie czy uczenie ze zbioru reguł. Definiuje też zakresy i wartości wag połączeń między neuronami. Ostatnia cecha czyli funkcja aktywacji opisuje sposób wewnętrznego działania neuronu, czyli kiedy będzie on aktywny oraz jakie dane przekaże dalej w głąb sieci.
 
