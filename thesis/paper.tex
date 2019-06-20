@@ -8,9 +8,8 @@
 \usepackage{indentfirst}
 \usepackage{graphicx}
 \usepackage{mathtools}
-
 \usepackage{natbib}
-
+\setcitestyle{authoryear,open={(},close={)}}
 
 \begin{document}  
 \thispagestyle{empty}
@@ -120,7 +119,7 @@ Dodatkowo każdy neuron posiada swoją wartość przesunięcia (ang. \textit{bia
   y = \sum^{n}_{i=1} x_{i}w_{i} + b
 \end{equation}
 
-Topologia połączeń oraz ich parametry stanowią program działania sieci \cite{tadeusiewicz1993sieci}. Sygnały wejściowe są przepuszczane przez chmurę połączonych ze sobą neuronów, które następnie przeliczają te sygnały i przekazują swoje rozwiązania dalej w głąb sieci. Tak przetworzone dane dają w wyniku pewną ilość sygnałów wyjściowych z sieci które razem są rozwiązaniem problemu, do którego została wyuczona.
+Topologia połączeń oraz ich parametry stanowią program działania sieci \citep{tadeusiewicz1993sieci}. Sygnały wejściowe są przepuszczane przez chmurę połączonych ze sobą neuronów, które następnie przeliczają te sygnały i przekazują swoje rozwiązania dalej w głąb sieci. Tak przetworzone dane dają w wyniku pewną ilość sygnałów wyjściowych z sieci które razem są rozwiązaniem problemu, do którego została wyuczona.
 
 Możemy wyodrębnić kilka podstawowych rodzajów sieci neuronowych na podstawie ich topologii takie jak sieci jedno warstwowe, wielowarstwowe, jednokierunkowe czy rekurencyjne. Każda z tych wariacji jest skuteczna w rozwiązywaniu innych problemów. Dla przykładu sieci jednowarstwowe, które w praktyce składają się z dwóch warstw (warstwa wejściowa nie przetwarza a jedynie przekazuje dane wejściowe do sieci), nadają się do klasyfikowania informacji, które jesteśmy w stanie rozdzielić liniowo. Sieci wielowarstwowe różnią się od jednowarstwowych jedynie dodatkowymi warstwami ukrytymi. W klasycznych sieciach neuronowych połączenia pomiędzy neuronami istnieją jedynie między warstwami. Obraz poniżej prezentuje przykładową wielowarstwową sztuczną sieć neuronową (Rysunek \ref{fig: 2.2})
 
@@ -169,27 +168,32 @@ Istnieją również bardziej zaawansowane funkcje aktywacji. Jedną z najczęśc
 
 Bazując na wcześniej podanych informacjach można powiedzieć, że sztuczne sieci neuronowe pomimo swojej genezy nie są idealnym odzwierciedleniem sposobu działania swojego pierwowzoru, czyli ludzkiego mózgu. Przez swoje ograniczenia ich zdolności do rozwiązywania problemów są ograniczane. Każda sieć neuronowa jest projektowana i uczona do rozwiązywania konkretnego problemu i nie radzi sobie z danymi związanymi z innymi zagadnieniami niż jej specjalizacja. Z podstaw działania sztucznego neuronu można wywnioskować, że ma on zdolność do rozpoznawania wzorców na podstawie porównania otrzymanych sygnałów do swojego wektora wag. Z tego wynika, że sztuczne neurony połączone w skomplikowaną sieć są idealne do takich zadań na dużo większą skalę. Taki sposób działania pozwala na wykorzystanie tych mechanizmów w wielu branżach.
 
-Aktualnie sieci neuronowe są używane do przetwarzania danych w bardzo dużym spektrum dziedzin. Ich zastosowania można znaleźć przedmiotach codziennego użytku takich jak smartfony, na przykład do rozpoznawania mowy i implementacji interfejsów głosowych, jak też w bardzo profesjonalnych sprzętach i systemach. Na podstawie wcześniej dostarczonych danych jesteśmy w stanie nauczyć sieci neuronowe przewidywać pewne zdarzenia na podstawie aktualnych danych. Wiele firm w dzisiejszych czasach tworzy systemy, które na podstawie parametrów technicznych urządzeń w zakładach są wstanie podać bardzo dokładne prawdopodobieństwo awarii danego sprzętu. Sztuczne sieci neuronowe zostały wykorzystane przez różnych badaczy do modelowania i prognozowania w dziedzinie systemów inżynierii energetycznej \cite{kalogirou2000applications}. Współczesna medycyna generuje zawrotne ilości danych korzystając z zaawansowanych czujników monitorujących. Potencjalne zastosowania takich danych obejmują dokładne klasyfikowanie diagnoz, przewidywanie przyszłych chorób i śmiertelności \cite{lipton2015learning}.
+Aktualnie sieci neuronowe są używane do przetwarzania danych w bardzo dużym spektrum dziedzin. Ich zastosowania można znaleźć przedmiotach codziennego użytku takich jak smartfony, na przykład do rozpoznawania mowy i implementacji interfejsów głosowych, jak też w bardzo profesjonalnych sprzętach i systemach. Na podstawie wcześniej dostarczonych danych jesteśmy w stanie nauczyć sieci neuronowe przewidywać pewne zdarzenia na podstawie aktualnych danych. Wiele firm w dzisiejszych czasach tworzy systemy, które na podstawie parametrów technicznych urządzeń w zakładach są wstanie podać bardzo dokładne prawdopodobieństwo awarii danego sprzętu. Sztuczne sieci neuronowe zostały wykorzystane przez różnych badaczy do modelowania i prognozowania w dziedzinie systemów inżynierii energetycznej \citep{kalogirou2000applications}. Współczesna medycyna generuje zawrotne ilości danych korzystając z zaawansowanych czujników monitorujących. Potencjalne zastosowania takich danych obejmują dokładne klasyfikowanie diagnoz, przewidywanie przyszłych chorób i śmiertelności \citep{lipton2015learning}.
 
-Zastosowanie sieci neuronowych w dzisiejszych czasach jest bardzo dobrze widoczne w dziedzinie rozpoznawania obrazów. Wydajność i dokładność algorytmów tworzonych do tych celów może być w łatwy sposób mierzona poprzez porównanie wyniów ich działania na popularnej bazie ImageNet \cite{image-net} zawierającej szesnaście milionów zdjęć. W czasach małej popularności sieci neuronowych sprawność algorytmów rozpoznawania obrazów rozwijała się bardzo powoli. Jednakże w okresie wzmożonego wprowadzania rozwiązań z tematyki sieci neuronowych do tejże dziedziny możemy zaobserwować znaczny spadek stopy błędu z 40\% w roku 2010 do zaledwie 7\% w roku 2014. Ze względu na sukces głębokich sieci neuronowych wszyscy uczestnicy współzawodnictwa ImageNet w 2013 roku zastosowali jakąś formę głębokiej sieci neuronowej \cite{roelants2017deeplearning}.
+Zastosowanie sieci neuronowych w dzisiejszych czasach jest bardzo dobrze widoczne w dziedzinie rozpoznawania obrazów. Wydajność i dokładność algorytmów tworzonych do tych celów może być w łatwy sposób mierzona poprzez porównanie wyniów ich działania na popularnej bazie ImageNet \citep{image-net} zawierającej szesnaście milionów zdjęć. W czasach małej popularności sieci neuronowych sprawność algorytmów rozpoznawania obrazów rozwijała się bardzo powoli. Jednakże w okresie wzmożonego wprowadzania rozwiązań z tematyki sieci neuronowych do tejże dziedziny możemy zaobserwować znaczny spadek stopy błędu z 40\% w roku 2010 do zaledwie 7\% w roku 2014. Ze względu na sukces głębokich sieci neuronowych wszyscy uczestnicy współzawodnictwa ImageNet w 2013 roku zastosowali jakąś formę głębokiej sieci neuronowej \citep{roelants2017deeplearning}.
 
-Często wyuczone sieci odzwierciedlają swoim działaniem algorytmy, które już zostały wymyślone. Jednakże sposób w jaki to robią może dostarczyć nowych spostrzeżeń dotyczących rozwiązywanego problemu i lepszych implementacji algorytmów \cite{murray1995applications}.
+Często wyuczone sieci odzwierciedlają swoim działaniem algorytmy, które już zostały wymyślone. Jednakże sposób w jaki to robią może dostarczyć nowych spostrzeżeń dotyczących rozwiązywanego problemu i lepszych implementacji algorytmów \citep{murray1995applications}.
 
 
 \section{Metody nauczania sieci neuronowych}
 
-Pod pojęciem nauczania sieci neuronowej, zwanego też uczeniem maszynowym, kryją się różne procesy prowadzące do takiej modyfikacji wszystkich wag w sieci aby jak najlepiej rozwiązywała dany problem. Techniki uczenia maszynowego można zgrubnie podzielić na dwie duże klasy: uczenie nadzorowane i nienadzorowane, choć dość często dodawana jest też trzecia klasa - tzw. uczenie przez wzmacnianie \cite{roelants2017deeplearning}. Każda z tych klas wymaga dostarczenia innych danych do poprawnego działania. W niektórych przypadkach musimy dysponować dużą ilością informacji wstępnie sklasyfikowanych, żeby sieć na ich przykładzie mogła się uczyć a w innych potrzebujemy po prostu surowych danych, które taka sieć sklasyfikuje samodzielnie.
+Pod pojęciem nauczania sieci neuronowej, zwanego też uczeniem maszynowym, kryją się różne procesy prowadzące do takiej modyfikacji wszystkich wag w sieci aby jak najlepiej rozwiązywała dany problem. Techniki uczenia maszynowego można zgrubnie podzielić na dwie duże klasy: uczenie nadzorowane i nienadzorowane, choć dość często dodawana jest też trzecia klasa - tzw. uczenie przez wzmacnianie \citep{roelants2017deeplearning}. Każda z tych klas wymaga dostarczenia innych danych do poprawnego działania. W niektórych przypadkach musimy dysponować dużą ilością informacji wstępnie sklasyfikowanych, żeby sieć na ich przykładzie mogła się uczyć a w innych potrzebujemy po prostu surowych danych, które taka sieć sklasyfikuje samodzielnie.
 
 Uczenie nadzorowane jest pierwsza wymienioną przeze mnie klasą algorytmów nauczania maszynowego. Zaliczają się do niej algorytmy korzystające z zestawów danych treningowych, które są wstępnie opracowywane i oznaczane oczekiwanymi etykietami (etykietowane) ręcznie przez osoby nadzorujące uczenie sieci. Samo uczenie odbywa się poprzez zmiany w zestawie wag sieci, które dążą zo zminimalizowania wartości funkcji błędu określanej przez różnicę między wyjściem sieci a właśnie oczekiwanymi etykietami. W konsekwencji działania takiego algorytmu otrzymujemy sieć neuronową, której wagi wyznaczają \textit{k-1} hiperpłaszczyzn w \textit{n-wymiarowej} przestrzeni, gdzie \textit{k} jest liczbą oczekiwanych klas a \textit{n} ilością neuronów wejściowych sieci.
 
 Kolejną klasą algorytmów jest uczenie nienadzorowane, które stając po przeciwnej stronie do poprzednio zaprezentowanego uczenia nadzorowanego nie korzysta z wcześniej etykietowanych danych. Najlepszym przykładem działania tych algorytmów jest grupowanie otrzymanych danych poprzez wyszukanie odpowiedniej ilości klas danych tak aby poszczególne elementy tych grup cechowały się jak największym podobieństwie do siebie i jak najmniejszym podobieństwem do elementów innych grup.
 
-Ostatnią zaprezentowaną klasą algorytmów było uczenie przez wzmacnianie. Działa ono podobnie do nienadzorowanego ale wykorzystuje też mechanikę sprzężenia zwrotnego z uczenia nadzorowanego.
+Ostatnią zaprezentowaną klasą algorytmów było uczenie przez wzmacnianie. Działa ono podobnie do nienadzorowanego ale wykorzystuje też mechanikę sprzężenia zwrotnego z uczenia nadzorowanego. Algorytmy uczenia się przez wzmacnianie zwykle ponownie wykorzystują stosowane w przeszłości działania prowadzące do uzyskania pomyślnych rezultatów \citep{roelants2017deeplearning}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Algorytm genetyczny}
 \section{Powstanie algorytmu genetycznego}
+
+Wiele rozwiązań z dziedziny informatyki czerpie garściami z procesów i interakcji możliwych do zaobserwowania w otaczającym nas świecie. Dobrym przykładem takiej tendencji jest choćby obiektowy paradygmat programowania zamykający kod w ramy odzwierciedlające doświadczalny świat rzeczywisty. Również przedstawione wcześniej w tej pracy rozwiązania jak sztuczne sieci neuronowe są mocno inspirowane innymi procesami obserwowanymi w przyrodzie a mianowicie sposobem działania ludzkiego mózgu. 
+
+Tak samo jest też z algorytmem genetycznym. Został on zaprojektowany na postawie ogólnej teorii rozwoju życia sformułowanej przez Karola Darwina a jego autorem jest amerykański naukowiec, profesor psychologii, elektroniki i informatyki John Henry Holland \citep{wikipedia-jhholland}
+
 \section{Problem kodowania rozwiązania}
 \section{Zastosowania}
 
@@ -209,6 +213,8 @@ Ostatnią zaprezentowaną klasą algorytmów było uczenie przez wzmacnianie. Dz
 
 \pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bibliographystyle{plain}
+\bibliographystyle{humannat}
+\addcontentsline{toc}{chapter}{Bibliografia}
 \bibliography{bibliography}
+
 \end{document}
