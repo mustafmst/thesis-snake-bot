@@ -2,7 +2,7 @@
 
 ## Stan aktualny projektu
 
-W katalogu `geneticAI/geticAlgorithm` znajduje się implementacja genetycznego algorytmu uczącego sieci neuronowe. Na samym początku generowana jest losowa populacja kandydatów (sieci neuronowych o podanej strukturze z losowymi wartościami wag i bias). Potem w pętli powtarzana jest sekwencja operacji na wygenerowanej populacji.
+W katalogu `geneticAI/geneticAlgorithm` znajduje się implementacja genetycznego algorytmu uczącego sieci neuronowe. Na samym początku generowana jest losowa populacja kandydatów (sieci neuronowych o podanej strukturze z losowymi wartościami wag i bias). Potem w pętli powtarzana jest sekwencja operacji na wygenerowanej populacji.
 
 Tymi operacjami są:
 - selekcja najlepiej przystosowanych osobników
@@ -26,7 +26,7 @@ Przykładowo jeśli mamy kandydatów o genotypie(celowo uproszczony na potrzeby 
 1. `[ [1,1,1,1] , [1,1,1,1] ]`
 2. `[ [2,2,2,2] , [2,2,2,2] ]`
 
-Po przeprowanieniu na nich operacji krzyżowania możemy otrzymać:
+Po przeprowadzeniu na nich operacji krzyżowania możemy otrzymać:
 
 1. `[ [1,1,2,2] , [2,1,1,1] ]`
 2. `[ [2,2,2,1] , [2,2,1,1] ]`
@@ -35,7 +35,7 @@ Po przeprowanieniu na nich operacji krzyżowania możemy otrzymać:
 
 ### Mutowanie
 
-W konfiguracji algorytmu podawane jest ile mutacji ma być zaaplikowane do każdego nowego pokolenia. Jeśli współczynnik ten ustawiony jest na 10 to dzisięć razy zostanie przeprowadzona operacja wylosowania osobnika z nowego pokolenia i modyfikacji jednego losowego genu.
+W konfiguracji algorytmu podawane jest ile mutacji ma być zaaplikowane do każdego nowego pokolenia. Jeśli współczynnik ten ustawiony jest na 10 to dziesięć razy zostanie przeprowadzona operacja wylosowania osobnika z nowego pokolenia i modyfikacji jednego losowego genu.
 
 Przykładowo osobnik:
 
@@ -49,7 +49,7 @@ Po mutacji może wyglądać:
 
 ## Funkcja oceny
 
-Funkcją oceny w projekcie jest gra `snake` i znajduje się w katalogu o tej samej nazwie. Jest to samodzielna aplikacja napisana w pythonie z wykorzystaniem biblioteki `pygame`. Na wejścjiu w konfiguracji dostaje model sieci neuronowej stworzony za pomocą bibliotek `tensorflow` i `keras`, który jako wejście otrzymuje zapis stanu gry w formie obrazu planszy a na wyjściu podaje w którą stronę się chce przemieścić głową węża.
+Funkcją oceny w projekcie jest gra `snake` i znajduje się w katalogu o tej samej nazwie. Jest to samodzielna aplikacja napisana w pythonie z wykorzystaniem biblioteki `pygame`. Na wejściu w konfiguracji dostaje model sieci neuronowej stworzony za pomocą bibliotek `tensorflow` i `keras`, który jako wejście otrzymuje zapis stanu gry w formie obrazu planszy a na wyjściu podaje w którą stronę się chce przemieścić głową węża.
 
 Celem gry jest zdobyć jak najwięcej punktów (jeden zjedzony owoc to jeden punkt).
 
@@ -58,5 +58,5 @@ Zasady gry:
   - wyjdzie poza dostępną planszę
   - wejdzie na swój ogon
   - wykona ilość ruchów równą ilości pól na planszy bez zjedzenia owocu
-- wąż może się porzuszać w 4 kierunkach (góra, dół, prawo, lewo) o jedno pole na raz
+- wąż może się poruszać w 4 kierunkach (góra, dół, prawo, lewo) o jedno pole na raz
 - gra kończy się wraz ze śmiercią węża i wtedy zwracany jest jego wynik 
