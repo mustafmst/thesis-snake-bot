@@ -7,6 +7,7 @@
 \usepackage[polish]{babel}
 \usepackage{indentfirst}
 \usepackage{graphicx}
+\usepackage{mathtools}
 
 \usepackage{natbib}
 
@@ -111,12 +112,13 @@ Każde wejście sztucznego neuronu posiada też swoją wagę, która jest potem 
 \begin{equation}\label{eq: 2.1}
 y = \sum^{n}_{i=1} x_{i}w_{i}
 \end{equation}
+\pagebreak
 
 Dodatkowo każdy neuron posiada swoją wartość przesunięcia (ang. \textit{bias}) sygnału. Funkcja wyjścia zaprezentowana powyżej z uwzględnieniem tej wartości będzie wyglądać (Równanie \ref{eq: 2.2}):
 
 \begin{equation}\label{eq: 2.2}
   y = \sum^{n}_{i=1} x_{i}w_{i} + b
-  \end{equation}
+\end{equation}
 
 Topologia połączeń oraz ich parametry stanowią program działania sieci \cite{tadeusiewicz1993sieci}. Sygnały wejściowe są przepuszczane przez chmurę połączonych ze sobą neuronów, które następnie przeliczają te sygnały i przekazują swoje rozwiązania dalej w głąb sieci. Tak przetworzone dane dają w wyniku pewną ilość sygnałów wyjściowych z sieci które razem są rozwiązaniem problemu, do którego została wyuczona.
 
@@ -130,6 +132,38 @@ Możemy wyodrębnić kilka podstawowych rodzajów sieci neuronowych na podstawie
 \end{figure}
 
 Aby jednoznacznie określić konkretną sztuczną sieć neuronową możemy się posłużyć uproszczonym modelem opisanym przez trzy podstawowe cechy takiej sieci. Tymi cechami są architektura, proces uczenia i funkcja aktywacji. Architektura opisuje dokładnie topologię sieci, w tym jej rodzaj oraz liczby warstw i neuronów w każdej warstwie. Uczenie jest opisem procesu zastosowanego do rozwinięcia parametrów sieci. Określa ono poszczególne techniki użyte do tego celu jak na przykład uczenie przez wzmacnianie czy uczenie ze zbioru reguł. Definiuje też zakresy i wartości wag połączeń między neuronami. Ostatnia cecha czyli funkcja aktywacji opisuje sposób wewnętrznego działania neuronu, czyli kiedy będzie on aktywny oraz jakie dane przekaże dalej w głąb sieci.
+
+Istnieje wiele powszechnie używanych funkcji aktywacji neuronów. Najprostszym jej przykładem jest funkcja tożsamości, która przekazuje bezpośrednio na wyjście wartość aktywacji neuronu i jest wyrażana wzorem (Równanie \ref{eq: 2.3})
+
+\begin{equation}\label{eq: 2.3}
+  f(a) = a
+\end{equation}
+
+Innym przykładem jest funkcja nazywana \textbf{ReLU}(\textit{Rectified Linear Unit}) i najbardziej ze wszystkich odzwierciedla sposób aktywacji neuronu biologicznego (Równanie \ref{eq: 2.4}).
+
+\begin{equation}\label{eq: 2.4}
+    f(a) =
+    \begin{cases*}
+      a & if a $\geq$ 0 \\
+      0 & if a < 0
+    \end{cases*}
+\end{equation}
+
+Powyższa funkcja jest połączeniem funkcji tożsamości oraz funkcji progowej, która na wyjściu zwraca tylko informację czy została aktywowana i opisuje ją wzór (Równanie \ref{eq: 2.5})
+
+\begin{equation}\label{eq: 2.5}
+  f(a) =
+  \begin{cases*}
+    1 & if a $\geq$ 0 \\
+    0 & if a < 0
+  \end{cases*}
+\end{equation}
+
+Istnieją również bardziej zaawansowane funkcje aktywacji. Jedną z najczęściej używanych jest funkcja logistyczna (Równanie \ref{eq: 2.6}), która zwraca wartość mięczy 0 a 1 i jej wynik jest określany jako prawdopodobieństwo aktywacji neuronu.
+
+\begin{equation}\label{eq: 2.6}
+  f(a) = \frac{1}{1 + e^{-a}}
+\end{equation}
 
 \section{Zastosowania sieci neuronowych}
 
