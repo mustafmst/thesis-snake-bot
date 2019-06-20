@@ -1,3 +1,8 @@
+thesis/*.aux
+thesis/*.pdf
+thesis/*.synctex.gz
+thesis/*.toc
+
 statistics
 logs
 *-training.json
