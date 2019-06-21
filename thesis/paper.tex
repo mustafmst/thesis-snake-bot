@@ -9,7 +9,7 @@
 \usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{natbib}
-\setcitestyle{authoryear,open={[},close={]}}
+\setcitestyle{super,open={[},close={]}}
 
 \begin{document}  
 \thispagestyle{empty}
@@ -191,7 +191,10 @@ Ostatnią zaprezentowaną klasą algorytmów było uczenie przez wzmacnianie. Dz
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Algorytm genetyczny}
+\chapter{Algorytmy genetyczne}
+
+Poniższy rozdział jest krótkim wprowadzeniem do tematyki algorytmów genetycznych. Będzie on obejmował wszystkie podstawowe zagadnienia potrzebne do zrozumienia działania tych algorytmów takie jak osobnik, populacja czy genotyp. Przedstawię w nim też ogólny schemat działania oraz po krótce wyjaśnię co dzieje się w poszczególnych jego krokach. Potem przejdę do wyjaśniania zagadnienia kodowania rozwiązań na potrzeby algorytmu genetycznego aby pod koniec opisać niektóre z dziedzin, których owe algorytmy znajdują zastosowanie w dzisiejszych czasach.
+
 \section{Wprowadzenie do algorytmów genetycznych}
 
 Wiele rozwiązań z dziedziny informatyki czerpie garściami z procesów i interakcji możliwych do zaobserwowania w otaczającym nas świecie. Dobrym przykładem takiej tendencji jest choćby obiektowy paradygmat programowania zamykający kod w ramy odzwierciedlające doświadczalny świat rzeczywisty. Również przedstawione wcześniej w tej pracy rozwiązania jak sztuczne sieci neuronowe są mocno inspirowane innymi procesami obserwowanymi w przyrodzie a mianowicie sposobem działania ludzkiego mózgu. 
@@ -200,17 +203,43 @@ Tak samo jest też z algorytmem genetycznym. Został on zaprojektowany na postaw
 
 Algorytmy genetyczne są narzędziem wykazującym się dużą efektywnością w przeszukiwaniu skomplikowanych przestrzeni co w ciągu wielu lat zostało wielokrotnie potwierdzone tak w teorii jak i empirycznie. Bardzo dobrze dają sobie również radę w rozwiązywaniu problemów z dziedziny optymalizacji. Jednocześnie dzięki analogiom ich działania do procesów obserwowalnych w przyrodzie cechują niezwykłą łatwością implementacji. Są wyjątkowo nieskomplikowanym a jednocześnie bardzo potężnym narzędziem w szukaniu rozwiązań problemów \textit{NP-Trudnych}.
 
-Działanie wszystkich algorytmów genetycznych zaczynamy od wylosowania początkowej populacji kandydatów na optymalne rozwiązanie. Po tym pierwszym kroku następuje prawdziwe działanie tych algorytmów polegające na przeprowadzaniu w pętli operacji selekcji i reprodukcji na aktualnej populacji. 
+Działanie wszystkich algorytmów genetycznych zaczynamy od wylosowania początkowej populacji kandydatów na optymalne rozwiązanie. Po tym pierwszym kroku następuje prawdziwe działanie tych algorytmów polegające na przeprowadzaniu w pętli operacji selekcji i reprodukcji na aktualnej populacji. Schemat działania zaprezentowany poniżej (Rysunek \ref{fig: 3.1}).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=6cm]{fig31.png}
+	\caption{Schemat działania algorytmu genetycznego}
+	\label{fig: 3.1}
+\end{figure}
 
 Proces selekcji polega na wytypowaniu najlepiej przystosowanych osobników za pomocą funkcji oceny oraz z niewielkim wpływem losowości. Krok ten realizowany jest na wiele różnych sposobów. Jednym z popularniejszych rozwiązań jest selekcja turniejowa. Polega ona na wytypowaniu losowych par osobników, które następnie poddane funkcji oceny określają osobnika lepszego i gorszego z danej pary. W tym wariancie do kolejnego kroku czyli reprodukcji przechodzą osobniki niekoniecznie najlepsze w stosunku do całej populacji. Inną implementacją tego etapu działania algorytmu jest metoda ruletki. Polega ona na losowaniu osobników przeznaczonych do dalszej reprodukcji z wirtualnego koła ruletki, w którym każdy osobnik ma swój wycinek tym większy im lepszy wynik osiągnął w funkcji oceny. Najprostszą metodą selekcji jest ranking polegający na posegregowaniu wszystkich kandydatów według ich oceny od najlepszego do najgorszego i udzielenie prawa do reprodukcji czołówce listy.
 
-Po selekcji osobników następuje ich reprodukcja. Jest to proces polegający na mieszaniu struktury pozostałych kandydatów w celu uzupełnienia populacji po usunięciu wszystkich przegranych z poprzedniego kroku. W czasie działania procesu reprodukcji korzystamy z dwóch operatorów ewolucyjnych czyli krzyżowania i mutacji. Oba te operatory wykonują akcje na genotypie osobników, który jest zbiorem cech opisujących jednoznacznie danego osobnika (w tematykę genotypów i kodowania rozwiązań problemów zagłębię się bardziej w kolejnej sekcji tego rozdziału). Nazwy tych działań są łatwo zrozumiałe dla większości ludzi i bardzo dobrze opisują ich działanie. Pierwsza, czyli krzyżowanie, polega na pobraniu fragmentu cech jednego osobnika i uzupełnieniu ich cechami drugiego tak aby powstał kompletnie nowy osobnik będący losową mieszanką pierwszego i drugiego. Następnie działamy operatorem mutacji na nowo powstałych kandydatach w celu wprowadzenia do populacji cech, które nie pojawiły się do tej pory. Odbywa się to z przyjętym wcześniej prawdopodobieństwem i polega na zmianie wartości pojedyńczej cechy zakodowanej w genotypie. Prawdopodobieństwo mutacji powinno być dość niskie. Zbyt wysoka ilość mutacji w populacji może prowadzić do zniszczenia dobrych wyników.
+Po selekcji osobników następuje ich reprodukcja. Jest to proces polegający na mieszaniu struktury pozostałych kandydatów w celu uzupełnienia populacji po usunięciu wszystkich przegranych z poprzedniego kroku. W czasie działania procesu reprodukcji korzystamy z dwóch operatorów ewolucyjnych czyli krzyżowania i mutacji. Oba te operatory wykonują akcje na genotypie osobników, który jest zbiorem cech opisujących jednoznacznie danego osobnika (w tematykę genotypów i kodowania rozwiązań problemów zagłębię się bardziej w kolejnej sekcji tego rozdziału). Nazwy tych działań są łatwo zrozumiałe dla większości ludzi i bardzo dobrze opisują ich działanie. Pierwsza, czyli krzyżowanie, polega na pobraniu fragmentu cech jednego osobnika i uzupełnieniu ich cechami drugiego tak aby powstał kompletnie nowy osobnik będący losową mieszanką pierwszego i drugiego (Rysunek \ref{fig: 3.2}). 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=6cm]{fig32.png}
+	\caption{Przykład działania operacji krzyżowania genotypów dwóch osobników}
+	\label{fig: 3.2}
+\end{figure}
+
+Następnie działamy operatorem mutacji na nowo powstałych kandydatach w celu wprowadzenia do populacji cech, które nie pojawiły się do tej pory. Odbywa się to z przyjętym wcześniej prawdopodobieństwem i polega na zmianie wartości pojedyńczej cechy zakodowanej w genotypie. Prawdopodobieństwo mutacji powinno być dość niskie. Zbyt wysoka ilość mutacji w populacji może prowadzić do zniszczenia dobrych wyników.
 
 \section{Problem kodowania rozwiązania}
 
-Samo działanie algorytmów genetycznych jest bardzo łatwe i przystępne do wytłumaczenia. Problem w implementacji takich tych technik znajduję w zupełnie innym miejscu a mianowicie w reprezentacji rozwiązań zadanego problemu w sposób umożliwiający przeprowadzanie na nich operacji zdefiniowanych przez teorię algorytmów genetycznych. Żeby dobrze zobrazować w czym tkwi problem musimy zdefiniować czym jest osobnik oraz genotyp w kontekście tej rodziny technik ewolucyjnych. Osobnikiem nazywamy tak na prawdę program komputerowy rozwiązujący przedstawiony problem. Genotypem zaś nazywamy zbiór cech jednoznacznie opisujący działanie programu czyli osobnika. 
+Samo działanie algorytmów genetycznych jest bardzo łatwe i przystępne do wytłumaczenia. Problem w implementacji takich tych technik znajduję w zupełnie innym miejscu a mianowicie w reprezentacji rozwiązań zadanego problemu w sposób umożliwiający przeprowadzanie na nich operacji zdefiniowanych przez teorię algorytmów genetycznych. Żeby dobrze zobrazować w czym tkwi problem musimy zdefiniować czym jest osobnik oraz genotyp w kontekście tej rodziny technik ewolucyjnych. Osobnikiem nazywamy tak na prawdę program komputerowy rozwiązujący przedstawiony problem lub jego konkretne rozwiązanie. Genotypem zaś nazywamy zbiór cech jednoznacznie opisujący danego osobnika. 
+
+W odniesieniu do osobników jako programów ich genotyp zapisuje się w formie drzew syntaktycznych zamiast kodu \citep{poli08:fieldguide}. Natomiast w przypadku gdy nasi kandydaci reprezentują gotowe rozwiązania genotyp może być przedstawiany w formie wektora wartości definiujących rozwiązanie bądź również jako strukturę drzewiastą zależnie od potrzeb. Genotyp może się składać z jednego chromosomu i wtedy te pojęcia są tożsame jednak w przypadku dość rozbudowanych zagadnień stosuje się genotypy wielochromosomowe i składają się one wtedy z wielu drzew bądź wektorów cech poddawanych operacjom ewolucyjnym niezależnie od siebie.
+
+Kodowanie osobników składających się na populację algorytmu jest bardzo ważnym i ciężkim zadaniem. Źle dobrana struktura genotypu może utrudnić a nawet uniemożliwić algorytmowi dotarcie na przestrzeni rozwiązań do punktów optymalnych tym samym ograniczając jego efektywność.
 
 \section{Zastosowania}
+
+Algorytmy genetyczne dzięki swojej elastyczności co  to dziedziny przestrzeni przeszukiwanej znajdują swoje zastosowanie w wielu obszarach nauki i przemysłu. Najbardziej podstawowym przykładem jest rozwiązywanie problemu komiwojażera, który przekłada się na zastosowanie ich na przykład w ustalaniu optymalnych tras dla logistyki towarów i zaopatrzenia. W takim wariancie pozwalają również na generowanie bardziej optymalnych architektur układów scalonych.
+
+W swim artykule Panowie Grzegorz Chodak i Witold Kwaśnicki prezentują metody modelowania algorytmu genetycznego w celu prognozowania popytu. Takie zastosowanie jest według nich kolejnym etapem rozwoju metod prognozowania \citep{chodak2002zastosowanie}. W tym wypadku algorytm genetyczny potrafi dostarczyć informacje, które pozwalają na bardziej optymalne zarządzanie łańcuchem dostaw w firmach zajmujących się obrotem dobrami o sezonowym popycie ciężkim do przewidzenia dla ludzi. Z badań tych wynika, że algorytmy genetyczne znajdują wiele zastosowań w tradycyjnym biznesie i mogą pomagać przedsiębiorstwom w przewidywaniu wielu korzystnych i niekorzystnych zdarzeń na rynku co pozwala na dostosowanie strategii firm do tych warunków.
+
+Jednej ze swoich prac profesor Zbigniew Michalewicz przeprowadzał badania zastosowania algorytmów ewolucyjnych, w tym algorytmów genetycznych, w problemie projektowania konstrukcji kratownicowej \citep{michalewicz1996evolutionary}. Z jej treści można wywnioskować, że ta rodzina algorytmów także może być przydatnym narzędziem w branży budowlanej i konstrukcyjnej. Jej zastosowanie pozwala na szybkie projektowanie optymalnych struktur, których człowiek mógłby nie zaprojektować. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
