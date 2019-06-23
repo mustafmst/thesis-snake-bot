@@ -191,6 +191,8 @@ Kolejną klasą algorytmów jest uczenie nienadzorowane, które stając po przec
 
 Ostatnią zaprezentowaną klasą algorytmów było uczenie przez wzmacnianie. Działa ono podobnie do nienadzorowanego ale wykorzystuje też mechanikę sprzężenia zwrotnego z uczenia nadzorowanego. Algorytmy uczenia się przez wzmacnianie zwykle ponownie wykorzystują stosowane w przeszłości działania prowadzące do uzyskania pomyślnych rezultatów \citep{roelants2017deeplearning}.
 
+(muszę uzupełnić jeszcze ten podrozdział o trochę więcej informacji)
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Algorytmy genetyczne}
@@ -251,7 +253,13 @@ Po przedstawieniu we wstępie tezy oraz przybliżeniu tematów z nią związanyc
 
 \section{Stos technologiczny}
 
-W ostatnich latach w branży informatycznej można zaobserwować ogromny wzrost popularności języka programowania Python. Według danych z największej na świecie ankiety przeprowadzanej wśród hobbistów i profesjonalnych programistów sporządzanej przez portal Stack Overflow (\textit{ang. Stack Overflow Annual Developer Survey}) \citep{stackoverflow-survey} język ten przeskoczył z 10 miejsca najbardziej lubianych języków programistów w 2015 roku na drugą pozycję pod koniec roku 2018. 
+W ostatnich latach w branży informatycznej można zaobserwować ogromny wzrost popularności języka programowania Python. Według danych z największej na świecie ankiety przeprowadzanej wśród hobbistów i profesjonalnych programistów sporządzanej przez portal Stack Overflow (\textit{ang. Stack Overflow Annual Developer Survey}) \citep{stackoverflow-survey} język ten przeskoczył z 10 miejsca najbardziej lubianych języków programistów w 2015 roku na drugą pozycję pod koniec roku 2018. Jest to rozwijany jako projekt otwartoźródłowy język wysokiego poziomu ogólnego przeznaczenia. Cechuje się bardzo zwięzłą i przejrzystą składnią oraz działa na wielu systemach operacyjnych takich jak Windows, Linux czy MacOs. To właśnie dzięki swojej syntaktyce podobnej w pewnym stopniu do tej z pakietu MatLab oraz niskiemu progowi wejścia zyskał duże uznanie w kręgach naukowych jako narzędzie do łatwego zapisywania algorytmów i przeprowadzania skomplikowanych obliczeń matematycznych. Jego popularność w tych kręgach przeniosła się na powstanie dla niego wielu bibliotek zewnętrznych około naukowych w tym takie pakiety jak \textit{scikit-learn} czy \textit{tensorflow}. Z tych właśnie powodów mój wybór języka, w którym przetestuję postawioną tezę padł na Python'a.
+
+Kolejną rzeczą wartą uwagi jest już wcześniej wspomniany pakiet \textit{tensorflow}. Jak możemy przeczytać na stronie głównej projektu jest to kompleksowa platforma open source do uczenia maszynowego. Posiada wszechstronny, elastyczny ekosystem narzędzi, bibliotek i zasobów tworzonych przez społeczność, który pozwala badaczom na wykorzystanie najnowocześniejszych rozwiązań nauczania maszynowego \citep{tensorflow-wesite}. Produkt ten tak zamo jak język Python jest kompletnie darmowy i udostępniony na licencji Apache 2.0. W moim projekcie posłuży on jako podstawowy silnik obliczeń dla tworzonych sieci neuronowych.
+
+Przedstawiona powyżej biblioteka dostarcza ogromną liczbę narzędzi służących do kreowania rozwiązań z wykorzystaniem koncepcji sieci neuronowych i nauczania maszynowego. Jednakże za taką ilością możliwości jakie dostarcza użytkownikowi idzie skomplikowanie i trudność w szybkim programowaniu z jej użyciem. Ten problem rozwiązuje kolejne rozwiązanie zwane \textit{keras}. Pakiet ten jest wysokopoziomowym interfejsem programowania aplikacji (ang. \textit{application programming interface}) dla sieci neuronowych. Udostępnia on zestaw funkcji odpowiadający semantycznie teorii na temat sieci neuronowych pozwalający na szybkie i łatwe ich tworzenie i operowanie nimi osobą z wiedzą w tym temacie. Jednocześnie eliminuje potrzebę optymalizowania swojego kodu i wgłębiania się w sposób działania wybranego silnika nauczania maszynowego działającego pod spodem.
+
+Ostatnim elementem stosu technologicznego projektu badającego tezę tej pracy jest \textit{pygame}. Jest to niewielka, otwartoźródłowa i darmowa biblioteka języka Python służąca do tworzenia aplikacji multimedialnych. Rozwija ją niewielka grupka hobbystów ale mimo tego zyskała swoją popularność dzięki dobrej wydajności i łatwości obsługi. Posłuży mi ona do stworzenia niewielkiej gry w węża (ang. \textit{snake}), która będzie odgrywać rolę funkcji oceny dla algorytmu genetycznego.
 
 \section{Reprezentacja sieci neuronowej w formie genotypu osobników algorytmu genetycznego}
 
