@@ -261,13 +261,20 @@ Przedstawiona powyżej biblioteka dostarcza ogromną liczbę narzędzi służą
 
 Ostatnim elementem stosu technologicznego projektu badającego tezę tej pracy jest \textit{pygame}. Jest to niewielka, otwartoźródłowa i darmowa biblioteka języka Python służąca do tworzenia aplikacji multimedialnych. Rozwija ją niewielka grupka hobbystów ale mimo tego zyskała swoją popularność dzięki dobrej wydajności i łatwości obsługi. Posłuży mi ona do stworzenia niewielkiej gry w węża (ang. \textit{snake}), która będzie odgrywać rolę funkcji oceny dla algorytmu genetycznego.
 
+Reasumując cały głównymi filarami projektu jest język programowania Python i trzy bardzo popularne biblioteki dla niego stworzone czyli \textit{tensorflow}, \textit{keras} oraz \textit{pygame}. Zostały one przeze mnie wybrane nie tylko ze względu na wspomniane wcześniej zalety ale również z powodu ogromnej społeczności działającej w okół nich i zapewniającej ogromną ilość materiałów pomocniczych, które odgrywają wielką role w procesie uczenia się tych technologii.
+
 \section{Reprezentacja sieci neuronowej w formie genotypu osobników algorytmu genetycznego}
+
+Teraz po krótce chciałbym zdefiniować teoretyczną podstawę działania aplikacji bez wchodzenia w techniczne detale jej implementacji. Jest to ogólna idea, która przyświecała mi podczas przyglądania się technikom związanym ze współczesnymi algorytmami sztucznej inteligencji.
 
 Na podstawie analizy przedstawionych przez mnie informacji na temat sztucznych sieci neuronowych oraz algorytmów genetycznych można dojść do kilku ciekawych wniosków. Jednym z nich jest to, że sieci neuronowe swój program działania powstały pod wpływem procesu uczenia w całości definiują za pomocą zestawu wag i przesunięć połączeń neuronowych. Wynika z tego, że modyfikowanie działania sieci odbywa się wyłącznie poprzez modyfikację wartości zawartych w takim zestawie. Teraz wracając na chwilę do algorytmów genetycznych możemy zauważyć, że poszukiwanie rozwiązania jest w nich realizowane za pomocą modyfikacji genów (cech) w genotypie, który jest zestawem genów. Analogia tych dwóch procesów naprowadza na wniosek o możliwości połączenia obydwu metod. Sieci neuronowe w swojej budowie i sposobie działania wpisują się w schemat reprezentacji osobnika po stronie algorytmu genetycznego.
 
 Na tej teorii można zacząć konstruować algorytm genetyczny obierający sobie jako kandydatów rozwiązań wiele losowo wygenerowanych wariantów sztucznej sieci neuronowej o wcześniej określonej budowie topografii sieci. Przyglądając się wynikom jakie otrzymujemy za pomocą algorytmów genetycznych można spekulować, że taka symbioza technik sztucznej inteligencji ma możliwości doprowadzić do rezultatów lepszych pod względem ich jakości i wydajności.
-\section{Opis działania}
-\section{Struktura projektu}
+
+\section{Opis działania i struktura projektu}
+
+
+
 \section{Wyniki}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -22,11 +22,12 @@ class AlgorithmStatistics:
             os.mkdir(os.path.join(os.getcwd(), self.FOLDER_NAME))
 
     def save_model(self, candidate):
-        candidate.save_model(os.path.join(os.getcwd(),
-                                          self.FOLDER_NAME,
-                                          '{}{}.h5'.format(
-                                              self.__prefix,
-                                              self.MODEL_SUFFIX)))
+        if candidate is not None:
+            candidate.save_model(os.path.join(os.getcwd(),
+                                              self.FOLDER_NAME,
+                                              '{}{}.h5'.format(
+                                                  self.__prefix,
+                                                  self.MODEL_SUFFIX)))
         with open(os.path.join(
             os.getcwd(),
             self.FOLDER_NAME,
@@ -34,8 +35,12 @@ class AlgorithmStatistics:
                 self.__prefix,
                 self.CONFIG_SUFFIX
             )
-        )) as config_file:
-            json.dump(self.__config["base_game_config"], config_file, indent=4)
+        ), 'w') as config_file:
+            to_save = {
+                'board': self.__config["base_game_config"]["board_size"],
+                'network': self.__config["network_schema"]
+            }
+            json.dump(to_save, config_file, indent=4)
         pass
 
     def log_generation_result(self, best_result, generation):

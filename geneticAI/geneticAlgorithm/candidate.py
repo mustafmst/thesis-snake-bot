@@ -37,7 +37,7 @@ class Candidate:
     def get_genotype(self):
         return self.__genotype
 
-    def __play_game(self):
+    def play_game(self):
         print("[{}] Candidate is playing!".format(str(datetime.now())))
         try:
             self.initiate_model()
@@ -71,5 +71,5 @@ class Candidate:
 
     def get_score(self):
         if self.__score is None:
-            self.__play_game()
+            self.play_game()
         return self.__score

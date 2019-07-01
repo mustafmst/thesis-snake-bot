@@ -28,6 +28,7 @@ class GeneticAlgorithm:
     def __select(self):
         print("[{}] ==> SELECT STAGE!".format(str(datetime.now())))
         temporary_population = self.__population[:]
+        [c.play_game() for c in temporary_population]
         result_population = []
         while len(temporary_population) > 1:
             first = get_random_specimen(temporary_population)
@@ -38,7 +39,7 @@ class GeneticAlgorithm:
                 winner = first
             else:
                 winner = second
-            if winner.get_score() >= self.__best_score:
+            if winner.get_score() > self.__best_score:
                 self.__best_score = winner.get_score()
                 self.__best_network = winner
             result_population.append(winner)

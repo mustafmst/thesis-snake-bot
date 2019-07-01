@@ -4,16 +4,18 @@ from snake import DEFAULT_CONFIG, AI_MODE, DISPLAY_OFF
 ai_config = dict(DEFAULT_CONFIG)
 ai_config["board_size"] = (5, 5)
 ai_config["game_mode"] = AI_MODE
-ai_config['move_sleep'] = 10
+ai_config['move_sleep'] = 1
 ai_config['log_level'] = logger_levels.NONE
-# ai_config['display_mode'] = DISPLAY_OFF
+ai_config['display_mode'] = DISPLAY_OFF
 
 RUN_CONFIG = dict(
     base_game_config=ai_config,
     network_schema=[
-        ('dense', 256),
+        ('dense', 128),
+        ('dense', 128),
+        ('dense', 128)
     ],
-    population_size=20,
-    generations=20,
-    generation_mutation_rate=1
+    population_size=40,
+    generations=1000,
+    generation_mutation_rate=1000
 )
