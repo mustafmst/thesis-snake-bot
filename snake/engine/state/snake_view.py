@@ -5,7 +5,15 @@ from snake.constans import PLAYER_VALUE, TAIL_VALUE, FRUIT_VALUE
 
 def get_player_pos(state):
     where = np.where(state == PLAYER_VALUE)
-    return where[0][0], where[1][0]
+    if len(where[0]) is 0:
+        x = 0
+    else:
+        x = where[0][0]
+    if len(where[1]) is 0:
+        y = 0
+    else:
+        y = where[1][0]
+    return x, y
 
 
 def get_horizontal(state, player_pos):
@@ -21,12 +29,16 @@ def get_diagonal(state, player_pos, direction=1):
 
 
 def get_player_index(axis):
-    return np.where(axis == PLAYER_VALUE)[0][0]
+    where = np.where(axis == PLAYER_VALUE)[0]
+    if len(where) is 0:
+        return 0
+    else:
+        return where[0]
 
 
 def get_distances(from_index, to_value, axis):
-    indexes = np.where(axis == to_value)
-    if len(indexes[0]) is 0:
+    indexes = np.where(axis == to_value)[0]
+    if len(indexes) is 0:
         return 0, 0
     all_distances = [from_index-e for e in indexes]
 
@@ -138,5 +150,5 @@ def get_snake_view(board_state):
     create_fruit_view(view, horizontal, vertical, first_diagonal, second_diagonal)
     create_tail_view(view, horizontal, vertical, first_diagonal, second_diagonal)
     create_walls_view(view, horizontal, vertical, first_diagonal, second_diagonal)
-    return view[0]+view[1]+view[2]
+    return view
 

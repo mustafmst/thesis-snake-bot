@@ -16,8 +16,9 @@ def game_function(config, model):
 
 
 def create_model(config, genotype):
-    board_size = config['base_game_config']['board_size']
-    input_shape = np.array([[0 for i in range(board_size[0])] for j in range(board_size[1])]).shape
+    # board_size = config['base_game_config']['board_size']
+    # input_shape = np.array([[0 for i in range(board_size[0])] for j in range(board_size[1])]).shape
+    input_shape = np.array([[0 for j in range(8)] for i in range(3)]).shape
     builder = NN.NeuralNetworkBuilder()
     builder.with_input_shape(input_shape)
     for layer in config['network_schema']:

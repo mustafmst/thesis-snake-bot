@@ -1,6 +1,7 @@
 from snake.engine.input.actions import *
 import numpy as np
 from snake.utils.logger import Logger
+from snake.engine.state.snake_view import get_snake_view
 
 TRANSLATION = {
     0: RIGHT_ACTION,
@@ -16,7 +17,7 @@ class AIInput:
         self.__state_provider = state_provider
 
     def __call__(self):
-        move = self.__neural_network.predict(np.array([self.__state_provider.get_state()]), verbose=0)
+        move = self.__neural_network.predict(np.array([get_snake_view(self.__state_provider.get_state())]), verbose=0)
 
         action = TRANSLATION[move.argmax()]
         Logger.log_info(self, 'Action: {}'.format(action))
