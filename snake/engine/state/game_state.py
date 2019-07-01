@@ -1,5 +1,6 @@
 from snake.utils.logger import Logger
-from snake import FIELD_SIZE, PLAYER_VALUE, TAIL_VALUE, FRUIT_VALUE
+from snake.constans import PLAYER_VALUE, TAIL_VALUE, FRUIT_VALUE
+from snake import FIELD_SIZE
 
 
 class GameState:
