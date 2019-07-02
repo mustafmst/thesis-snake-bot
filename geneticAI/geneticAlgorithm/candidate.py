@@ -45,6 +45,7 @@ class Candidate:
             self.initiate_model()
             game_config = dict(self.__config)
             self.__score = game_function(game_config, self.__model)
+            print("[{}] Got score: {}".format(str(datetime.now()), self.__score))
         finally:
             del self.__model
         pass

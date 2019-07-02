@@ -17,7 +17,7 @@ class GeneticAlgorithm:
         self.__population = []
         self.__new_population = []
         self.__best_network = None
-        self.__best_score = 0
+        self.__best_score = (0, 0)
         self._statistic_helper = AlgorithmStatistics(run_config)
         pass
 
@@ -43,13 +43,16 @@ class GeneticAlgorithm:
         while len(temporary_population) > 1:
             first = get_random_specimen(temporary_population)
             second = get_random_specimen(temporary_population)
-            if first.get_score() == second.get_score():
-                winner = [first, second][random.randint(0, 1)]
-            elif first.get_score() > second.get_score():
+            if first.get_score()[0] == second.get_score()[0]:
+                if first.get_score()[1] > second.get_score()[1]:
+                    winner = first
+                else:
+                    winner = second
+            elif first.get_score()[0] > second.get_score()[0]:
                 winner = first
             else:
                 winner = second
-            if winner.get_score() > self.__best_score:
+            if winner.get_score()[0] > self.__best_score[0] and winner.get_score()[1] > self.__best_score[1]:
                 self.__best_score = winner.get_score()
                 self.__best_network = winner
             result_population.append(winner)

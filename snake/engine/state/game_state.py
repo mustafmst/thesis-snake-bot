@@ -14,9 +14,14 @@ class GameState:
         self.__tail = None
         self.__was_fruit_eaten = False
         self.__moves_count = 0
+        self.__life_time = 0
+
+    def get_life_time(self):
+        return self.__life_time
 
     def add_move(self):
         self.__moves_count += 1
+        self.__life_time += 1
 
     def register_player(self, player):
         self.__player = player

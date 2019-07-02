@@ -56,7 +56,7 @@ class Game:
             self.__quit()
         finally:
             self.clear_all()
-        return self.__game_state.get_points()
+        return self.__game_state.get_points(), self.__game_state.get_life_time()
 
     def __game_loop(self):
         self.__CLOCK.tick()
