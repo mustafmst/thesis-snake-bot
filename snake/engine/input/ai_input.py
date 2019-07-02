@@ -17,7 +17,8 @@ class AIInput:
         self.__state_provider = state_provider
 
     def __call__(self):
-        move = self.__neural_network.predict(np.array([get_snake_view(self.__state_provider.get_state())]), verbose=0)
+        network_input = np.array([get_snake_view(self.__state_provider.get_state())])
+        move = self.__neural_network.predict(network_input, verbose=0)
 
         action = TRANSLATION[move.argmax()]
         Logger.log_info(self, 'Action: {}'.format(action))

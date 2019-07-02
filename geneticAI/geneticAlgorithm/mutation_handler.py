@@ -10,8 +10,7 @@ def _mutate_gene(gene):
     if len(gene.shape) != 1:
         _mutate_gene(gene[selection])
     else:
-        mutation_strength = round(random.random() - 0.5, 2)
-        gene[selection] = gene[selection] + mutation_strength
+        gene[selection] = -gene[selection]
 
 
 def mutate_genotype(genotype):

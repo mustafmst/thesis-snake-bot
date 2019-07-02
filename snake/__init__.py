@@ -18,7 +18,7 @@ FIELD_SIZE = 16
 SIDE_PANEL_WIDTH = 0
 
 DEFAULT_CONFIG = dict(
-    board_size=(10, 10),
+    board_size=(30, 30),
     game_mode=PLAYER_MODE,
     display_mode=DISPLAY_ON,
     move_sleep=240,

@@ -5,6 +5,7 @@ import geneticAI.neuralNetworks.random as NN
 from geneticAI.geneticAlgorithm.mutation_handler import mutate_genotype
 from snake.game import Game
 from geneticAI.geneticAlgorithm.crossing_handler import cross_candidates
+from geneticAI.geneticAlgorithm.randomize_handler import randomize_network_weights
 
 
 def game_function(config, model):
@@ -51,7 +52,8 @@ class Candidate:
     def initiate_model(self):
         if self.__genotype is None:
             self.__model = create_model(self.__config, self.__genotype)
-            self.__genotype = self.__model.get_weights()
+            self.__genotype = randomize_network_weights(self.__model.get_weights())
+            self.__model.set_weights(self.__genotype)
         else:
             self.__model = create_model(self.__config, self.__genotype)
 

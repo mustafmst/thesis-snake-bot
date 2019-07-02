@@ -14,8 +14,10 @@ class Player:
         self.__game_state.register_player(self)
         self.__board_size = config["board_size"]
         self.__move_sleep = config["move_sleep"]
-        self.__position = (3*FIELD_SIZE, 3*FIELD_SIZE)
+        self.__position = (10*FIELD_SIZE, 10*FIELD_SIZE)
         self.__direction = (1,0)
+        self.__last_direction = (-1,0)
+        self.__new_direction = None
         self.__ellapsed_from_move = 0
         self.__TILE = image.load(get_absolute_file_path(SNAKE_HEAD))
         Logger.log_trace(self, "Player initialized")
@@ -27,6 +29,9 @@ class Player:
         self.__ellapsed_from_move = self.__ellapsed_from_move + delta
         if self.__ellapsed_from_move > self.__move_sleep:
             self.__ellapsed_from_move = 0
+            if self.can_change_direction():
+                self.__direction = self.__new_direction
+                self.__new_direction = None
             self.move(
                 self.__direction[0],
                 self.__direction[1]
@@ -47,6 +52,7 @@ class Player:
         if not self.__game_state.is_game_finished():
             if self.__config["game_mode"] == PLAYER_MODE:
                 self.__training_data_writer.write_data(x, y)
+            self.__last_pos = self.__position
             self.__position = new_position
             self.__game_state.add_move()
             self.eat(self.__position)
@@ -61,13 +67,22 @@ class Player:
             self.__game_state.add_point()
 
     def up(self):
-        self.__direction = ( 0,-1)
+        self.__new_direction = ( 0,-1)
 
     def down(self):
-        self.__direction = ( 0, 1)
+        self.__new_direction = ( 0, 1)
 
     def left(self):
-        self.__direction = (-1, 0)
+        self.__new_direction = (-1, 0)
 
     def right(self):
-        self.__direction = ( 1, 0)
+        self.__new_direction = ( 1, 0)
+
+    def can_change_direction(self):
+        if self.__new_direction is None:
+            return False
+        forbidden_direction = [-e for e in self.__direction]
+        if self.__new_direction[0] == forbidden_direction[0] \
+                and self.__new_direction[1] == forbidden_direction[1]:
+            return False
+        return True

@@ -1,0 +1,1 @@
+AVAILABLE_WEIGHTS = (-1, 1)
