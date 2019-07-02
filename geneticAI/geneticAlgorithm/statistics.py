@@ -4,6 +4,10 @@ import os
 
 
 class AlgorithmStatistics:
+    """
+        TODO:
+        Make new folder for each run logs
+    """
     FOLDER_NAME = "logs"
     MODEL_SUFFIX = "-model"
     RESULT_SUFFIX = "-results"

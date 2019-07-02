@@ -27,6 +27,10 @@ class GeneticAlgorithm:
         pass
 
     def __select(self):
+        """
+            TODO:
+            2 factor win rezolution (points and lifetime)
+        """
         print("[{}] ==> SELECT STAGE!".format(str(datetime.now())))
         temporary_population = self.__population[:]
         for c in temporary_population:
@@ -53,6 +57,10 @@ class GeneticAlgorithm:
         self.__population = result_population[:]
 
     def __cross(self):
+        """
+            TODO:
+            Roulette selection for crossing
+        """
         print("[{}] ==> CROSS STAGE!".format(str(datetime.now())))
         temporary_population = self.__population[:]
         self.__new_population = []
@@ -79,6 +87,10 @@ class GeneticAlgorithm:
         pass
 
     def run(self):
+        """
+            TODO:
+            save best model for each generation
+        """
         self.__generate_population()
         try:
             for i in range(self.__config['generations']):
