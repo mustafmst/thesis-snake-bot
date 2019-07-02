@@ -2,6 +2,10 @@ import copy, random
 
 
 def _mutate_gene(gene):
+    """
+        TODO:
+        change functionality to operate only in range of values (-1, 1)
+    """
     selection = random.randint(0, gene.shape[0] - 1)
     if len(gene.shape) != 1:
         _mutate_gene(gene[selection])
