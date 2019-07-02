@@ -86,7 +86,7 @@ class GameState:
     def is_game_finished(self):
         board = self.__game_config['board_size']
         fields = board[0] * board[1]
-        if self.__moves_count > fields:
+        if self.__moves_count > 200:
             self.finish_game()
         return self.__has_finished
 

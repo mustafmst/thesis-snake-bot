@@ -1,6 +1,7 @@
 import random
 from datetime import datetime
 import tensorflow as tf
+import gc
 
 from geneticAI.geneticAlgorithm.candidate import Candidate
 from geneticAI.geneticAlgorithm.statistics import AlgorithmStatistics
@@ -28,7 +29,12 @@ class GeneticAlgorithm:
     def __select(self):
         print("[{}] ==> SELECT STAGE!".format(str(datetime.now())))
         temporary_population = self.__population[:]
-        [c.play_game() for c in temporary_population]
+        for c in temporary_population:
+            c.play_game()
+            tf.keras.backend.clear_session()
+            gc.collect()
+
+        # [c.play_game() for c in temporary_population]
         result_population = []
         while len(temporary_population) > 1:
             first = get_random_specimen(temporary_population)
