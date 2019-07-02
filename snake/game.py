@@ -41,6 +41,10 @@ class Game:
         Logger.log_trace(self, "Game initialized")
 
     def run(self):
+        """
+            TODO:
+            return tuple with points and lifetime
+        """
         Logger.log_trace(self, "Starting game")
         # noinspection PyBroadException
         try:
