@@ -26,6 +26,10 @@ class GeneticAlgorithm:
         pass
 
     def __select(self):
+        """
+            TODO:
+            2 factor win rezolution (points and lifetime)
+        """
         print("[{}] ==> SELECT STAGE!".format(str(datetime.now())))
         temporary_population = self.__population[:]
         [c.play_game() for c in temporary_population]
