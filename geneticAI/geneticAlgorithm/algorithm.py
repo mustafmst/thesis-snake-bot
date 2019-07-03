@@ -27,18 +27,8 @@ class GeneticAlgorithm:
         pass
 
     def __select(self):
-        """
-            TODO:
-            2 factor win rezolution (points and lifetime)
-        """
         print("[{}] ==> SELECT STAGE!".format(str(datetime.now())))
         temporary_population = self.__population[:]
-        for c in temporary_population:
-            c.play_game()
-            tf.keras.backend.clear_session()
-            gc.collect()
-
-        # [c.play_game() for c in temporary_population]
         result_population = []
         while len(temporary_population) > 1:
             first = get_random_specimen(temporary_population)
@@ -60,18 +50,17 @@ class GeneticAlgorithm:
         self.__population = result_population[:]
 
     def __cross(self):
-        """
-            TODO:
-            Roulette selection for crossing
-        """
         print("[{}] ==> CROSS STAGE!".format(str(datetime.now())))
-        temporary_population = self.__population[:]
         self.__new_population = []
-        while len(temporary_population) > 1:
-            first = get_random_specimen(temporary_population)
-            second = get_random_specimen(temporary_population)
-            self.__new_population.append(first.cross_with(second))
-            self.__new_population.append(second.cross_with(first))
+        crossing_roulette = []
+        for candidate in self.__population:
+            for i in range(candidate.fitness()):
+                crossing_roulette.append(candidate)
+        amount_to_create = len(self.__population)
+        for i in range(amount_to_create):
+            first = random.choice(crossing_roulette)
+            second = random.choice(crossing_roulette)
+            self.__population.append(first.cross_with(second))
         pass
 
     def __mutate(self):

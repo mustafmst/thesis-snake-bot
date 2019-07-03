@@ -73,6 +73,12 @@ class Candidate:
         self.__genotype = mutate_genotype(self.__genotype)
         pass
 
+    def fitness(self):
+        result = self.__score[0]
+        if self.__score[1] > 50:
+            result += 1
+        return result
+
     def get_score(self):
         if self.__score is None:
             self.play_game()
