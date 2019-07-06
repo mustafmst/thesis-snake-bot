@@ -289,12 +289,64 @@ Ostatnim etapem jest przeprowadzenie losowych mutacji genotypów nowych rozwiąz
 
 \section{Wyniki}
 
+W tej sekcji opiszę proces uruchamiania projektu oraz wyniki jakie otrzymałem z jego pomocą. Aby dopełnić obraz przedstawię też na jakiej konfiguracji sprzętowej miał okazję działać algorytm. Wraz z kolejnymi uruchomieniami dochodziłem też do różnych wniosków dotyczących kodowania sieci neuronowej jak i doboru jej parametrów co poskutkowało dwoma różnymi podejściami dającymi bardzo odmienne wyniki.
+
 \subsection{Platforma testowa i sposób pozyskania wyników}
+
+Eksperymenty za pomocą napisanego projektu przeprowadzałem na moim prywatnym komputerze stacjonarnym klasy PC z zainstalowanym systemem operacyjnym Manjaro Linux. Sercem tej jednostki jest ośmiordzeniowy i szesnastowątkowy procesor firmy AMD z serii Ryzen 5 model 1400. W jego pracy wspomaga go 16GB pamięci ram oraz karta graficzna firmy Nvidia model GeForce GTX 960.
+
+Podczas przeprowadzania obliczeń obciążenie wszystkich wątków procesora nie przekraczało 20-30 procent. Proces główny interpretera Python, który uruchamiał projekt zajmował przez cały czas działania nie więcej niż 300MB pamięci ram.
+
+Do pozyskiwania wyników algorytm został wyposażony w moduł służący do zapisywania wielu statystyk do plików na dysku. Po zakończeniu obliczeń wszystkie dane można odczytać z 3 plików, które posiadają informacje o użytej konfiguracji i przebiegu algorytmu. Ostatni z tych plików to plik z rozszerzeniem .h5, w którym zapisana zostaje najlepsza sieć wygenerowana przez algorytm.
 
 \subsection{Podejście pierwsze: obraz planszy jako dane wejściowe}
 
+W pierwszym podejściu zacząłem od, jak mi się wydawało, najłatwiejszej implementacji, w której jako dane wejściowe do sieci neuronowej przekazywałem obraz z całej planszy. Generowana tablica dwuwymiarowa zawierała informacje o tym jaki obiekt znajduje się w danym momencie na każdym polu obszaru gry. Jednocześnie podjąłem decyzję aby wagi połączeń neuronowych w generowanych sieciach były liczbami rzeczywistymi z zakresu od -1 do 1. W tym wariancie mutacje genów odbywały się poprzez dodanie do wagi losowego współczynnika mutacji, który był losowany z zakresu -0.5 do 0.5. Sieci neuronowe w tym przykładzie składały się z warstwy wejściowej, warstwy wyjściowej z czterema neuronami i dwóch warstw ukrytych każda po 256 neuronów.
+
+Wyniki pierwszego uruchomienia działającego według schematu podanego powyżej były wielce niezadowalające.
+Algorytm pracował z 20 osobników na pokolenie przez 1000 pokoleń a wyniki przez niego otrzymane są zaprezentowane w na rysunku poniżej (Rysunek \ref{fig: 4.1}).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=8cm]{fig41.png}
+	\caption{Wyniki uruchomienia pierwszego podejścia(20 osobników, 1000 pokoleń) }
+	\label{fig: 4.1}
+\end{figure}
+
+Widoczne jest, że algorytm nie jest w stanie wygenerować odpowiedniej sieci mając do dyspozycji tylko 20 osobników na pokolenie. Następne uruchomienie postanowiłem skonfigurować na większą ilość osobników i pokoleń. Tym razem obliczenia były przeprowadzone dla 500 kandydatów przez 2000 iteracji i wyniki tego podejścia nie różniły się zbytnio od poprzednich (Rysunek \ref{fig: 4.2})
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=8cm]{fig42.png}
+	\caption{Wyniki uruchomienia pierwszego podejścia(500 osobników, 2000 pokoleń) }
+	\label{fig: 4.2}
+\end{figure}
+
+Teraz ewidentnie widać, że to podejście jest bardzo nieoptymalne. Analizując działanie tak wygenerowanych sieci neuronowych można zauważyć, że jakiekolwiek zdobyte punkty w grze były tylko zbiegiem okoliczności a one nie rozpoznają prawie żadnych sytuacji na planszy. Ruchy w grze są kompletnie losowe i niezależne od tego co dzieje się podczas rozgrywki.
+
+Sieci z tak zaprojektowanym wejściem musiałyby mieć zestaw wag połączeń neuronowych, które odzwierciedlałyby każda możliwą kombinację planszy gry. Przy takim podejściu potrzebowalibyśmy sieci neuronowych o ogromnej liczbie sztucznych neuronów co dodatkowo komplikuje i wydłuża obliczenia.
+
 \subsection{Podejście drugie: widok z głowy węża jako dane wejściowe}
 
+W drugim wariancie postanowiłem uprościć wiele aspektów sieci neuronowych generowanych za pomocą algorytmu. Pierwszym uproszczeniem była warstwa wejściowa sieci i dane, które są do niej przekazywane. zamiast tworzyć ogromną strukturę wejścia zależną od rozmiarów planszy, czyli też działającą tylko dla jednego wariantu gry, postanowiłem skonstruować wejście na podstawie tego co widzi w grze wąż ze swojej perspektywy. 
+
+Taka struktura składa się z 24 sygnałów. Pierwsze osiem reprezentuje w jakim kierunku wąż widzi następny owoc, kolejne odpowiadają za widzenie ogona. Wszystkie pierwsze 16 sygnałów przyjmuje wartości albo 0 albo 1 i sygnalizuje jedynie obecność obiektu w danym kierunku. Ostatnie osiem sygnalizuje odległości od granic planszy, przyjmuje wartość ciągłą od 0 do 1, im mniejsza wartość sygnału tym dalej od ściany znajduje się wąż.
+
+Kolejnym uproszczeniem była zmiana możliwych wartości wag. Teraz połączenia neuronowe tylko przesyłają sygnał niezmieniony albo zmieniają jego znak, czyli przyjmują wartości 1 albo -1. Mutowanie odbywa się teraz poprzez zmianę znaku wagi połączenia neuronowego.
+
+Sama architektura sieci też się zmieniła i teraz obydwie warstwy ukryte składają się jedynie z dwudziestu neuronów. Dzięki temu złożoność obliczeniowa sieci drastycznie spadła pozwalając na dużo szybsze podejmowanie decyzji o kolejnym ruchu.
+
+Z takimi zmianami przystąpiłem do ponownych uruchomień algorytmu aby zobaczyć wyniki. Pierwszą próbę przedstawiłem poniżej (Rysunek \ref{fig: 4.3}) i wygląda ona znacznie bardziej obiecująco.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=8cm]{fig43.png}
+	\caption{Wyniki uruchomienia drugiego podejścia(2000 osobników, 100 pokoleń) }
+	\label{fig: 4.3}
+\end{figure}
+
+Uproszczenie struktury sieci neuronowej pozwoliło na analizowanie większej ilości rozwiązań w krótszym czasie. Jednocześnie sygnały wejściowe dużo lepiej opisują w tym wariancie warunki wpływające na podjęcie decyzji o kolejnym ruchu.
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Wnioski}
