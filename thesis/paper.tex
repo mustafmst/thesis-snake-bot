@@ -273,9 +273,16 @@ Na tej teorii można zacząć konstruować algorytm genetyczny obierający sobi
 
 \section{Opis działania i struktura projektu}
 
-
+Cały projekt podzielony jest na dwa pakiety. Pierwszym z nich jest samodzielna gra w węża napisana za pomocą biblioteki \textit{pygame}. Uruchomienie gry jest w pełni konfigurowalne i pozwala na wybranie rozmiaru planszy, typu rozgrywki (gracz czy sieć neuronowa) oraz tępa gry. Zasady gry są dość proste. Poruszamy się po planszy o wybranych rozmiarach głową węża w czerech kierunkach: góra, dół, prawo, lewo. W każdym momencie gy zabronione jest poruszanie się do tyłu, czyli jeśli wąż porusza się do góry w danym momencie to w następnym ruchu nie może zacząć się przemieszczać w dół. Celem gracza jest zebranie jak największej ilości owoców, które pojawiają się na planszy w losowych miejscach. Zjedzenie owocu skutkuje zwiększeniem licznika punktów o 1 oraz wzrostem ogona węża, który podąża za graczem. Koniec gry następuje w chwili śmierci postaci wywołanej kontaktem z ogonem bądź wyjściem poza planszę gry.
+Dwa tryby różnią się od siebie tylko sposobem przyjmowania rozkazów przez grę. W trybie dla gracza polecenia wydawane są poprzez wciśnięcia klawiszy na klawiaturze komputera. Jeśli jednak podczas procesu uruchamiania zostanie przekazana sieć neuronowa to sygnały wejściowe z klawiatury zostają odcięte a polecenia są wykonywane na podstawie wartości wyjściowych sieci.
 
 \section{Wyniki}
+
+\subsection{Platforma testowa i sposób pozyskania wyników}
+
+\subsection{Podejście pierwsze: obraz planszy jako dane wejściowe}
+
+\subsection{Podejście drugie: widok z głowy węża jako dane wejściowe}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
