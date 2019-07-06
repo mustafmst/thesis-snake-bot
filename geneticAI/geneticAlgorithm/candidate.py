@@ -1,11 +1,25 @@
 import numpy as np
 from datetime import datetime
+import uuid
 
 import geneticAI.neuralNetworks.random as NN
 from geneticAI.geneticAlgorithm.mutation_handler import mutate_genotype
 from snake.game import Game
 from geneticAI.geneticAlgorithm.crossing_handler import cross_candidates
 from geneticAI.geneticAlgorithm.randomize_handler import randomize_network_weights
+
+
+def get_better_score(first, second):
+    if first[0] == second[0]:
+        if first[1] > second[1]:
+            winner = first
+        else:
+            winner = second
+    elif first[0] > second[0]:
+        winner = first
+    else:
+        winner = second
+    return winner
 
 
 def game_function(config, model):
@@ -17,8 +31,6 @@ def game_function(config, model):
 
 
 def create_model(config, genotype):
-    # board_size = config['base_game_config']['board_size']
-    # input_shape = np.array([[0 for i in range(board_size[0])] for j in range(board_size[1])]).shape
     input_shape = np.array([[0 for j in range(8)] for i in range(3)]).shape
     builder = NN.NeuralNetworkBuilder()
     builder.with_input_shape(input_shape)
@@ -34,7 +46,11 @@ class Candidate:
         self.__genotype = genotype
         self.__model = None
         print("[{}] Candidate is created!".format(str(datetime.now())))
+        self.ID = uuid.uuid1()
         pass
+
+    def are_same(self, other):
+        return self.ID is other.ID
 
     def get_genotype(self):
         return self.__genotype
@@ -44,7 +60,10 @@ class Candidate:
         try:
             self.initiate_model()
             game_config = dict(self.__config)
-            self.__score = game_function(game_config, self.__model)
+            new_score = game_function(game_config, self.__model)
+            if self.__score is None:
+                self.__score = new_score
+            self.__score = get_better_score(self.__score, new_score)
             print("[{}] Got score: {}".format(str(datetime.now()), self.__score))
         finally:
             del self.__model

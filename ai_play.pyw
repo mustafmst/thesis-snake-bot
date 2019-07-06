@@ -4,6 +4,7 @@ import argparse
 import tensorflow as tf
 
 from geneticAI.config import RUN_CONFIG
+from snake import DISPLAY_OFF, DISPLAY_ON
 from snake.game import Game
 
 parser = argparse.ArgumentParser(description="runs AI playing Snake")
@@ -20,7 +21,10 @@ class IllegalArgumentException(ValueError):
 
 
 def get_config():
-    return RUN_CONFIG["base_game_config"]
+    config = RUN_CONFIG["base_game_config"]
+    config['move_sleep'] = 20
+    config['display_mode'] = DISPLAY_ON
+    return config
 
 
 def get_network():

@@ -16,5 +16,5 @@ RUN_CONFIG = dict(
     ],
     population_size=2000,
     generations=100,
-    generation_mutation_rate=200
+    generation_mutation_rate=1000
 )
