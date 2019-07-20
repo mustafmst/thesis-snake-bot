@@ -1,5 +1,4 @@
 from tensorflow import keras
-import tensorflow as tf
 
 
 class NeuralNetworkBuilder:
@@ -20,11 +19,8 @@ class NeuralNetworkBuilder:
         pass
 
     def build(self, genotype=None):
-        self.model.add(keras.layers.Dense(4, activation=tf.nn.softmax,
+        self.model.add(keras.layers.Dense(4, activation=keras.activations.softmax,
                                           bias_initializer='random_uniform'))
         if genotype is not None:
             self.model.set_weights(genotype)
-        self.model.compile(optimizer=tf.train.AdamOptimizer(),
-                           loss='sparse_categorical_crossentropy',
-                           metrics=['accuracy'])
         return self.model

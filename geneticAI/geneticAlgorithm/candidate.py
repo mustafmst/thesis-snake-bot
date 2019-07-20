@@ -3,10 +3,10 @@ from datetime import datetime
 import uuid
 
 import geneticAI.neuralNetworks.random as NN
-from geneticAI.geneticAlgorithm.mutation_handler import mutate_genotype
+from geneticAI.geneticAlgorithm.mutation_operator import mutate_genotype
 from snake.game import Game
-from geneticAI.geneticAlgorithm.crossing_handler import cross_candidates
-from geneticAI.geneticAlgorithm.randomize_handler import randomize_network_weights
+from geneticAI.geneticAlgorithm.crossing_operator import cross_candidates
+from geneticAI.geneticAlgorithm.randomize_operator import randomize_network_weights
 
 
 def get_better_score(first, second):

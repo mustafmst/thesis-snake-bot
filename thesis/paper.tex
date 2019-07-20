@@ -104,7 +104,7 @@ W rozdziale tym postaram się przybliżyć zagadnienie sztucznych sieci neuronow
 
 Sieci neuronowe są to systemy przetwarzania informacji wzorowane na procesach i strukturach obserwowanych w ludzkim mózgu. Pierwszą sztuczną siecią neuronową był perceprton progowy, który został wymyślony w roku 1943 przez Warrena Sturgisa McCullocha i Waltera Pittsa. Wymyślona wtedy koncepcja jest nadal bardzo aktualna i wykorzystywana do dziś. Teraźniejszy poziom zaawansowania komputerów i ich moc obliczeniowa wywołały swego rodzaju renesans badań nad sieciami neuronowymi.
 
-Tak samo jak nasz mózg składa się z setek miliardów komórek neuronowych tak sztuczne sieci neuronowe są tworzone przez setki lub tysiące sztucznych neuronów, które są najmniejszymi elementami przetwarzającymi informację. Są one prymitywną interpretacją sposobu działania prawdziwych, biologicznych neuronów i składają się z wielu wejść oraz jednego wyjścia. Budowa takiego pojedynczego elementu sieci przedstawiona jest poniżej (Rysunek \ref{fig: 2.1}).
+Tak samo jak nasz mózg składa się z setek miliardów komórek neuronowych tak sztuczne sieci neuronowe są tworzone przez setki tysięcy sztucznych neuronów, które są najmniejszymi elementami przetwarzającymi informację. Są one prymitywną interpretacją sposobu działania prawdziwych, biologicznych neuronów i składają się z wielu wejść oraz jednego wyjścia. Budowa takiego pojedynczego elementu sieci przedstawiona jest poniżej (Rysunek \ref{fig: 2.1}).
 
 \begin{figure}[h]
 	\centering
@@ -125,19 +125,6 @@ Dodatkowo każdy neuron posiada swoją wartość przesunięcia (ang. \textit{bia
   y = \sum^{n}_{i=1} x_{i}w_{i} + b
 \end{equation}
 
-Topologia połączeń oraz ich parametry stanowią program działania sieci \citep{tadeusiewicz1993sieci}. Sygnały wejściowe są przepuszczane przez chmurę połączonych ze sobą neuronów, które następnie przeliczają te sygnały i przekazują swoje rozwiązania dalej w głąb sieci. Tak przetworzone dane dają w wyniku pewną ilość sygnałów wyjściowych z sieci które razem są rozwiązaniem problemu, do którego została wyuczona.
-
-Możemy wyodrębnić kilka podstawowych rodzajów sieci neuronowych na podstawie ich topologii takie jak sieci jedno warstwowe, wielowarstwowe, jednokierunkowe czy rekurencyjne. Każda z tych wariacji jest skuteczna w rozwiązywaniu innych problemów. Dla przykładu sieci jednowarstwowe, które w praktyce składają się z dwóch warstw (warstwa wejściowa nie przetwarza a jedynie przekazuje dane wejściowe do sieci), nadają się do klasyfikowania informacji, które jesteśmy w stanie rozdzielić liniowo. Sieci wielowarstwowe różnią się od jednowarstwowych jedynie dodatkowymi warstwami ukrytymi. W klasycznych sieciach neuronowych połączenia pomiędzy neuronami istnieją jedynie między warstwami. Obraz poniżej prezentuje przykładową wielowarstwową sztuczną sieć neuronową (Rysunek \ref{fig: 2.2})
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=12cm]{fig212.png}
-	\caption{Schemat wielowarstwowej sieci neuronowej}
-	\label{fig: 2.2}
-\end{figure}
-
-Aby jednoznacznie określić konkretną sztuczną sieć neuronową możemy się posłużyć uproszczonym modelem opisanym przez trzy podstawowe cechy takiej sieci. Tymi cechami są architektura, proces uczenia i funkcja aktywacji. Architektura opisuje dokładnie topologię sieci, w tym jej rodzaj oraz liczby warstw i neuronów w każdej warstwie. Uczenie jest opisem procesu zastosowanego do rozwinięcia parametrów sieci. Określa ono poszczególne techniki użyte do tego celu jak na przykład uczenie przez wzmacnianie czy uczenie ze zbioru reguł. Definiuje też zakresy i wartości wag połączeń między neuronami. Ostatnia cecha czyli funkcja aktywacji opisuje sposób wewnętrznego działania neuronu, czyli kiedy będzie on aktywny oraz jakie dane przekaże dalej w głąb sieci.
-
 Istnieje wiele powszechnie używanych funkcji aktywacji neuronów. Najprostszym jej przykładem jest funkcja tożsamości, która przekazuje bezpośrednio na wyjście wartość aktywacji neuronu i jest wyrażana wzorem (Równanie \ref{eq: 2.3})
 
 \begin{equation}\label{eq: 2.3}
@@ -154,7 +141,7 @@ Innym przykładem jest funkcja nazywana \textbf{ReLU}(\textit{Rectified Linear U
     \end{cases*}
 \end{equation}
 
-Powyższa funkcja jest połączeniem funkcji tożsamości oraz funkcji progowej, która na wyjściu zwraca tylko informację czy została aktywowana i opisuje ją wzór (Równanie \ref{eq: 2.5})
+Poniższa funkcja jest połączeniem funkcji tożsamości oraz funkcji progowej, która na wyjściu zwraca tylko informację czy została aktywowana i opisuje ją wzór (Równanie \ref{eq: 2.5})
 
 \begin{equation}\label{eq: 2.5}
   f(a) =
@@ -164,15 +151,26 @@ Powyższa funkcja jest połączeniem funkcji tożsamości oraz funkcji progowej,
   \end{cases*}
 \end{equation}
 
-Istnieją również bardziej zaawansowane funkcje aktywacji. Jedną z najczęściej używanych jest funkcja logistyczna (Równanie \ref{eq: 2.6}), która zwraca wartość mięczy 0 a 1 i jej wynik jest określany jako prawdopodobieństwo aktywacji neuronu.
+Istnieją również bardziej zaawansowane funkcje aktywacji. Jedną z najczęściej używanych jest funkcja logistyczna (Równanie \ref{eq: 2.6}), która zwraca wartość między 0 a 1 i jej wynik jest określany jako prawdopodobieństwo aktywacji neuronu.
 
 \begin{equation}\label{eq: 2.6}
   f(a) = \frac{1}{1 + exp(-a)}
 \end{equation}
 
-\section{Zastosowania sieci neuronowych}
+Topologia połączeń oraz ich parametry stanowią program działania sieci \citep{tadeusiewicz1993sieci}. Sygnały wejściowe są przepuszczane przez chmurę połączonych ze sobą neuronów, które następnie przeliczają te sygnały i przekazują swoje rozwiązania dalej w głąb sieci. Tak przetworzone dane dają w wyniku pewną ilość sygnałów wyjściowych z sieci które razem są rozwiązaniem problemu, do którego została wyuczona.
 
-Bazując na wcześniej podanych informacjach można powiedzieć, że sztuczne sieci neuronowe pomimo swojej genezy nie są idealnym odzwierciedleniem sposobu działania swojego pierwowzoru, czyli ludzkiego mózgu. Przez swoje ograniczenia ich zdolności do rozwiązywania problemów są ograniczane. Każda sieć neuronowa jest projektowana i uczona do rozwiązywania konkretnego problemu i nie radzi sobie z danymi związanymi z innymi zagadnieniami niż jej specjalizacja. Z podstaw działania sztucznego neuronu można wywnioskować, że ma on zdolność do rozpoznawania wzorców na podstawie porównania otrzymanych sygnałów do swojego wektora wag. Z tego wynika, że sztuczne neurony połączone w skomplikowaną sieć są idealne do takich zadań na dużo większą skalę. Taki sposób działania pozwala na wykorzystanie tych mechanizmów w wielu branżach.
+Możemy wyodrębnić kilka podstawowych rodzajów sieci neuronowych na podstawie ich topologii takie jak sieci jedno warstwowe, wielowarstwowe, jednokierunkowe czy rekurencyjne. Każda z tych wariacji jest skuteczna w rozwiązywaniu innych problemów. Dla przykładu sieci jednowarstwowe, które w praktyce składają się z dwóch warstw (warstwa wejściowa nie przetwarza a jedynie przekazuje dane wejściowe do sieci), nadają się do klasyfikowania informacji, które jesteśmy w stanie rozdzielić liniowo. Sieci wielowarstwowe różnią się od jednowarstwowych jedynie dodatkowymi warstwami ukrytymi. W klasycznych sieciach neuronowych połączenia pomiędzy neuronami istnieją jedynie między warstwami. Obraz poniżej prezentuje przykładową wielowarstwową sztuczną sieć neuronową (Rysunek \ref{fig: 2.2})
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=12cm]{fig212.png}
+	\caption{Schemat wielowarstwowej sieci neuronowej}
+	\label{fig: 2.2}
+\end{figure}
+
+Aby jednoznacznie określić konkretną sztuczną sieć neuronową możemy się posłużyć uproszczonym modelem opisanym przez trzy podstawowe cechy takiej sieci. Tymi cechami są architektura, proces uczenia i funkcja aktywacji. Architektura opisuje dokładnie topologię sieci, w tym jej rodzaj oraz liczby warstw i neuronów w każdej warstwie. Uczenie jest opisem procesu zastosowanego do rozwinięcia parametrów sieci. Określa ono poszczególne techniki użyte do tego celu jak na przykład uczenie przez wzmacnianie czy uczenie ze zbioru reguł. Definiuje też zakresy i wartości wag połączeń między neuronami. Ostatnia cecha czyli funkcja aktywacji opisuje sposób wewnętrznego działania neuronu, czyli kiedy będzie on aktywny oraz jakie dane przekaże dalej w głąb sieci.
+
+\section{Zastosowania sieci neuronowych}
 
 Aktualnie sieci neuronowe są używane do przetwarzania danych w bardzo dużym spektrum dziedzin. Ich zastosowania można znaleźć przedmiotach codziennego użytku takich jak smartfony, na przykład do rozpoznawania mowy i implementacji interfejsów głosowych, jak też w bardzo profesjonalnych sprzętach i systemach. Na podstawie wcześniej dostarczonych danych jesteśmy w stanie nauczyć sieci neuronowe przewidywać pewne zdarzenia na podstawie aktualnych danych. Wiele firm w dzisiejszych czasach tworzy systemy, które na podstawie parametrów technicznych urządzeń w zakładach są wstanie podać bardzo dokładne prawdopodobieństwo awarii danego sprzętu. Sztuczne sieci neuronowe zostały wykorzystane przez różnych badaczy do modelowania i prognozowania w dziedzinie systemów inżynierii energetycznej \citep{kalogirou2000applications}. Współczesna medycyna generuje zawrotne ilości danych korzystając z zaawansowanych czujników monitorujących. Potencjalne zastosowania takich danych obejmują dokładne klasyfikowanie diagnoz, przewidywanie przyszłych chorób i śmiertelności \citep{lipton2015learning}.
 
@@ -203,7 +201,7 @@ Poniższy rozdział jest krótkim wprowadzeniem do tematyki algorytmów genetycz
 
 Wiele rozwiązań z dziedziny informatyki czerpie garściami z procesów i interakcji możliwych do zaobserwowania w otaczającym nas świecie. Dobrym przykładem takiej tendencji jest choćby obiektowy paradygmat programowania zamykający kod w ramy odzwierciedlające doświadczalny świat rzeczywisty. Również przedstawione wcześniej w tej pracy rozwiązania jak sztuczne sieci neuronowe są mocno inspirowane innymi procesami obserwowanymi w przyrodzie a mianowicie sposobem działania ludzkiego mózgu. 
 
-Tak samo jest też z algorytmem genetycznym. Został on zaprojektowany na postawie ogólnej teorii rozwoju życia sformułowanej przez Karola Darwina a jego autorem jest amerykański naukowiec, profesor psychologii, elektroniki i informatyki John Henry Holland. W uproszczeniu można powiedzieć, że algorytmy genetyczne są procedurami poszukiwania opartymi na mechanizmach doboru naturalnego oraz dziedziczności \citep{goldberg1995algorytmygenetyczne}. Podczas projektowania tych algorytmów Panu Holland'owi oraz jego współpracownikom z Uniwersytetu Michigan przyświecały dwa cele. Jednym z nich było jak najprostsze opisanie obserwowalnych w świecie przyrody mechanizmów adaptacyjnych. Drugim zaś wykorzystanie tych informacji do opracowania oprogramowania rozwiązującego skompilowane problemy z wykorzystaniem tychże właśnie procesów i mechanizmów. Według David'a Goldberg'a cała istota funkcjonowania algorytmów genetycznych rozbija się o zachowanie idealnej równowagi między efektywnością a skutecznością szukanych rozwiązań w danym środowisku, które jest definiowane przez dziedzinę problemu. Ten złoty środek nazywa on odpornością. Jest to cecha, której rozwój do perfekcji opanowały wszelakie systemy biologiczne i dlatego zainspirowała on powstanie takich metod w dziedzinie informatyki.
+Tak samo jest też z algorytmem genetycznym. Został on zaprojektowany na postawie ogólnej teorii ewolucji sformułowanej przez Karola Darwina a jego autorem jest amerykański naukowiec, profesor psychologii, elektroniki i informatyki John Henry Holland. W uproszczeniu można powiedzieć, że algorytmy genetyczne są procedurami poszukiwania opartymi na mechanizmach doboru naturalnego oraz dziedziczności \citep{goldberg1995algorytmygenetyczne}. Podczas projektowania tych algorytmów Panu Holland'owi oraz jego współpracownikom z Uniwersytetu Michigan przyświecały dwa cele. Jednym z nich było jak najprostsze opisanie obserwowalnych w świecie przyrody mechanizmów adaptacyjnych. Drugim zaś wykorzystanie tych informacji do opracowania oprogramowania rozwiązującego problemy z wykorzystaniem tychże właśnie procesów i mechanizmów. Według David'a Goldberg'a cała istota funkcjonowania algorytmów genetycznych rozbija się o zachowanie idealnej równowagi między efektywnością a skutecznością szukanych rozwiązań w danym środowisku, które jest definiowane przez dziedzinę problemu. Ten złoty środek nazywa on odpornością. Jest to cecha, której rozwój do perfekcji opanowały wszelakie systemy biologiczne i dlatego zainspirowała on powstanie takich metod w dziedzinie informatyki.
 
 Algorytmy genetyczne są narzędziem wykazującym się dużą efektywnością w przeszukiwaniu skomplikowanych przestrzeni co w ciągu wielu lat zostało wielokrotnie potwierdzone tak w teorii jak i empirycznie. Bardzo dobrze dają sobie również radę w rozwiązywaniu problemów z dziedziny optymalizacji. Jednocześnie dzięki analogiom ich działania do procesów obserwowalnych w przyrodzie cechują niezwykłą łatwością implementacji. Są wyjątkowo nieskomplikowanym a jednocześnie bardzo potężnym narzędziem w szukaniu rozwiązań problemów \textit{NP-Trudnych}.
 
@@ -249,7 +247,7 @@ Jednej ze swoich prac profesor Zbigniew Michalewicz przeprowadzał badania zasto
 
 \chapter{Samouczący się bot do gry zręcznościowej}
 
-Po przedstawieniu we wstępie tezy oraz przybliżeniu tematów z nią związanych chciałbym dogłębnie przedstawić zaprojektowany przez mnie sposób na jej sprawdzenie. w tym rozdziale po kolei przejdę po strukturze aplikacji napisanej na potrzeby przeprowadzenia doświadczeń związanych z tematem owej pracy. Przedstawię dokładny stoch technologiczny użyty do napisania tego kodu. w tym opisie uwzględnię krótkie opisy użytych bibliotek zewnętrznych. Zdefiniuję ideę działanie tego projektu oraz dokładnie zobrazuję strukturę kodu. Później dogłębnie przeanalizuję wyniki działania tego programu i przedstawię je w przystępnej i czytelnej formie.
+Po przedstawieniu we wstępie tezy oraz przybliżeniu tematów z nią związanych chciałbym dogłębnie przedstawić zaprojektowany przez mnie sposób na jej sprawdzenie. w tym rozdziale po kolei przejdę po strukturze aplikacji napisanej na potrzeby przeprowadzenia doświadczeń związanych z tematem owej pracy. Przedstawię dokładny stos technologiczny użyty do napisania tego kodu. w tym opisie uwzględnię krótkie opisy użytych bibliotek zewnętrznych. Zdefiniuję ideę działanie tego projektu oraz dokładnie zobrazuję strukturę kodu. Później dogłębnie przeanalizuję wyniki działania tego programu i przedstawię je w przystępnej i czytelnej formie.
 
 \section{Stos technologiczny}
 
@@ -279,6 +277,25 @@ Dwa tryby różnią się od siebie tylko sposobem przyjmowania rozkazów przez g
 
 Drugim pakietem wchodzącym w skład projektu stworzonego na potrzeby przeprowadzenia badań do tej pracy jest moja własna implementacja algorytmu genetycznego. Podstawowym elementem tego algorytmu jest klasa kandydata rozwiązania, która przechowuje informacje na temat genotypu rozwiązania, którym w tym wypadku jest zestaw wag sieci neuronowej, oraz implementacje metod operatorów genetycznych takich jak krzyżowanie osobników i mutowanie genotypu. Klasa ta jest także odpowiedzialna za uruchamianie gry z użyciem jej genotypu oraz przechowywanie wyniku rozgrywki.
 
+Pierwszy z operatorów genetycznych, którym jest krzyżowanie. Funkcja reprezentująca ten operator oczekuje na wejściu dwóch obiektów reprezentujących kandydatów rozwiązań a zwraca na wyjściu nowego kandydat stworzonego za pomocą genotypu wygenerowanego z kombinacji przekazanych osobników. Genotyp w projekcie reprezentowany jest przez listę list wag połączeń neuronowych. Operacja krzyżowania przeprowadzana jest poprzez pocięcie list wag w losowych punktach (takich samych dla każdego kandydata) i stworzenie nowych z fragmentów należących do każdego z rodziców. Przykładowe jego działanie zostało zaprezentowane za pomocą uproszczonego zestawu genów poniżej (Rysunek \ref{fig: 4.3.crossing})
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm]{fig431.png}
+	\caption{Przykład działania operatora krzyżowania}
+	\label{fig: 4.3.crossing}
+\end{figure}
+\newpage
+
+Kolejny operator genetyczny czyli mutacja jest dużo prostszy i polega na wprowadzeniu najmniejszej możliwej pojedyńczej zmiany w genotypie osobnika. Funkcja odpowiadająca za działanie tego operatora wybiera jeden gen z puli całego genotypu i zmienia jego znak. Jej działanie przedstawia schemat poniżej (Rysunek \ref{fig: 4.3.mutation})
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=7.5cm]{fig432.png}
+	\caption{Przykład działania operatora mutacji}
+	\label{fig: 4.3.mutation}
+\end{figure}
+
 Działanie algorytmu odbywa się według schematu już opisanego przeze mnie w rozdziale drugim. Na początku generowana jest populacja początkowa obiektów wspomnianej wyżej klasy kandydata. Następnie w pętli uruchamiają się poszczególne fazy działania czyli selekcja, krzyżowanie i mutacja.
 
 Selekcja osobników odbywa się trybem turniejowym. Kandydaci rozwiązań dobierani są w losowe pary a następnie każdy z nich uruchamia grę ze wstrzykniętą swoją siecią neuronową. Jeśli osobnik populacji żyje już kilka pokoleń to w każdym z nich przystępuje do rozgrywki a jako jego wynik obiera się najlepszy jaki udało mu się osiągnąć. Po wytypowaniu zwycięzców z par wszyscy przegrani zostają odrzuceni a reszta przechodzi do następnego etapu.
@@ -301,25 +318,25 @@ Do pozyskiwania wyników algorytm został wyposażony w moduł służący do zap
 
 \subsection{Podejście pierwsze: obraz planszy jako dane wejściowe}
 
-W pierwszym podejściu zacząłem od, jak mi się wydawało, najłatwiejszej implementacji, w której jako dane wejściowe do sieci neuronowej przekazywałem obraz z całej planszy. Generowana tablica dwuwymiarowa zawierała informacje o tym jaki obiekt znajduje się w danym momencie na każdym polu obszaru gry. Jednocześnie podjąłem decyzję aby wagi połączeń neuronowych w generowanych sieciach były liczbami rzeczywistymi z zakresu od -1 do 1. W tym wariancie mutacje genów odbywały się poprzez dodanie do wagi losowego współczynnika mutacji, który był losowany z zakresu -0.5 do 0.5. Sieci neuronowe w tym przykładzie składały się z warstwy wejściowej, warstwy wyjściowej z czterema neuronami i dwóch warstw ukrytych każda po 256 neuronów.
+W pierwszym podejściu zacząłem od, jak mi się wydawało, najłatwiejszej implementacji, w której jako dane wejściowe do sieci neuronowej przekazywałem obraz z całej planszy. Generowana tablica dwuwymiarowa zawierała informacje o tym jaki obiekt znajduje się w danym momencie na każdym polu obszaru gry. Jednocześnie podjąłem decyzję aby wagi połączeń neuronowych w generowanych sieciach były liczbami rzeczywistymi z zakresu od -1 do 1. W tym wariancie mutacje genów odbywały się poprzez dodanie do wagi losowego współczynnika mutacji, który był losowany z zakresu -0.5 do 0.5. Sieci neuronowe w tym przykładzie składały się z warstwy wejściowej, warstwy wyjściowej z czterema neuronami i dwóch warstw ukrytych każda po 256 neuronów. Wszystkie neurony w sieci posługiwały się linową funkcją aktywacji, jedynie warstwa wyjściowa używała funkcji logistycznej.
 
 Wyniki pierwszego uruchomienia działającego według schematu podanego powyżej były wielce niezadowalające.
-Algorytm pracował z 20 osobników na pokolenie przez 1000 pokoleń a wyniki przez niego otrzymane są zaprezentowane w na rysunku poniżej (Rysunek \ref{fig: 4.1}).
+Algorytm pracował z 20 osobnikami na pokolenie przez 1000 pokoleń a wyniki przez niego otrzymane są zaprezentowane w na rysunku poniżej (Rysunek \ref{fig: 4.4.2.1}).
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=8cm]{fig41.png}
 	\caption{Wyniki uruchomienia pierwszego podejścia(20 osobników, 1000 pokoleń) }
-	\label{fig: 4.1}
+	\label{fig: 4.4.2.1}
 \end{figure}
-
-Widoczne jest, że algorytm nie jest w stanie wygenerować odpowiedniej sieci mając do dyspozycji tylko 20 osobników na pokolenie. Następne uruchomienie postanowiłem skonfigurować na większą ilość osobników i pokoleń. Tym razem obliczenia były przeprowadzone dla 500 kandydatów przez 2000 iteracji i wyniki tego podejścia nie różniły się zbytnio od poprzednich (Rysunek \ref{fig: 4.2})
+\newpage
+Widoczne jest, że algorytm nie jest w stanie wygenerować odpowiedniej sieci mając do dyspozycji tylko 20 osobników na pokolenie. Następne uruchomienie postanowiłem skonfigurować na większą ilość osobników i pokoleń. Tym razem obliczenia były przeprowadzone dla 500 kandydatów przez 2000 iteracji i wyniki tego podejścia nie różniły się zbytnio od poprzednich (Rysunek \ref{fig: 4.4.2.2})
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=8cm]{fig42.png}
 	\caption{Wyniki uruchomienia pierwszego podejścia(500 osobników, 2000 pokoleń) }
-	\label{fig: 4.2}
+	\label{fig: 4.4.2.2}
 \end{figure}
 
 Teraz ewidentnie widać, że to podejście jest bardzo nieoptymalne. Analizując działanie tak wygenerowanych sieci neuronowych można zauważyć, że jakiekolwiek zdobyte punkty w grze były tylko zbiegiem okoliczności a one nie rozpoznają prawie żadnych sytuacji na planszy. Ruchy w grze są kompletnie losowe i niezależne od tego co dzieje się podczas rozgrywki.
@@ -330,11 +347,18 @@ Sieci z tak zaprojektowanym wejściem musiałyby mieć zestaw wag połączeń ne
 
 W drugim wariancie postanowiłem uprościć wiele aspektów sieci neuronowych generowanych za pomocą algorytmu. Pierwszym uproszczeniem była warstwa wejściowa sieci i dane, które są do niej przekazywane. zamiast tworzyć ogromną strukturę wejścia zależną od rozmiarów planszy, czyli też działającą tylko dla jednego wariantu gry, postanowiłem skonstruować wejście na podstawie tego co widzi w grze wąż ze swojej perspektywy. 
 
-Taka struktura składa się z 24 sygnałów. Pierwsze osiem reprezentuje w jakim kierunku wąż widzi następny owoc, kolejne odpowiadają za widzenie ogona. Wszystkie pierwsze 16 sygnałów przyjmuje wartości albo 0 albo 1 i sygnalizuje jedynie obecność obiektu w danym kierunku. Ostatnie osiem sygnalizuje odległości od granic planszy, przyjmuje wartość ciągłą od 0 do 1, im mniejsza wartość sygnału tym dalej od ściany znajduje się wąż.
+Taka struktura składa się z 24 sygnałów. Pierwsze osiem reprezentuje w jakim kierunku wąż widzi następny owoc, kolejne odpowiadają za widzenie ogona. Wszystkie pierwsze 16 sygnałów przyjmuje wartości albo 0 albo 1 i sygnalizuje jedynie obecność obiektu w danym kierunku. Ostatnie osiem sygnalizuje odległości od granic planszy, przyjmuje wartość ciągłą od 0 do 1, im mniejsza wartość sygnału tym dalej od ściany znajduje się wąż. Sposób reprezentacji danych oraz jego odniesienie do sytuacji na planszy gry przedstawiam na rysunku poniżej (Rysunek \ref{fig: 4.head-view}).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=12cm]{head-view.png}
+	\caption{Reprezentacja danych wejściowych na podstawie widoku z głowy węża. Poszczególne linie (zółte, fioletowe i pomarańczowe) są reprezentacjami tego co widzi wąż.}
+	\label{fig: 4.head-view}
+\end{figure}
 
 Kolejnym uproszczeniem była zmiana możliwych wartości wag. Teraz połączenia neuronowe tylko przesyłają sygnał niezmieniony albo zmieniają jego znak, czyli przyjmują wartości 1 albo -1. Mutowanie odbywa się teraz poprzez zmianę znaku wagi połączenia neuronowego.
 
-Sama architektura sieci też się zmieniła i teraz obydwie warstwy ukryte składają się jedynie z dwudziestu neuronów. Dzięki temu złożoność obliczeniowa sieci drastycznie spadła pozwalając na dużo szybsze podejmowanie decyzji o kolejnym ruchu.
+Sama architektura sieci też się zmieniła i teraz obydwie warstwy ukryte składają się jedynie z dwudziestu neuronów. Funkcje aktywacji pozostały bez zmian. Dzięki temu złożoność obliczeniowa sieci drastycznie spadła pozwalając na dużo szybsze podejmowanie decyzji o kolejnym ruchu.
 
 Z takimi zmianami przystąpiłem do ponownych uruchomień algorytmu aby zobaczyć wyniki. Pierwszą próbę przedstawiłem poniżej (Rysunek \ref{fig: 4.3}) i wygląda ona znacznie bardziej obiecująco.
 
