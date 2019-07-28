@@ -191,15 +191,23 @@ Często wyuczone sieci odzwierciedlają swoim działaniem algorytmy, które już
 
 Pod pojęciem nauczania sieci neuronowej, zwanego też uczeniem maszynowym, kryją się różne procesy prowadzące do takiej modyfikacji wszystkich wag w sieci aby jak najlepiej rozwiązywała dany problem. Techniki uczenia maszynowego można zgrubnie podzielić na dwie duże klasy: uczenie nadzorowane i nienadzorowane, choć dość często dodawana jest też trzecia klasa - tzw. uczenie przez wzmacnianie \citep{roelants2017deeplearning}. Każda z tych klas wymaga dostarczenia innych danych do poprawnego działania. W niektórych przypadkach musimy dysponować dużą ilością informacji wstępnie sklasyfikowanych, żeby sieć na ich przykładzie mogła się uczyć a w innych potrzebujemy po prostu surowych danych, które taka sieć sklasyfikuje samodzielnie.
 
-Uczenie nadzorowane jest pierwsza wymienioną przeze mnie klasą algorytmów nauczania maszynowego. Zaliczają się do niej algorytmy korzystające z zestawów danych treningowych, które są wstępnie opracowywane i oznaczane oczekiwanymi etykietami (etykietowane) ręcznie przez osoby nadzorujące uczenie sieci. Samo uczenie odbywa się poprzez zmiany w zestawie wag sieci, które dążą do zminimalizowania wartości funkcji błędu określanej przez różnicę między wyjściem sieci a właśnie oczekiwanymi etykietami. W konsekwencji działania takiego algorytmu otrzymujemy sieć neuronową, której wagi wyznaczają \textit{k-1} hiperpłaszczyzn w \textit{n-wymiarowej} przestrzeni, gdzie \textit{k} jest liczbą oczekiwanych klas a \textit{n} ilością neuronów wejściowych sieci. Jednymi z najpopularniejszych metod z tej klasy są reguła delty oraz algorytm wstecznej propagacji błędów.
+Uczenie nadzorowane jest pierwsza wymienioną przeze mnie klasą algorytmów nauczania maszynowego. Zaliczają się do niej algorytmy korzystające z zestawów danych treningowych, które są wstępnie opracowywane i oznaczane oczekiwanymi etykietami (etykietowane) ręcznie przez osoby nadzorujące uczenie sieci. Samo uczenie odbywa się poprzez zmiany w zestawie wag sieci, które dążą do zminimalizowania wartości funkcji błędu określanej przez różnicę między wyjściem sieci a właśnie oczekiwanymi etykietami. Najczęściej wykorzystywaną funkcją blędu w sieciach neuronowych jest błąd średniokwadratowy, który jest kwadratem różnicy pomiędzy wartością oczekiwaną a wartością prognozowaną przesz sieć. W konsekwencji działania takiego algorytmu otrzymujemy sieć neuronową, której wagi wyznaczają \textit{k-1} hiperpłaszczyzn w \textit{n-wymiarowej} przestrzeni, gdzie \textit{k} jest liczbą oczekiwanych klas a \textit{n} ilością neuronów wejściowych sieci. Jednymi z najpopularniejszych metod z tej klasy są reguła delty oraz algorytm wstecznej propagacji błędów.
 
 Kolejną klasą algorytmów jest uczenie nienadzorowane, które stając po przeciwnej stronie do poprzednio zaprezentowanego uczenia nadzorowanego nie korzysta z wcześniej etykietowanych danych. Najlepszym przykładem działania tych algorytmów jest grupowanie otrzymanych danych poprzez wyszukanie odpowiedniej ilości klas danych tak aby poszczególne elementy tych grup cechowały się jak największym podobieństwie do siebie i jak najmniejszym podobieństwem do elementów innych grup. W tej klasie algorytmów duż popularność zyskały takie metody jak uczenie według Hebba czy uczenie konkurencyjne(inaczej \textbf{WTA} - \textit{ang. \textbf{Winner Takes All}}).
 
 Ostatnią zaprezentowaną klasą algorytmów było uczenie przez wzmacnianie. Działa ono podobnie do nienadzorowanego ale wykorzystuje też mechanikę sprzężenia zwrotnego z uczenia nadzorowanego. Algorytmy uczenia się przez wzmacnianie zwykle ponownie wykorzystują stosowane w przeszłości działania prowadzące do uzyskania pomyślnych rezultatów \citep{roelants2017deeplearning}.
 
-W odniesieniu do problemu tej pracy warto pochylić się nad szczególną metodą optymalizacji uczenia nadzorowanego
+W odniesieniu do problemu tej pracy warto pochylić się nad szczególną metodą optymalizacji uczenia nadzorowanego jaką jest użycie w uczeniu metody gradientu prostego. Pomaga ona iteracyjnie wyznaczyć wartości wag sieci neuronowej poszukując minium funkcji błędu za pomocą jej pochodnej. Każdy krok tej metody można zapisać za pomocą wzoru poniżej (Równanie \ref{eq: 2.gradient-1}).
 
-(muszę uzupełnić jeszcze ten podrozdział o trochę więcej informacji)
+\begin{equation}\label{eq: 2.gradient-1}
+	w_{k+1} = w_k - \lambda \nabla (J(w_k))
+\end{equation}
+
+Gdzie \textit{w} jest wektorem wag sieci, \textit{J(w)} funkcją błędu, $\lambda$ współczynnikiem szybkości uczenia a $\nabla$ wektorem pochodnych cząstkowych (Równanie \ref{eq: 2.gradient-2}).
+
+\begin{equation}\label{eq: 2.gradient-2}
+	\nabla = \bigg( \frac{\partial}{\partial w_0}, \dots ,\frac{\partial}{\partial w_m} \bigg)
+\end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
