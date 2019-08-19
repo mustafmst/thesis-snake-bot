@@ -121,35 +121,25 @@ Tak samo jak nasz mózg składa się z setek miliardów komórek neuronowych tak
 	\label{fig: 2.1}
 \end{figure}
 
-Każde wejście sztucznego neuronu posiada też swoją wagę, która jest potem używana do obliczenia jego wyjścia. W takim wypadku funkcję każdego pojedynczego elementu sieci możemy zapisać jako (Równanie \ref{eq: 2.1})
+Każde wejście sztucznego neuronu posiada swoją wagę, która jest używana do obliczenia jego całościowego sygnału wejściowego neuronu. Taką funkcję możemy zapisać jako (Równanie \ref{eq: 2.1})
 
 \begin{equation}\label{eq: 2.1}
 y = \sum^{n}_{i=1} x_{i}w_{i}
 \end{equation}
 
-Dodatkowo każdy neuron posiada swoją wartość przesunięcia (ang. \textit{bias}) sygnału. Funkcja wyjścia zaprezentowana powyżej z uwzględnieniem tej wartości będzie wyglądać (Równanie \ref{eq: 2.2}):
+Dodatkowo każdy neuron posiada swoją wartość przesunięcia (ang. \textit{bias}) sygnału. Funkcja wejściowa zaprezentowana powyżej z uwzględnieniem tej wartości będzie wyglądać (Równanie \ref{eq: 2.2}):
 
 \begin{equation}\label{eq: 2.2}
   y = \sum^{n}_{i=1} x_{i}w_{i} + b
 \end{equation}
 
-Istnieje wiele powszechnie używanych funkcji aktywacji neuronów. Najprostszym jej przykładem jest funkcja tożsamości, która przekazuje bezpośrednio na wyjście wartość aktywacji neuronu i jest wyrażana wzorem (Równanie \ref{eq: 2.3})
+Wynik otrzymany z sumowania wejść neuronu jest następnie przekazywany do funkcji aktywacji, która decyduje o tym jaki będzie wyjściowy sygnał neuronu na podstawie otrzymanych sygnałów wejściowych. Istnieje wiele powszechnie używanych funkcji aktywacji neuronów. Najprostszym jej przykładem jest funkcja tożsamości, która przekazuje bezpośrednio na wyjście wartość aktywacji neuronu i jest wyrażana wzorem (Równanie \ref{eq: 2.3})
 
 \begin{equation}\label{eq: 2.3}
   f(a) = a
 \end{equation}
 
-Innym przykładem jest funkcja nazywana \textbf{ReLU}(\textit{Rectified Linear Unit}) i zwraca ona maksimum z zera i wartości wyjścia neuronu (Równanie \ref{eq: 2.4}).
-
-\begin{equation}\label{eq: 2.4}
-    f(a) =
-    \begin{cases*}
-      a & if a $\geq$ 0 \\
-      0 & if a < 0
-    \end{cases*}
-\end{equation}
-
-Poniższa funkcja jest połączeniem funkcji tożsamości oraz funkcji progowej, która na wyjściu zwraca tylko informację czy została aktywowana i opisuje ją wzór (Równanie \ref{eq: 2.5})
+Inną powszechnie stosowaną jest funkcja progowa, która na wyjściu zwraca tylko informacją czy została i opisuje ją wzór (Równanie \ref{eq: 2.5})
 
 \begin{equation}\label{eq: 2.5}
   f(a) =
@@ -159,7 +149,17 @@ Poniższa funkcja jest połączeniem funkcji tożsamości oraz funkcji progowej,
   \end{cases*}
 \end{equation}
 
-Istnieją również bardziej zaawansowane funkcje aktywacji. Jedną z najczęściej używanych jest funkcja logistyczna (Równanie \ref{eq: 2.6}), która zwraca wartość między 0 a 1 i jej wynik jest określany jako prawdopodobieństwo aktywacji neuronu.
+Połączenie dwóch zaprezentowanych powyżej funkcji nazywane jest funkcją \textbf{ReLU} (\textit{Rectified Linear Unit}) i zwraca ona maksimum z zera i wartości wejścia neuronu (Równanie \ref{eq: 2.4}).
+
+\begin{equation}\label{eq: 2.4}
+    f(a) =
+    \begin{cases*}
+      a & if a $\geq$ 0 \\
+      0 & if a < 0
+    \end{cases*}
+\end{equation}
+
+Istnieją również bardziej zaawansowane funkcje aktywacji. Jedną z najczęściej używanych jest funkcja logistyczna (Równanie \ref{eq: 2.6}), która zwraca wartość między 0 a 1 i jej wynik jest prawdopodobieństwem aktywacji neuronu.
 
 \begin{equation}\label{eq: 2.6}
   f(a) = \frac{1}{1 + exp(-a)}
@@ -178,20 +178,11 @@ Możemy wyodrębnić kilka podstawowych rodzajów sieci neuronowych na podstawie
 
 Aby jednoznacznie określić konkretną sztuczną sieć neuronową możemy się posłużyć uproszczonym modelem opisanym przez trzy podstawowe cechy takiej sieci. Tymi cechami są architektura, proces uczenia i funkcja aktywacji. Architektura opisuje dokładnie topologię sieci, w tym jej rodzaj oraz liczby warstw i neuronów w każdej warstwie. Uczenie jest opisem procesu zastosowanego do rozwinięcia parametrów sieci. Określa ono poszczególne techniki użyte do tego celu jak na przykład uczenie przez wzmacnianie czy uczenie ze zbioru reguł. Definiuje też zakresy i wartości wag połączeń między neuronami. Ostatnia cecha czyli funkcja aktywacji opisuje sposób wewnętrznego działania neuronu, czyli kiedy będzie on aktywny oraz jakie dane przekaże dalej w głąb sieci.
 
-\section{Zastosowania sieci neuronowych}
-
-Aktualnie sieci neuronowe są używane do przetwarzania danych w bardzo dużym spektrum dziedzin. Ich zastosowania można znaleźć przedmiotach codziennego użytku takich jak smartfony, na przykład do rozpoznawania mowy i implementacji interfejsów głosowych, jak też w bardzo profesjonalnych sprzętach i systemach. Na podstawie wcześniej dostarczonych danych jesteśmy w stanie nauczyć sieci neuronowe przewidywać pewne zdarzenia na podstawie aktualnych danych. Wiele firm w dzisiejszych czasach tworzy systemy, które na podstawie parametrów technicznych urządzeń w zakładach są wstanie podać bardzo dokładne prawdopodobieństwo awarii danego sprzętu. Sztuczne sieci neuronowe zostały wykorzystane przez różnych badaczy do modelowania i prognozowania w dziedzinie systemów inżynierii energetycznej \citep{kalogirou2000applications}. Współczesna medycyna generuje zawrotne ilości danych korzystając z zaawansowanych czujników monitorujących. Potencjalne zastosowania takich danych obejmują dokładne klasyfikowanie diagnoz, przewidywanie przyszłych chorób i śmiertelności \citep{lipton2015learning}.
-
-Zastosowanie sieci neuronowych w dzisiejszych czasach jest bardzo dobrze widoczne w dziedzinie rozpoznawania obrazów. Wydajność i dokładność algorytmów tworzonych do tych celów może być w łatwy sposób mierzona poprzez porównanie wyniów ich działania na popularnej bazie ImageNet \citep{image-net} zawierającej szesnaście milionów zdjęć. W czasach małej popularności sieci neuronowych sprawność algorytmów rozpoznawania obrazów rozwijała się bardzo powoli. Jednakże w okresie wzmożonego wprowadzania rozwiązań z tematyki sieci neuronowych do tejże dziedziny możemy zaobserwować znaczny spadek stopy błędu z 40\% w roku 2010 do zaledwie 7\% w roku 2014. Ze względu na sukces głębokich sieci neuronowych wszyscy uczestnicy współzawodnictwa ImageNet w 2013 roku zastosowali jakąś formę głębokiej sieci neuronowej \citep{roelants2017deeplearning}.
-
-Często wyuczone sieci odzwierciedlają swoim działaniem algorytmy, które już zostały wymyślone. Jednakże sposób w jaki to robią może dostarczyć nowych spostrzeżeń dotyczących rozwiązywanego problemu i lepszych implementacji algorytmów \citep{murray1995applications}.
-
-
 \section{Metody nauczania sieci neuronowych}
 
 Pod pojęciem nauczania sieci neuronowej, zwanego też uczeniem maszynowym, kryją się różne procesy prowadzące do takiej modyfikacji wszystkich wag w sieci aby jak najlepiej rozwiązywała dany problem. Techniki uczenia maszynowego można zgrubnie podzielić na dwie duże klasy: uczenie nadzorowane i nienadzorowane, choć dość często dodawana jest też trzecia klasa - tzw. uczenie przez wzmacnianie \citep{roelants2017deeplearning}. Każda z tych klas wymaga dostarczenia innych danych do poprawnego działania. W niektórych przypadkach musimy dysponować dużą ilością informacji wstępnie sklasyfikowanych, żeby sieć na ich przykładzie mogła się uczyć a w innych potrzebujemy po prostu surowych danych, które taka sieć sklasyfikuje samodzielnie.
 
-Uczenie nadzorowane jest pierwsza wymienioną przeze mnie klasą algorytmów nauczania maszynowego. Zaliczają się do niej algorytmy korzystające z zestawów danych treningowych, które są wstępnie opracowywane i oznaczane oczekiwanymi etykietami (etykietowane) ręcznie przez osoby nadzorujące uczenie sieci. Samo uczenie odbywa się poprzez zmiany w zestawie wag sieci, które dążą do zminimalizowania wartości funkcji błędu określanej przez różnicę między wyjściem sieci a właśnie oczekiwanymi etykietami. Najczęściej wykorzystywaną funkcją blędu w sieciach neuronowych jest błąd średniokwadratowy, który jest kwadratem różnicy pomiędzy wartością oczekiwaną a wartością prognozowaną przesz sieć. W konsekwencji działania takiego algorytmu otrzymujemy sieć neuronową, której wagi wyznaczają \textit{k-1} hiperpłaszczyzn w \textit{n-wymiarowej} przestrzeni, gdzie \textit{k} jest liczbą oczekiwanych klas a \textit{n} ilością neuronów wejściowych sieci. Jednymi z najpopularniejszych metod z tej klasy są reguła delty oraz algorytm wstecznej propagacji błędów.
+Uczenie nadzorowane jest pierwsza wymienioną przeze mnie klasą algorytmów nauczania maszynowego. Zaliczają się do niej algorytmy korzystające z zestawów danych treningowych, które są wstępnie opracowywane i oznaczane oczekiwanymi etykietami (etykietowane) ręcznie przez osoby nadzorujące uczenie sieci. Samo uczenie odbywa się poprzez zmiany w zestawie wag sieci, które dążą do zminimalizowania wartości funkcji błędu określanej przez różnicę między wyjściem sieci a właśnie oczekiwanymi etykietami. Najprostszą wykorzystywaną funkcją blędu w sieciach neuronowych jest błąd średniokwadratowy, który jest kwadratem różnicy pomiędzy wartością oczekiwaną a wartością prognozowaną przesz sieć. W konsekwencji działania takiego algorytmu otrzymujemy sieć neuronową, której wagi wyznaczają \textit{k-1} hiperpłaszczyzn w \textit{n-wymiarowej} przestrzeni, gdzie \textit{k} jest liczbą oczekiwanych klas a \textit{n} ilością neuronów wejściowych sieci. Jednymi z najpopularniejszych metod z tej klasy są reguła delty oraz algorytm wstecznej propagacji błędów.
 
 Przy tej klasie algorytmów warto pochylić się nad szczególną metodą optymalizacji uczenia nadzorowanego jaką jest użycie w uczeniu metody gradientu prostego. Pomaga ona iteracyjnie wyznaczyć wartości wag sieci neuronowej poszukując minium funkcji błędu za pomocą jej pochodnej. Każdy krok tej metody można zapisać za pomocą wzoru poniżej (Równanie \ref{eq: 2.gradient-1}).
 
@@ -209,6 +200,13 @@ Kolejną klasą algorytmów jest uczenie nienadzorowane, które stając po przec
 
 Ostatnią zaprezentowaną klasą algorytmów było uczenie przez wzmacnianie. Działa ono podobnie do nienadzorowanego ale wykorzystuje też mechanikę sprzężenia zwrotnego z uczenia nadzorowanego. Algorytmy uczenia się przez wzmacnianie zwykle ponownie wykorzystują stosowane w przeszłości działania prowadzące do uzyskania pomyślnych rezultatów \citep{roelants2017deeplearning}.
 
+\section{Zastosowania sieci neuronowych}
+
+Aktualnie sieci neuronowe są używane do przetwarzania danych w bardzo dużym spektrum dziedzin. Ich zastosowania można znaleźć przedmiotach codziennego użytku takich jak smartfony, na przykład do rozpoznawania mowy i implementacji interfejsów głosowych, jak też w bardzo profesjonalnych sprzętach i systemach. Na podstawie wcześniej dostarczonych danych jesteśmy w stanie nauczyć sieci neuronowe przewidywać pewne zdarzenia na podstawie aktualnych danych. Wiele firm w dzisiejszych czasach tworzy systemy, które na podstawie parametrów technicznych urządzeń w zakładach są wstanie podać bardzo dokładne prawdopodobieństwo awarii danego sprzętu. Sztuczne sieci neuronowe zostały wykorzystane przez różnych badaczy do modelowania i prognozowania w dziedzinie systemów inżynierii energetycznej \citep{kalogirou2000applications}. Współczesna medycyna generuje zawrotne ilości danych korzystając z zaawansowanych czujników monitorujących. Potencjalne zastosowania takich danych obejmują dokładne klasyfikowanie diagnoz, przewidywanie przyszłych chorób i śmiertelności \citep{lipton2015learning}.
+
+Zastosowanie sieci neuronowych w dzisiejszych czasach jest bardzo dobrze widoczne w dziedzinie rozpoznawania obrazów. Wydajność i dokładność algorytmów tworzonych do tych celów może być w łatwy sposób mierzona poprzez porównanie wyniów ich działania na popularnej bazie ImageNet \citep{image-net} zawierającej szesnaście milionów zdjęć. W czasach małej popularności sieci neuronowych sprawność algorytmów rozpoznawania obrazów rozwijała się bardzo powoli. Jednakże w okresie wzmożonego wprowadzania rozwiązań z tematyki sieci neuronowych do tejże dziedziny możemy zaobserwować znaczny spadek stopy błędu z 40\% w roku 2010 do zaledwie 7\% w roku 2014. Ze względu na sukces głębokich sieci neuronowych wszyscy uczestnicy współzawodnictwa ImageNet w 2013 roku zastosowali jakąś formę głębokiej sieci neuronowej \citep{roelants2017deeplearning}.
+
+Często wyuczone sieci odzwierciedlają swoim działaniem algorytmy, które już zostały wymyślone. Jednakże sposób w jaki to robią może dostarczyć nowych spostrzeżeń dotyczących rozwiązywanego problemu i lepszych implementacji algorytmów \citep{murray1995applications}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -265,21 +263,9 @@ Jednej ze swoich prac profesor Zbigniew Michalewicz przeprowadzał badania zasto
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Samouczący się bot do gry zręcznościowej}
+\chapter{Projekt samouczącego się bota do gry zręcznościowej}
 
 Po przedstawieniu we wstępie tezy oraz przybliżeniu tematów z nią związanych chciałbym dogłębnie przedstawić zaprojektowany przez mnie sposób na jej sprawdzenie. w tym rozdziale po kolei przejdę po strukturze aplikacji napisanej na potrzeby przeprowadzenia doświadczeń związanych z tematem owej pracy. Przedstawię dokładny stos technologiczny użyty do napisania tego kodu. w tym opisie uwzględnię krótkie opisy użytych bibliotek zewnętrznych. Zdefiniuję ideę działanie tego projektu oraz dokładnie zobrazuję strukturę kodu. Później dogłębnie przeanalizuję wyniki działania tego programu i przedstawię je w przystępnej i czytelnej formie.
-
-\section{Stos technologiczny}
-
-W ostatnich latach w branży informatycznej można zaobserwować ogromny wzrost popularności języka programowania Python. Według danych z największej na świecie ankiety przeprowadzanej wśród hobbistów i profesjonalnych programistów sporządzanej przez portal Stack Overflow (\textit{ang. Stack Overflow Annual Developer Survey}) \citep{stackoverflow-survey} język ten przeskoczył z 10 miejsca najbardziej lubianych języków programistów w 2015 roku na drugą pozycję pod koniec roku 2018. Jest to rozwijany jako projekt otwartoźródłowy język wysokiego poziomu ogólnego przeznaczenia. Cechuje się bardzo zwięzłą i przejrzystą składnią oraz działa na wielu systemach operacyjnych takich jak Windows, Linux czy MacOs. To właśnie dzięki swojej syntaktyce podobnej w pewnym stopniu do tej z pakietu MatLab oraz niskiemu progowi wejścia zyskał duże uznanie w kręgach naukowych jako narzędzie do łatwego zapisywania algorytmów i przeprowadzania skomplikowanych obliczeń matematycznych. Jego popularność w tych kręgach przeniosła się na powstanie dla niego wielu bibliotek zewnętrznych około naukowych w tym takie pakiety jak \textit{scikit-learn} czy \textit{tensorflow}. Z tych właśnie powodów mój wybór języka, w którym przetestuję postawioną tezę padł na Python'a.
-
-Kolejną rzeczą wartą uwagi jest już wcześniej wspomniany pakiet \textit{tensorflow}. Jak możemy przeczytać na stronie głównej projektu jest to kompleksowa platforma open source do uczenia maszynowego. Posiada wszechstronny, elastyczny ekosystem narzędzi, bibliotek i zasobów tworzonych przez społeczność, który pozwala badaczom na wykorzystanie najnowocześniejszych rozwiązań nauczania maszynowego \citep{tensorflow-wesite}. Produkt ten tak zamo jak język Python jest kompletnie darmowy i udostępniony na licencji Apache 2.0. W moim projekcie posłuży on jako podstawowy silnik obliczeń dla tworzonych sieci neuronowych.
-
-Przedstawiona powyżej biblioteka dostarcza ogromną liczbę narzędzi służących do kreowania rozwiązań z wykorzystaniem koncepcji sieci neuronowych i nauczania maszynowego. Jednakże za taką ilością możliwości jakie dostarcza użytkownikowi idzie skomplikowanie i trudność w szybkim programowaniu z jej użyciem. Ten problem rozwiązuje kolejne rozwiązanie zwane \textit{keras}. Pakiet ten jest wysokopoziomowym interfejsem programowania aplikacji (ang. \textit{application programming interface}) dla sieci neuronowych. Udostępnia on zestaw funkcji odpowiadający semantycznie teorii na temat sieci neuronowych pozwalający na szybkie i łatwe ich tworzenie i operowanie nimi osobą z wiedzą w tym temacie. Jednocześnie eliminuje potrzebę optymalizowania swojego kodu i wgłębiania się w sposób działania wybranego silnika nauczania maszynowego działającego pod spodem.
-
-Ostatnim elementem stosu technologicznego projektu badającego tezę tej pracy jest \textit{pygame}. Jest to niewielka, otwartoźródłowa i darmowa biblioteka języka Python służąca do tworzenia aplikacji multimedialnych. Rozwija ją niewielka grupka hobbystów ale mimo tego zyskała swoją popularność dzięki dobrej wydajności i łatwości obsługi. Posłuży mi ona do stworzenia niewielkiej gry w węża (ang. \textit{snake}), która będzie odgrywać rolę funkcji oceny dla algorytmu genetycznego.
-
-Reasumując cały głównymi filarami projektu jest język programowania Python i trzy bardzo popularne biblioteki dla niego stworzone czyli \textit{tensorflow}, \textit{keras} oraz \textit{pygame}. Zostały one przeze mnie wybrane nie tylko ze względu na wspomniane wcześniej zalety ale również z powodu ogromnej społeczności działającej w okół nich i zapewniającej ogromną ilość materiałów pomocniczych, które odgrywają wielką role w procesie uczenia się tych technologii.
 
 \section{Reprezentacja sieci neuronowej w formie genotypu osobników algorytmu genetycznego}
 
@@ -287,9 +273,9 @@ Teraz po krótce chciałbym zdefiniować teoretyczną podstawę działania aplik
 
 Na podstawie analizy przedstawionych przez mnie informacji na temat sztucznych sieci neuronowych oraz algorytmów genetycznych można dojść do kilku ciekawych wniosków. Jednym z nich jest to, że sieci neuronowe swój program działania powstały pod wpływem procesu uczenia w całości definiują za pomocą zestawu wag i przesunięć połączeń neuronowych. Wynika z tego, że modyfikowanie działania sieci odbywa się wyłącznie poprzez modyfikację wartości zawartych w takim zestawie. Dzięki nadaniu takiemu zestawowi wag odpowiedniej struktury jesteśmy w stanie użyć go jako reprezentacji genotypu poszczególnych osobników w algorytmie genetycznym.
 
-Na tej teorii można zacząć konstruować algorytm genetyczny obierający sobie jako kandydatów rozwiązań wiele losowo wygenerowanych wariantów sztucznej sieci neuronowej o wcześniej określonej architekturze sieci. Przyglądając się wynikom jakie otrzymujemy za pomocą algorytmów genetycznych można spekulować, że taka symbioza technik sztucznej inteligencji ma możliwości doprowadzić do rezultatów lepszych pod względem ich jakości i wydajności.
+Na tej teorii można zacząć konstruować algorytm genetyczny obierający sobie jako kandydatów rozwiązań wiele losowo wygenerowanych wariantów sztucznej sieci neuronowej o wcześniej określonej architekturze sieci. Przyglądając się wynikom jakie otrzymujemy za pomocą algorytmów genetycznych można spekulować, że taka symbioza technik sztucznej inteligencji ma możliwości doprowadzić do rezultatów lepszych pod względem ich jakości i wydajności od ich samodzielnych zastosowań.
 
-\section{Opis działania i struktura projektu}
+\section{Struktura projektu}
 
 Cały projekt podzielony jest na dwa pakiety. Pierwszym z nich jest samodzielna gra w węża napisana za pomocą biblioteki \textit{pygame}. Uruchomienie gry jest w pełni konfigurowalne i pozwala na wybranie rozmiaru planszy, typu rozgrywki (gracz czy sieć neuronowa) oraz tępa gry. Zasady gry są dość proste. Poruszamy się po planszy o wybranych rozmiarach głową węża w czerech kierunkach: góra, dół, prawo, lewo. W każdym momencie gy zabronione jest poruszanie się do tyłu, czyli jeśli wąż porusza się do góry w danym momencie to w następnym ruchu nie może zacząć się przemieszczać w dół. Celem gracza jest zebranie jak największej ilości owoców, które pojawiają się na planszy w losowych miejscach. Zjedzenie owocu skutkuje zwiększeniem licznika punktów o 1 oraz wzrostem ogona węża, który podąża za graczem. Ruchu węża nie można zatrzymać, można jedynie zmienić jego kierunek. Koniec gry następuje w chwili śmierci postaci wywołanej kontaktem z ogonem bądź wyjściem poza planszę gry. Aby zabezpieczyć się przed bieganiem po planszy w nieskończoność po jednej trasie w grze występuje limit kroków możliwych do wykonania od zjedzenia owocu. Wynikiem końcowym jest ilość zdobytych punktów oraz długość rozgrywki.
 
@@ -297,12 +283,14 @@ Dwa tryby różnią się od siebie tylko sposobem przyjmowania rozkazów przez g
 
 Drugim pakietem wchodzącym w skład projektu stworzonego na potrzeby przeprowadzenia badań do tej pracy jest moja własna implementacja algorytmu genetycznego. Podstawowym elementem tego algorytmu jest klasa kandydata rozwiązania, która przechowuje informacje na temat genotypu rozwiązania, którym w tym wypadku jest zestaw wag sieci neuronowej, oraz implementacje metod operatorów genetycznych takich jak krzyżowanie osobników i mutowanie genotypu. Klasa ta jest także odpowiedzialna za uruchamianie gry z użyciem jej genotypu oraz przechowywanie wyniku rozgrywki.
 
-Pierwszy z operatorów genetycznych, którym jest krzyżowanie. Funkcja reprezentująca ten operator oczekuje na wejściu dwóch obiektów reprezentujących kandydatów rozwiązań a zwraca na wyjściu nowego kandydat stworzonego za pomocą genotypu wygenerowanego z kombinacji przekazanych osobników. Genotyp w projekcie reprezentowany jest przez listę list wag połączeń neuronowych. Operacja krzyżowania przeprowadzana jest poprzez pocięcie list wag w losowych punktach (takich samych dla każdego kandydata) i stworzenie nowych z fragmentów należących do każdego z rodziców. Przykładowe jego działanie zostało zaprezentowane za pomocą uproszczonego zestawu genów poniżej (Rysunek \ref{fig: 4.3.crossing})
+\section{Opis implementacji operatorów genetycznych}
+
+Pierwszy z operatorów genetycznych to krzyżowanie. Funkcja reprezentująca ten operator oczekuje na wejściu dwóch obiektów reprezentujących kandydatów rozwiązań a zwraca na wyjściu nowego kandydat stworzonego za pomocą genotypu wygenerowanego z kombinacji przekazanych osobników. Genotyp w projekcie reprezentowany jest przez dwuwymiarową listę wag wszystkich połączeń neuronowych. Operacja krzyżowania przeprowadzana jest poprzez pocięcie list wag w losowych punktach (takich samych dla każdego kandydata) i stworzenie nowych z fragmentów należących do każdego z rodziców. Przykładowe jego działanie zostało zaprezentowane za pomocą uproszczonego zestawu genów poniżej (Rysunek \ref{fig: 4.3.crossing})
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=14cm]{fig431.png}
-	\caption{Przykład działania operatora krzyżowania}
+	\caption{Uproszczony przykład działania operatora krzyżowania}
 	\label{fig: 4.3.crossing}
 \end{figure}
 \newpage
@@ -311,8 +299,8 @@ Kolejny operator genetyczny czyli mutacja jest dużo prostszy i polega na wprowa
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=7.5cm]{fig432.png}
-	\caption{Przykład działania operatora mutacji}
+	\includegraphics[width=7cm]{fig432.png}
+	\caption{Uproszczony przykład działania operatora mutacji}
 	\label{fig: 4.3.mutation}
 \end{figure}
 
@@ -320,25 +308,39 @@ Działanie algorytmu odbywa się według schematu już opisanego przeze mnie w r
 
 Selekcja osobników odbywa się trybem turniejowym. Kandydaci rozwiązań dobierani są w losowe pary a następnie każdy z nich uruchamia grę ze wstrzykniętą swoją siecią neuronową. Jeśli osobnik populacji żyje już kilka pokoleń to w każdym z nich przystępuje do rozgrywki a jako jego wynik obiera się najlepszy jaki udało mu się osiągnąć. Po wytypowaniu zwycięzców z par wszyscy przegrani zostają odrzuceni a reszta przechodzi do następnego etapu.
 
-W fazie krzyżowania następuje wygenerowanie ruletki żyjących osobników na podstawie ich wyników. Im wyższy wynik tym większą część koła ruletki zajmuje dany kandydat. Teraz w pętli losowana jest para to krzyżowania aż liczba nowo otrzymanych rozwiązań będzie równa liczbie odrzuconych w poprzednim kroku algorytmu.
+W fazie krzyżowania następuje wygenerowanie ruletki żyjących osobników na podstawie ich wyników. Im wyższy wynik tym większą część koła ruletki zajmuje dany kandydat. Teraz w pętli losowana jest para do krzyżowania aż liczba nowo otrzymanych rozwiązań będzie równa liczbie odrzuconych w poprzednim kroku algorytmu.
 
 Ostatnim etapem jest przeprowadzenie losowych mutacji genotypów nowych rozwiązań. Algorytm dostaje wraz z konfiguracją ile mutacji ma przeprowadzić dla każdego pokolenia, gdzie jedna mutacja to zmiana tylko jednego pojedyńczego genu a w tym przypadku wagi jednego połączenia neuronowego danej sieci.
 
-\section{Wyniki}
+\section{Stos technologiczny}
+
+W ostatnich latach w branży informatycznej można zaobserwować ogromny wzrost popularności języka programowania Python. Według danych z największej na świecie ankiety przeprowadzanej wśród hobbistów i profesjonalnych programistów sporządzanej przez portal Stack Overflow (\textit{ang. Stack Overflow Annual Developer Survey}) \citep{stackoverflow-survey} język ten przeskoczył z 10 miejsca najbardziej lubianych języków programistów w 2015 roku na drugą pozycję pod koniec roku 2018. Jest to rozwijany jako projekt otwartoźródłowy język wysokiego poziomu ogólnego przeznaczenia. Cechuje się bardzo zwięzłą i przejrzystą składnią oraz działa na wielu systemach operacyjnych takich jak Windows, Linux czy MacOs. To właśnie dzięki swojej syntaktyce podobnej w pewnym stopniu do tej z pakietu MatLab oraz niskiemu progowi wejścia zyskał duże uznanie w kręgach naukowych jako narzędzie do łatwego zapisywania algorytmów i przeprowadzania skomplikowanych obliczeń matematycznych. Jego popularność w tych kręgach przeniosła się na powstanie dla niego wielu bibliotek zewnętrznych około naukowych w tym takie pakiety jak \textit{scikit-learn} czy \textit{tensorflow}. Z tych właśnie powodów mój wybór języka, w którym przetestuję postawioną tezę padł na Python'a.
+
+Kolejną rzeczą wartą uwagi jest już wcześniej wspomniany pakiet \textit{tensorflow}. Jak możemy przeczytać na stronie głównej projektu jest to kompleksowa platforma open source do uczenia maszynowego. Posiada wszechstronny, elastyczny ekosystem narzędzi, bibliotek i zasobów tworzonych przez społeczność, który pozwala badaczom na wykorzystanie najnowocześniejszych rozwiązań nauczania maszynowego \citep{tensorflow-wesite}. Produkt ten tak samo jak język Python jest kompletnie darmowy i udostępniony na licencji Apache 2.0. W moim projekcie posłuży on jako podstawowy silnik obliczeń dla tworzonych sieci neuronowych.
+
+Przedstawiona powyżej biblioteka dostarcza ogromną liczbę narzędzi służących do kreowania rozwiązań z wykorzystaniem koncepcji sieci neuronowych i nauczania maszynowego. Jednakże za taką ilością możliwości jakie dostarcza użytkownikowi idzie skomplikowanie i trudność w szybkim programowaniu z jej użyciem. Ten problem rozwiązuje kolejne rozwiązanie zwane \textit{keras}. Pakiet ten jest wysokopoziomowym interfejsem programowania aplikacji (ang. \textit{application programming interface}) dla sieci neuronowych. Udostępnia on zestaw funkcji odpowiadający semantycznie teorii na temat sieci neuronowych pozwalający na szybkie i łatwe ich tworzenie i operowanie nimi osobą z wiedzą w tym temacie. Jednocześnie eliminuje potrzebę optymalizowania swojego kodu i wgłębiania się w sposób działania wybranego silnika nauczania maszynowego działającego pod spodem.
+
+Ostatnim elementem stosu technologicznego projektu badającego tezę tej pracy jest \textit{pygame}. Jest to niewielka, otwartoźródłowa i darmowa biblioteka języka Python służąca do tworzenia aplikacji multimedialnych. Rozwija ją niewielka grupka hobbystów ale mimo tego zyskała swoją popularność dzięki dobrej wydajności i łatwości obsługi. Posłuży mi ona do stworzenia niewielkiej gry w węża (ang. \textit{snake}), która będzie odgrywać rolę funkcji oceny dla algorytmu genetycznego.
+
+Reasumując cały głównymi filarami projektu jest język programowania Python i trzy bardzo popularne biblioteki dla niego stworzone czyli \textit{tensorflow}, \textit{keras} oraz \textit{pygame}. Zostały one przeze mnie wybrane nie tylko ze względu na wspomniane wcześniej zalety ale również z powodu ogromnej społeczności działającej w okół nich i zapewniającej ogromną ilość materiałów pomocniczych, które odgrywają wielką role w procesie uczenia się tych technologii.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Wyniki działania projektu}
 
 W tej sekcji opiszę proces uruchamiania projektu oraz wyniki jakie otrzymałem z jego pomocą. Aby dopełnić obraz przedstawię też na jakiej konfiguracji sprzętowej miał okazję działać algorytm. Wraz z kolejnymi uruchomieniami dochodziłem też do różnych wniosków dotyczących kodowania sieci neuronowej jak i doboru jej parametrów co poskutkowało dwoma różnymi podejściami dającymi bardzo odmienne wyniki.
 
-\subsection{Platforma testowa i sposób pozyskania wyników}
+\section{Platforma testowa i sposób pozyskania wyników}
 
-Eksperymenty za pomocą napisanego projektu przeprowadzałem na moim prywatnym komputerze stacjonarnym klasy PC z zainstalowanym systemem operacyjnym Manjaro Linux. Sercem tej jednostki jest ośmiordzeniowy i szesnastowątkowy procesor firmy AMD z serii Ryzen 5 model 1400. W jego pracy wspomaga go 16GB pamięci ram oraz karta graficzna firmy Nvidia model GeForce GTX 960.
+Eksperymenty za pomocą napisanego projektu przeprowadzałem na moim prywatnym komputerze stacjonarnym klasy PC z zainstalowanym systemem operacyjnym Manjaro Linux. Sercem tej jednostki jest ośmiordzeniowy i szesnastowątkowy procesor firmy AMD z serii Ryzen 5 model 1400. W jego pracy wspomaga go 16GB pamięci ram.
 
 Podczas przeprowadzania obliczeń obciążenie wszystkich wątków procesora nie przekraczało 20-30 procent. Proces główny interpretera Python, który uruchamiał projekt zajmował przez cały czas działania nie więcej niż 300MB pamięci ram.
 
 Do pozyskiwania wyników algorytm został wyposażony w moduł służący do zapisywania wielu statystyk do plików na dysku. Po zakończeniu obliczeń wszystkie dane można odczytać z 3 plików, które posiadają informacje o użytej konfiguracji i przebiegu algorytmu. Ostatni z tych plików to plik z rozszerzeniem .h5, w którym zapisana zostaje najlepsza sieć wygenerowana przez algorytm.
 
-\subsection{Podejście pierwsze: obraz planszy jako dane wejściowe}
+\section{Podejście pierwsze: obraz planszy jako dane wejściowe}
 
-W pierwszym podejściu zacząłem od, jak mi się wydawało, najłatwiejszej implementacji, w której jako dane wejściowe do sieci neuronowej przekazywałem obraz z całej planszy. Generowana tablica dwuwymiarowa zawierała informacje o tym jaki obiekt znajduje się w danym momencie na każdym polu obszaru gry. Jednocześnie podjąłem decyzję aby wagi połączeń neuronowych w generowanych sieciach były liczbami rzeczywistymi z zakresu od -1 do 1. W tym wariancie mutacje genów odbywały się poprzez dodanie do wagi losowego współczynnika mutacji, który był losowany z zakresu -0.5 do 0.5. Sieci neuronowe w tym przykładzie składały się z warstwy wejściowej, warstwy wyjściowej z czterema neuronami i dwóch warstw ukrytych każda po 256 neuronów. Wszystkie neurony w sieci posługiwały się linową funkcją aktywacji, jedynie warstwa wyjściowa używała funkcji logistycznej.
+W pierwszym podejściu zacząłem od, jak mi się wydawało, najłatwiejszej implementacji, w której jako dane wejściowe do sieci neuronowej przekazywałem obraz z całej planszy. Generowana tablica dwuwymiarowa zawierała informacje o tym jaki obiekt znajduje się w danym momencie na każdym polu obszaru gry który ma wymiary 30 na 30 pól. Jednocześnie podjąłem decyzję aby wagi połączeń neuronowych w generowanych sieciach były liczbami rzeczywistymi z zakresu od -1 do 1. W tym wariancie mutacje genów odbywały się poprzez dodanie do wagi losowego współczynnika mutacji, który był losowany z zakresu -0.5 do 0.5. Sieci neuronowe w tym przykładzie składały się z warstwy wejściowej, warstwy wyjściowej z czterema neuronami i dwóch warstw ukrytych każda po 256 neuronów. Wszystkie neurony w sieci posługiwały się funkcją aktywacji ReLU, jedynie warstwa wyjściowa używała funkcji logistycznej.
 
 Warstwa wyjściowa sieci składała się z 4 neuronów, z których każdy reprezentował inny kierunek poruszania się węża. Decyzja była podejmowana poprzez wytypowanie neuronu o największej wartości na wyjściu.
 
@@ -347,25 +349,23 @@ Algorytm pracował z 20 osobnikami na pokolenie przez 1000 pokoleń a wyniki prz
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=8cm]{fig41.png}
+	\includegraphics[width=7cm]{fig41.png}
 	\caption{Wyniki uruchomienia pierwszego podejścia(20 osobników, 1000 pokoleń) }
 	\label{fig: 4.4.2.1}
 \end{figure}
-\newpage
+
 Widoczne jest, że algorytm nie jest w stanie wygenerować odpowiedniej sieci mając do dyspozycji tylko 20 osobników na pokolenie. Następne uruchomienie postanowiłem skonfigurować na większą ilość osobników i pokoleń. Tym razem obliczenia były przeprowadzone dla 500 kandydatów przez 2000 iteracji i wyniki tego podejścia nie różniły się zbytnio od poprzednich (Rysunek \ref{fig: 4.4.2.2})
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=8cm]{fig42.png}
+	\includegraphics[width=7cm]{fig42.png}
 	\caption{Wyniki uruchomienia pierwszego podejścia(500 osobników, 2000 pokoleń) }
 	\label{fig: 4.4.2.2}
 \end{figure}
 
 Teraz ewidentnie widać, że to podejście jest bardzo nieoptymalne. Analizując działanie tak wygenerowanych sieci neuronowych można zauważyć, że jakiekolwiek zdobyte punkty w grze były tylko zbiegiem okoliczności a one nie rozpoznają prawie żadnych sytuacji na planszy. Ruchy w grze są kompletnie losowe i niezależne od tego co dzieje się podczas rozgrywki.
 
-Sieci z tak zaprojektowanym wejściem musiałyby mieć zestaw wag połączeń neuronowych, które odzwierciedlałyby każda możliwą kombinację planszy gry. Przy takim podejściu potrzebowalibyśmy sieci neuronowych o ogromnej liczbie sztucznych neuronów co dodatkowo komplikuje i wydłuża obliczenia.
-
-\subsection{Podejście drugie: widok z głowy węża jako dane wejściowe}
+\section{Podejście drugie: widok z głowy węża jako dane wejściowe}
 
 W drugim wariancie postanowiłem uprościć wiele aspektów sieci neuronowych generowanych za pomocą algorytmu. Pierwszym uproszczeniem była warstwa wejściowa sieci i dane, które są do niej przekazywane. zamiast tworzyć ogromną strukturę wejścia zależną od rozmiarów planszy, czyli też działającą tylko dla jednego wariantu gry, postanowiłem skonstruować wejście na podstawie tego co widzi w grze wąż ze swojej perspektywy. Wyjścia sieci neuronowej były interpretowane w dokładnie taki sam sposób jak w podejściu pierwszym.
 
@@ -373,7 +373,7 @@ Taka struktura składa się z 24 sygnałów. Pierwsze osiem reprezentuje w jakim
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=12cm]{head-view.png}
+	\includegraphics[width=10cm]{head-view.png}
 	\caption{Reprezentacja danych wejściowych na podstawie widoku z głowy węża. Poszczególne linie (żółte, fioletowe i pomarańczowe) są reprezentacjami tego co widzi wąż.}
 	\label{fig: 4.head-view}
 \end{figure}
@@ -386,7 +386,7 @@ Z takimi zmianami przystąpiłem do ponownych uruchomień algorytmu aby zobaczy�
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=8cm]{fig43.png}
+	\includegraphics[width=7cm]{fig43.png}
 	\caption{Wyniki uruchomienia drugiego podejścia(2000 osobników, 100 pokoleń) }
 	\label{fig: 4.3}
 \end{figure}
@@ -397,7 +397,7 @@ Po tych wynikach widać wyraźnie, że tym razem algorytm genetyczny dąży do c
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=8cm]{fig44.png}
+	\includegraphics[width=7cm]{fig44.png}
 	\caption{Wyniki uruchomienia drugiego podejścia(2000 osobników, 100 pokoleń)}
 	\label{fig: 4.4}
 \end{figure}
