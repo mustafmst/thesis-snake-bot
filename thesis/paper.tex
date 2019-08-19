@@ -306,7 +306,7 @@ Kolejny operator genetyczny czyli mutacja jest dużo prostszy i polega na wprowa
 
 Działanie algorytmu odbywa się według schematu już opisanego przeze mnie w rozdziale drugim. Na początku generowana jest populacja początkowa obiektów wspomnianej wyżej klasy kandydata. Następnie w pętli uruchamiają się poszczególne fazy działania czyli selekcja, krzyżowanie i mutacja.
 
-Selekcja osobników odbywa się trybem turniejowym. Kandydaci rozwiązań dobierani są w losowe pary a następnie każdy z nich uruchamia grę ze wstrzykniętą swoją siecią neuronową. Jeśli osobnik populacji żyje już kilka pokoleń to w każdym z nich przystępuje do rozgrywki a jako jego wynik obiera się najlepszy jaki udało mu się osiągnąć. Po wytypowaniu zwycięzców z par wszyscy przegrani zostają odrzuceni a reszta przechodzi do następnego etapu.
+Selekcja osobników odbywa się trybem turniejowym. Kandydaci rozwiązań dobierani są w losowe pary a następnie każdy z nich uruchamia grę ze wstrzykniętą swoją siecią neuronową. Jeśli osobnik populacji żyje już kilka pokoleń to w każdym z nich przystępuje do rozgrywki a jako jego wynik obiera się najlepszy jaki udało mu się osiągnąć wciągu całego okresu życia. Po wytypowaniu zwycięzców z par wszyscy przegrani zostają odrzuceni a reszta przechodzi do następnego etapu.
 
 W fazie krzyżowania następuje wygenerowanie ruletki żyjących osobników na podstawie ich wyników. Im wyższy wynik tym większą część koła ruletki zajmuje dany kandydat. Teraz w pętli losowana jest para do krzyżowania aż liczba nowo otrzymanych rozwiązań będzie równa liczbie odrzuconych w poprzednim kroku algorytmu.
 
@@ -401,6 +401,12 @@ Po tych wynikach widać wyraźnie, że tym razem algorytm genetyczny dąży do c
 	\caption{Wyniki uruchomienia drugiego podejścia(2000 osobników, 100 pokoleń)}
 	\label{fig: 4.4}
 \end{figure}
+
+\section{Porównanie z wynikami grupy kontrolnej}
+
+Dla lepszego odniesienia się do wyników uzyskiwanych przez działanie algorytmu przeprowadziłem testy na grupie kontrolnej dwudziestu osób w różnym wieku, płci i doświadczeniu z grami komputerowymi. Każdej z badanych osób pozwoliłem dwa razy zagrać w zaprojektowaną grę bez tłumaczenia zasad i podpowiedzi dotyczących sterowania. Za pierwszym razem średnim wynikiem było 5 punktów. W tej rundzie wiele osób bez znajomości zasad nie wiedziało co mają robić i zginęło zanim dobyło chociaż jeden punkt. 
+
+Podczas drugiej próby wyniki były drastycznie lepsze i tym razem średni wynik wyniósł 42 punkty. Najlepszy gracz zdobył prawie 150 punktów. 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
