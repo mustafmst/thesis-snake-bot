@@ -100,7 +100,7 @@ W tej pracy chciałbym za pomocą eksperymentu sprawdzić potencjał kombinacji 
 
 Na samym początku pracy chciałbym przybliżyć dokładniej teorię związaną z dwoma technikami sztucznej inteligencji. Opiszę jak te koncepcje powstały, w rozwiązywaniu jakich problemów się ich używa oraz po krótce wytłumaczę mechaniki ich działania.
 
-Po przedstawieniu tych informacji przejdę do opisu projektu, który jest wspomnianym wcześniej eksperymentem. Przedstawię technologie użyte do zaprojektowania i zaimplementowania systemu uczącego sztuczne sieci neuronowe jak i gry, którą w tym wypadku będzie własna implementacji popularnej gry w węża(\textit{ang. snake}). Później objaśnię w jaki sposób algorytm genetyczny jest w stanie uczyć sztuczną sieć neuronową. Po tym teoretycznym wstępie do projektu opiszę samą jego strukturę oraz zaprezentuję wyniki jego działania. 
+Po przedstawieniu tych informacji przejdę do opisu projektu, który jest wspomnianym wcześniej eksperymentem. Przedstawię technologie użyte do zaprojektowania i zaimplementowania systemu uczącego sztuczne sieci neuronowe jak i gry, którą w tym wypadku będzie własna implementacji popularnej gry w węża(\textit{ang. snake}). Później objaśnię w jaki sposób algorytm genetyczny jest w stanie uczyć sztuczną sieć neuronową. Po tym teoretycznym wstępie do projektu opiszę samą jego strukturę oraz zaprezentuję wyniki jego działania.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -198,7 +198,17 @@ Gdzie \textit{w} jest wektorem wag sieci, \textit{J(w)} funkcją błędu, $\lamb
 
 Kolejną klasą algorytmów jest uczenie nienadzorowane, które stając po przeciwnej stronie do poprzednio zaprezentowanego uczenia nadzorowanego nie korzysta z wcześniej etykietowanych danych. Najlepszym przykładem działania tych algorytmów jest grupowanie otrzymanych danych poprzez wyszukanie odpowiedniej ilości klas danych tak aby poszczególne elementy tych grup cechowały się jak największym podobieństwie do siebie i jak najmniejszym podobieństwem do elementów innych grup. W tej klasie algorytmów duż popularność zyskały takie metody jak uczenie według Hebba czy uczenie konkurencyjne(inaczej \textbf{WTA} - \textit{ang. \textbf{Winner Takes All}}).
 
-Ostatnią zaprezentowaną klasą algorytmów było uczenie przez wzmacnianie. Działa ono podobnie do nienadzorowanego ale wykorzystuje też mechanikę sprzężenia zwrotnego z uczenia nadzorowanego. Algorytmy uczenia się przez wzmacnianie zwykle ponownie wykorzystują stosowane w przeszłości działania prowadzące do uzyskania pomyślnych rezultatów \citep{roelants2017deeplearning}. Działają na zasadzie 
+Ostatnią zaprezentowaną klasą algorytmów było uczenie przez wzmacnianie. Działa ono podobnie do nienadzorowanego ale wykorzystuje też mechanikę sprzężenia zwrotnego z uczenia nadzorowanego. Algorytmy uczenia się przez wzmacnianie zwykle ponownie wykorzystują stosowane w przeszłości działania prowadzące do uzyskania pomyślnych rezultatów \citep{roelants2017deeplearning}. Metody te korzystają tak samo ja uczenie nadzorowane z techniki sprzężenia zwrotnego jednakże nie jest ono tak jednoznaczne. Działań uczonej sieci neuronowej nie oczenia się jako poprawne albo niepoprawne a raczej dostarcza się sygnał zwrotny oceniający rezultaty jej pracy w bardziej stopniowy sposób. Dzięki takiemu podejściu uczona sieć zaczyna eksplorować przestrzeń możliwych rozwiązań z uwzględnieniem tych, które już zdążyła sama odkryć. 
+
+Uczenie przez wzmocnienie możemy ogólnie opisać za pomocą modelu matematycznego zwanego precesem decyzyjnym Markowa definiowanum przez (Równanie \ref{eq: 2.mdp}):
+
+\begin{equation}\label{eq: 2.mdp}
+	MDP = \big \langle S, A, P, R \big \rangle
+\end{equation}
+
+Gdzie \textbf{S} jest zbiorem stanów, \textbf{A} zbiorem akcji, \textbf{P} funkcją prawdopodobieństwa, że określona akcja dla określonego stanu spowoduje jego zmianę na inny konkretny stan oraz \textbf{R} funkcją nagrody za przejście ze stanu poprzedniego do aktualnego.
+
+Takie przedstawienie problemu uczenie przez wzmacnianie pokazuje, że jest to idealna klasa algorytmów do uczenia sztucznych sieci neuronowych właśnie do takicha zadań jak granie w gry. Metody te prowadzą do maksymalizacji wyników całych grup a nie tylko pojedyńczych działań, które w mogą wydawać się korzystne w ujęciu tymczasowym.
 
 \section{Zastosowania sieci neuronowych}
 
@@ -377,7 +387,7 @@ Z takimi zmianami przystąpiłem do ponownych uruchomień algorytmu aby zobaczy�
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=10cm]{fig43.png}
+	\includegraphics[width=13cm]{fig43.png}
 	\caption{Wyniki uruchomienia drugiego podejścia(2000 osobników, 100 pokoleń) }
 	\label{fig: 4.3}
 \end{figure}
@@ -388,7 +398,7 @@ Po tych wynikach widać wyraźnie, że tym razem algorytm genetyczny dąży do c
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=10cm]{fig44.png}
+	\includegraphics[width=13cm]{fig44.png}
 	\caption{Wyniki uruchomienia drugiego podejścia(2000 osobników, 100 pokoleń)}
 	\label{fig: 4.4}
 \end{figure}
