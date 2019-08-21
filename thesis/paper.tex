@@ -176,7 +176,7 @@ Możemy wyodrębnić kilka podstawowych rodzajów sieci neuronowych na podstawie
 	\label{fig: 2.2}
 \end{figure}
 
-Aby jednoznacznie określić konkretną sztuczną sieć neuronową możemy się posłużyć uproszczonym modelem opisanym przez trzy podstawowe cechy takiej sieci. Tymi cechami są architektura, proces uczenia i funkcja aktywacji. Architektura opisuje dokładnie topologię sieci, w tym jej rodzaj oraz liczby warstw i neuronów w każdej warstwie. Uczenie jest opisem procesu zastosowanego do rozwinięcia parametrów sieci. Określa ono poszczególne techniki użyte do tego celu jak na przykład uczenie przez wzmacnianie czy uczenie ze zbioru reguł. Definiuje też zakresy i wartości wag połączeń między neuronami. Ostatnia cecha czyli funkcja aktywacji opisuje sposób wewnętrznego działania neuronu, czyli kiedy będzie on aktywny oraz jakie dane przekaże dalej w głąb sieci.
+Aby jednoznacznie określić konkretną sztuczną sieć neuronową możemy się posłużyć uproszczonym modelem opisanym przez trzy podstawowe cechy takiej sieci. Tymi cechami są architektura, proces uczenia i funkcja aktywacji. Architektura opisuje dokładnie topologię sieci, w tym jej rodzaj oraz liczby warstw i neuronów w każdej warstwie. Uczenie jest opisem procesu zastosowanego do wyznaczenia optymalnych parametrów sieci. Określa ono poszczególne techniki użyte do tego celu jak na przykład uczenie przez wzmacnianie czy uczenie ze zbioru reguł. Definiuje też zakresy i wartości wag połączeń między neuronami. Ostatnia cecha czyli funkcja aktywacji opisuje sposób wewnętrznego działania neuronu, czyli kiedy będzie on aktywny oraz jakie dane przekaże dalej w głąb sieci.
 
 \section{Metody nauczania sieci neuronowych}
 
@@ -198,7 +198,7 @@ Gdzie \textit{w} jest wektorem wag sieci, \textit{J(w)} funkcją błędu, $\lamb
 
 Kolejną klasą algorytmów jest uczenie nienadzorowane, które stając po przeciwnej stronie do poprzednio zaprezentowanego uczenia nadzorowanego nie korzysta z wcześniej etykietowanych danych. Najlepszym przykładem działania tych algorytmów jest grupowanie otrzymanych danych poprzez wyszukanie odpowiedniej ilości klas danych tak aby poszczególne elementy tych grup cechowały się jak największym podobieństwie do siebie i jak najmniejszym podobieństwem do elementów innych grup. W tej klasie algorytmów duż popularność zyskały takie metody jak uczenie według Hebba czy uczenie konkurencyjne(inaczej \textbf{WTA} - \textit{ang. \textbf{Winner Takes All}}).
 
-Ostatnią zaprezentowaną klasą algorytmów było uczenie przez wzmacnianie. Działa ono podobnie do nienadzorowanego ale wykorzystuje też mechanikę sprzężenia zwrotnego z uczenia nadzorowanego. Algorytmy uczenia się przez wzmacnianie zwykle ponownie wykorzystują stosowane w przeszłości działania prowadzące do uzyskania pomyślnych rezultatów \citep{roelants2017deeplearning}.
+Ostatnią zaprezentowaną klasą algorytmów było uczenie przez wzmacnianie. Działa ono podobnie do nienadzorowanego ale wykorzystuje też mechanikę sprzężenia zwrotnego z uczenia nadzorowanego. Algorytmy uczenia się przez wzmacnianie zwykle ponownie wykorzystują stosowane w przeszłości działania prowadzące do uzyskania pomyślnych rezultatów \citep{roelants2017deeplearning}. Działają na zasadzie 
 
 \section{Zastosowania sieci neuronowych}
 
@@ -344,26 +344,16 @@ W pierwszym podejściu zacząłem od, jak mi się wydawało, najłatwiejszej imp
 
 Warstwa wyjściowa sieci składała się z 4 neuronów, z których każdy reprezentował inny kierunek poruszania się węża. Decyzja była podejmowana poprzez wytypowanie neuronu o największej wartości na wyjściu.
 
-Wyniki pierwszego uruchomienia działającego według schematu podanego powyżej były wielce niezadowalające.
-Algorytm pracował z 20 osobnikami na pokolenie przez 1000 pokoleń a wyniki przez niego otrzymane są zaprezentowane w na rysunku poniżej (Rysunek \ref{fig: 4.4.2.1}).
+Wyniki algorytmu działającego według schematu podanego powyżej były wielce niezadowalające. Dwie próby, pierwsza z 20 osobnikami na pokolenie przez 1000 pokoleń oraz druga posiadająca 500 kandydatów przez 2000 iteracji, zwróciły wyniki zaprezentowane na wykresie poniżej (Rysunek \ref{fig: 4.4.2.2}).
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=7cm]{fig41.png}
-	\caption{Wyniki uruchomienia pierwszego podejścia(20 osobników, 1000 pokoleń) }
-	\label{fig: 4.4.2.1}
-\end{figure}
-
-Widoczne jest, że algorytm nie jest w stanie wygenerować odpowiedniej sieci mając do dyspozycji tylko 20 osobników na pokolenie. Następne uruchomienie postanowiłem skonfigurować na większą ilość osobników i pokoleń. Tym razem obliczenia były przeprowadzone dla 500 kandydatów przez 2000 iteracji i wyniki tego podejścia nie różniły się zbytnio od poprzednich (Rysunek \ref{fig: 4.4.2.2})
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=7cm]{fig42.png}
+	\includegraphics[width=13cm]{fig42.png}
 	\caption{Wyniki uruchomienia pierwszego podejścia(500 osobników, 2000 pokoleń) }
 	\label{fig: 4.4.2.2}
 \end{figure}
 
-Teraz ewidentnie widać, że to podejście jest bardzo nieoptymalne. Analizując działanie tak wygenerowanych sieci neuronowych można zauważyć, że jakiekolwiek zdobyte punkty w grze były tylko zbiegiem okoliczności a one nie rozpoznają prawie żadnych sytuacji na planszy. Ruchy w grze są kompletnie losowe i niezależne od tego co dzieje się podczas rozgrywki.
+Ewidentnie widać, że to podejście jest bardzo nieoptymalne. Analizując działanie tak wygenerowanych sieci neuronowych można zauważyć, że jakiekolwiek zdobyte punkty w grze były tylko zbiegiem okoliczności a one nie rozpoznają prawie żadnych sytuacji na planszy. Ruchy w grze są kompletnie losowe i niezależne od tego co dzieje się podczas rozgrywki.
 
 \section{Podejście drugie: widok z głowy węża jako dane wejściowe}
 
@@ -373,7 +363,7 @@ Taka struktura składa się z 24 sygnałów. Pierwsze osiem reprezentuje w jakim
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=10cm]{head-view.png}
+	\includegraphics[width=13cm]{head-view.png}
 	\caption{Reprezentacja danych wejściowych na podstawie widoku z głowy węża. Poszczególne linie (żółte, fioletowe i pomarańczowe) są reprezentacjami tego co widzi wąż.}
 	\label{fig: 4.head-view}
 \end{figure}
@@ -383,10 +373,11 @@ Kolejnym uproszczeniem była zmiana możliwych wartości wag. Teraz połączenia
 Sama architektura sieci też się zmieniła i teraz obydwie warstwy ukryte składają się jedynie z dwudziestu neuronów. Funkcje aktywacji pozostały bez zmian. Dzięki temu złożoność obliczeniowa sieci drastycznie spadła pozwalając na dużo szybsze podejmowanie decyzji o kolejnym ruchu.
 
 Z takimi zmianami przystąpiłem do ponownych uruchomień algorytmu aby zobaczyć wyniki. Pierwszą próbę przedstawiłem poniżej (Rysunek \ref{fig: 4.3}) i wygląda ona znacznie bardziej obiecująco.
+\newpage
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=7cm]{fig43.png}
+	\includegraphics[width=10cm]{fig43.png}
 	\caption{Wyniki uruchomienia drugiego podejścia(2000 osobników, 100 pokoleń) }
 	\label{fig: 4.3}
 \end{figure}
@@ -397,16 +388,20 @@ Po tych wynikach widać wyraźnie, że tym razem algorytm genetyczny dąży do c
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=7cm]{fig44.png}
+	\includegraphics[width=10cm]{fig44.png}
 	\caption{Wyniki uruchomienia drugiego podejścia(2000 osobników, 100 pokoleń)}
 	\label{fig: 4.4}
 \end{figure}
 
+Ostateczna sieć neuronowa uzyskana poprzez działanie algorytmu uruchomiona samodzielnie potrafiła zdobyć nawet do 25 punktów w kolejnych rozgrywkach. Po jej zachowaniach w grze widać, że potrafi rozpoznać i odpowiednio zareagować na większość sytuacji na planszy a jej rozgrywka kończy się w momencie nastania konkretnego układu, na który nie potrafi zareagować.
+
 \section{Porównanie z wynikami grupy kontrolnej}
 
-Dla lepszego odniesienia się do wyników uzyskiwanych przez działanie algorytmu przeprowadziłem testy na grupie kontrolnej dwudziestu osób w różnym wieku, płci i doświadczeniu z grami komputerowymi. Każdej z badanych osób pozwoliłem dwa razy zagrać w zaprojektowaną grę bez tłumaczenia zasad i podpowiedzi dotyczących sterowania. Za pierwszym razem średnim wynikiem było 5 punktów. W tej rundzie wiele osób bez znajomości zasad nie wiedziało co mają robić i zginęło zanim dobyło chociaż jeden punkt. 
+Dla lepszego odniesienia się do wyników uzyskiwanych przez działanie algorytmu przeprowadziłem testy na grupie kontrolnej dwudziestu osób w różnym wieku, płci i doświadczeniu z grami komputerowymi. Każdej z badanych osób pozwoliłem dwa razy zagrać w zaprojektowaną grę bez tłumaczenia zasad i podpowiedzi dotyczących sterowania. Za pierwszym razem średnim wynikiem było 5 punktów. W tej rundzie wiele osób bez znajomości zasad nie wiedziało co mają robić i zginęło zanim dobyło chociaż jeden punkt. Podczas drugiej próby wyniki były drastycznie lepsze i tym razem średni wynik wyniósł 42 punkty. Najlepszy gracz zdobył prawie 150 punktów. 
 
-Podczas drugiej próby wyniki były drastycznie lepsze i tym razem średni wynik wyniósł 42 punkty. Najlepszy gracz zdobył prawie 150 punktów. 
+Porównując otrzymane przez grupę kontrolną wyniki do najlepszego otrzymanego przez sieć neuronową rezultatu widzimy dość dużą przepaść. W zoptymalizowanej wersji algorytm potrzebował 2000 tysięcy prób na pokolenie przez 100 pokoleń żeby uzyskać wynik trzynastu punktów. Z drugiej strony pojedyńcza rozgrywka grana przez wygenerowaną sieć neuronową twała mniej niż sekundę a osoby z grupy kontrolnej w najdłuższych partiach grały nawet do 10 minut. To dlatego, że sztuczna sieć neuronowa potrafi reagować na to co dzieje się na planszy tysiące razy szybciej niż człowiek. 
+
+
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
