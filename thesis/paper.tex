@@ -136,30 +136,30 @@ Dodatkowo każdy neuron posiada swoją wartość przesunięcia (ang. \textit{bia
 Wynik otrzymany z sumowania wejść neuronu jest następnie przekazywany do funkcji aktywacji, która decyduje o tym jaki będzie wyjściowy sygnał neuronu na podstawie otrzymanych sygnałów wejściowych. Istnieje wiele powszechnie używanych funkcji aktywacji neuronów. Najprostszym jej przykładem jest funkcja tożsamości, która przekazuje bezpośrednio na wyjście wartość aktywacji neuronu i jest wyrażana wzorem (Równanie \ref{eq: 2.3})
 
 \begin{equation}\label{eq: 2.3}
-  f(a) = a
+  f(y) = y
 \end{equation}
 
-Inną powszechnie stosowaną jest funkcja progowa, która na wyjściu zwraca tylko informacją czy została i opisuje ją wzór (Równanie \ref{eq: 2.5})
+Inną powszechnie stosowaną jest funkcja progowa, która na wyjściu zwraca tylko informacją czy została aktywowana i opisuje ją wzór (Równanie \ref{eq: 2.5})
 
 \begin{equation}\label{eq: 2.5}
-  f(a) =
+  f(y) =
   \begin{cases*}
-    1 & if a $\geq$ 0 \\
-    0 & if a < 0
+    1 & if y $\geq$ 0 \\
+    0 & if y < 0
   \end{cases*}
 \end{equation}
 
 Połączenie dwóch zaprezentowanych powyżej funkcji nazywane jest funkcją \textbf{ReLU} (\textit{Rectified Linear Unit}) i zwraca ona maksimum z zera i wartości wejścia neuronu (Równanie \ref{eq: 2.4}).
 
 \begin{equation}\label{eq: 2.4}
-    f(a) =
+    f(y) =
     \begin{cases*}
-      a & if a $\geq$ 0 \\
-      0 & if a < 0
+      y & if y $\geq$ 0 \\
+      0 & if y < 0
     \end{cases*}
 \end{equation}
 
-Istnieją również bardziej zaawansowane funkcje aktywacji. Jedną z najczęściej używanych jest funkcja logistyczna (Równanie \ref{eq: 2.6}), która zwraca wartość między 0 a 1 i jej wynik jest prawdopodobieństwem aktywacji neuronu.
+Istnieją również inne, bardziej skomplikowane funkcje aktywacji. Jedną z najczęściej używanych jest funkcja logistyczna (Równanie \ref{eq: 2.6}), która zwraca wartość między 0 a 1 i jej wynik jest prawdopodobieństwem aktywacji neuronu.
 
 \begin{equation}\label{eq: 2.6}
   f(a) = \frac{1}{1 + exp(-a)}
@@ -180,7 +180,7 @@ Aby jednoznacznie określić konkretną sztuczną sieć neuronową możemy się 
 
 \section{Metody nauczania sieci neuronowych}
 
-Pod pojęciem nauczania sieci neuronowej, zwanego też uczeniem maszynowym, kryją się różne procesy prowadzące do takiej modyfikacji wszystkich wag w sieci aby jak najlepiej rozwiązywała dany problem. Techniki uczenia maszynowego można zgrubnie podzielić na dwie duże klasy: uczenie nadzorowane i nienadzorowane, choć dość często dodawana jest też trzecia klasa - tzw. uczenie przez wzmacnianie \citep{roelants2017deeplearning}. Każda z tych klas wymaga dostarczenia innych danych do poprawnego działania. W niektórych przypadkach musimy dysponować dużą ilością informacji wstępnie sklasyfikowanych, żeby sieć na ich przykładzie mogła się uczyć a w innych potrzebujemy po prostu surowych danych, które taka sieć sklasyfikuje samodzielnie.
+Pod pojęciem nauczania sieci neuronowej, zwanego też uczeniem maszynowym, kryją się różne procesy prowadzące do takiej modyfikacji wszystkich wag w sieci aby jak najlepiej rozwiązywała dany problem. Techniki uczenia maszynowego można zgrubnie podzielić na dwie duże klasy: uczenie nadzorowane i nienadzorowane, choć dość często dodawana jest też trzecia klasa - tzw. uczenie przez wzmacnianie \citep{roelants2017deeplearning}. Każda z tych klas wymaga dostarczenia innych danych do poprawnego działania.
 
 Uczenie nadzorowane jest pierwsza wymienioną przeze mnie klasą algorytmów nauczania maszynowego. Zaliczają się do niej algorytmy korzystające z zestawów danych treningowych, które są wstępnie opracowywane i oznaczane oczekiwanymi etykietami (etykietowane) ręcznie przez osoby nadzorujące uczenie sieci. Samo uczenie odbywa się poprzez zmiany w zestawie wag sieci, które dążą do zminimalizowania wartości funkcji błędu określanej przez różnicę między wyjściem sieci a właśnie oczekiwanymi etykietami. Najprostszą wykorzystywaną funkcją blędu w sieciach neuronowych jest błąd średniokwadratowy, który jest kwadratem różnicy pomiędzy wartością oczekiwaną a wartością prognozowaną przesz sieć. W konsekwencji działania takiego algorytmu otrzymujemy sieć neuronową, której wagi wyznaczają \textit{k-1} hiperpłaszczyzn w \textit{n-wymiarowej} przestrzeni, gdzie \textit{k} jest liczbą oczekiwanych klas a \textit{n} ilością neuronów wejściowych sieci. Jednymi z najpopularniejszych metod z tej klasy są reguła delty oraz algorytm wstecznej propagacji błędów.
 
@@ -198,17 +198,11 @@ Gdzie \textit{w} jest wektorem wag sieci, \textit{J(w)} funkcją błędu, $\lamb
 
 Kolejną klasą algorytmów jest uczenie nienadzorowane, które stając po przeciwnej stronie do poprzednio zaprezentowanego uczenia nadzorowanego nie korzysta z wcześniej etykietowanych danych. Najlepszym przykładem działania tych algorytmów jest grupowanie otrzymanych danych poprzez wyszukanie odpowiedniej ilości klas danych tak aby poszczególne elementy tych grup cechowały się jak największym podobieństwie do siebie i jak najmniejszym podobieństwem do elementów innych grup. W tej klasie algorytmów duż popularność zyskały takie metody jak uczenie według Hebba czy uczenie konkurencyjne(inaczej \textbf{WTA} - \textit{ang. \textbf{Winner Takes All}}).
 
-Ostatnią zaprezentowaną klasą algorytmów było uczenie przez wzmacnianie. Działa ono podobnie do nienadzorowanego ale wykorzystuje też mechanikę sprzężenia zwrotnego z uczenia nadzorowanego. Algorytmy uczenia się przez wzmacnianie zwykle ponownie wykorzystują stosowane w przeszłości działania prowadzące do uzyskania pomyślnych rezultatów \citep{roelants2017deeplearning}. Metody te korzystają tak samo ja uczenie nadzorowane z techniki sprzężenia zwrotnego jednakże nie jest ono tak jednoznaczne. Działań uczonej sieci neuronowej nie oczenia się jako poprawne albo niepoprawne a raczej dostarcza się sygnał zwrotny oceniający rezultaty jej pracy w bardziej stopniowy sposób. Dzięki takiemu podejściu uczona sieć zaczyna eksplorować przestrzeń możliwych rozwiązań z uwzględnieniem tych, które już zdążyła sama odkryć. 
-
-Uczenie przez wzmocnienie możemy ogólnie opisać za pomocą modelu matematycznego zwanego precesem decyzyjnym Markowa definiowanum przez (Równanie \ref{eq: 2.mdp}):
-
-\begin{equation}\label{eq: 2.mdp}
-	MDP = \big \langle S, A, P, R \big \rangle
-\end{equation}
-
-Gdzie \textbf{S} jest zbiorem stanów, \textbf{A} zbiorem akcji, \textbf{P} funkcją prawdopodobieństwa, że określona akcja dla określonego stanu spowoduje jego zmianę na inny konkretny stan oraz \textbf{R} funkcją nagrody za przejście ze stanu poprzedniego do aktualnego.
+Ostatnią zaprezentowaną klasą algorytmów było uczenie przez wzmacnianie. Działa ono podobnie do nienadzorowanego ale wykorzystuje też mechanikę sprzężenia zwrotnego z uczenia nadzorowanego. Algorytmy uczenia się przez wzmacnianie zwykle ponownie wykorzystują stosowane w przeszłości działania prowadzące do uzyskania pomyślnych rezultatów \citep{roelants2017deeplearning}. Metody te korzystają tak samo ja uczenie nadzorowane z techniki sprzężenia zwrotnego jednakże nie jest ono tak jednoznaczne. Działań uczonej sieci neuronowej nie oczenia się jako poprawne albo niepoprawne a raczej dostarcza się sygnał zwrotny oceniający końcowy rezultat jej pracy. Dzięki takiemu podejściu uczona sieć zaczyna eksplorować przestrzeń możliwych rozwiązań z uwzględnieniem tych, które już zdążyła sama odkryć. 
 
 Takie przedstawienie problemu uczenie przez wzmacnianie pokazuje, że jest to idealna klasa algorytmów do uczenia sztucznych sieci neuronowych właśnie do takicha zadań jak granie w gry. Metody te prowadzą do maksymalizacji wyników całych grup a nie tylko pojedyńczych działań, które w mogą wydawać się korzystne w ujęciu tymczasowym.
+
+Wykorzystanie algorytmów genetycznych do uczenia sieci neuronowych właśnie ze względu na sposób oceny wyników sieci możemy śmiało przyporządkować do klasy motod nauczania przez wzamcnianie.
 
 \section{Zastosowania sieci neuronowych}
 
@@ -283,7 +277,7 @@ Teraz po krótce chciałbym zdefiniować teoretyczną podstawę działania aplik
 
 Na podstawie analizy przedstawionych przez mnie informacji na temat sztucznych sieci neuronowych oraz algorytmów genetycznych można dojść do kilku ciekawych wniosków. Jednym z nich jest to, że sieci neuronowe swój program działania powstały pod wpływem procesu uczenia w całości definiują za pomocą zestawu wag i przesunięć połączeń neuronowych. Wynika z tego, że modyfikowanie działania sieci odbywa się wyłącznie poprzez modyfikację wartości zawartych w takim zestawie. Dzięki nadaniu takiemu zestawowi wag odpowiedniej struktury jesteśmy w stanie użyć go jako reprezentacji genotypu poszczególnych osobników w algorytmie genetycznym.
 
-Na tej teorii można zacząć konstruować algorytm genetyczny obierający sobie jako kandydatów rozwiązań wiele losowo wygenerowanych wariantów sztucznej sieci neuronowej o wcześniej określonej architekturze sieci. Przyglądając się wynikom jakie otrzymujemy za pomocą algorytmów genetycznych można spekulować, że taka symbioza technik sztucznej inteligencji ma możliwości doprowadzić do rezultatów lepszych pod względem ich jakości i wydajności od ich samodzielnych zastosowań.
+Na tej teorii można zacząć konstruować algorytm genetyczny obierający sobie jako kandydatów rozwiązań wiele losowo wygenerowanych wariantów sztucznej sieci neuronowej o wcześniej określonej architekturze sieci.
 
 \section{Struktura projektu}
 
@@ -295,7 +289,7 @@ Drugim pakietem wchodzącym w skład projektu stworzonego na potrzeby przeprowad
 
 \section{Opis implementacji operatorów genetycznych}
 
-Pierwszy z operatorów genetycznych to krzyżowanie. Funkcja reprezentująca ten operator oczekuje na wejściu dwóch obiektów reprezentujących kandydatów rozwiązań a zwraca na wyjściu nowego kandydat stworzonego za pomocą genotypu wygenerowanego z kombinacji przekazanych osobników. Genotyp w projekcie reprezentowany jest przez dwuwymiarową listę wag wszystkich połączeń neuronowych. Operacja krzyżowania przeprowadzana jest poprzez pocięcie list wag w losowych punktach (takich samych dla każdego kandydata) i stworzenie nowych z fragmentów należących do każdego z rodziców. Przykładowe jego działanie zostało zaprezentowane za pomocą uproszczonego zestawu genów poniżej (Rysunek \ref{fig: 4.3.crossing})
+Pierwszy z operatorów genetycznych to krzyżowanie. Funkcja reprezentująca ten operator oczekuje na wejściu dwóch obiektów reprezentujących kandydatów rozwiązań a zwraca na wyjściu nowego kandydat stworzonego za pomocą genotypu wygenerowanego z kombinacji przekazanych osobników. Genotyp w projekcie reprezentowany jest przez dwuwymiarową listę wag wszystkich połączeń neuronowych. Operacja krzyżowania przeprowadzana jest poprzez pocięcie każdego rzędu macierzy wag w losowych punktach (takich samych dla każdego kandydata) i stworzenie nowych z fragmentów należących do każdego z rodziców. Przykładowe jego działanie zostało zaprezentowane za pomocą uproszczonego zestawu genów poniżej (Rysunek \ref{fig: 4.3.crossing})
 
 \begin{figure}[h]
 	\centering
@@ -417,7 +411,10 @@ Porównując otrzymane przez grupę kontrolną wyniki do najlepszego otrzymanego
 
 \chapter{Wnioski}
 
-Patrząc na wyniki działania aplikacji stworzonej na potrzeby tej pracy można powiedzieć, że algorytmy genetyczne nadają się do trenowania sieci neuronowych. Z wykorzystaniem tej metody byłem w stanie wyszkolić sieć neuronową do rozwiązywania konkretnego, abstrakcyjnego zadania jakim było granie w grę komputerową bez wcześniejszego przygotowywania zestawu oczekiwanych danych wyjściowych.
+%
+% Wnioski do przepisania, napisać że widać wyraźny trend wskazujący na powodzenie procesu nauczanie jednak nie jest on tak wydajny jakbym chciał. Poszukać możliwych punktów powodujących problemy(optymalizacja, implementacja operatorów). Wspomnieć o innycyh realizacjach tego pomysłu i ich wynikach.
+%
+Patrząc na wyniki działania aplikacji stworzonej na potrzeby tej pracy można powiedzieć, że algorytmy genetyczne nadają się do trenowania sieci neuronowych aczkolwiek nie jest to najbardziej efektywna z dostępnych metod. Z wykorzystaniem tej metody byłem w stanie wyszkolić sieć neuronową do rozwiązywania konkretnego, abstrakcyjnego zadania jakim było granie w grę komputerową bez wcześniejszego przygotowywania zestawu oczekiwanych danych wyjściowych.
 
 Najwięcej czasu podczas działania tej metody algorytm poświęcał na testowanie kolejnych pokoleń generowanych sieci neuronowych jednocześnie zajmując mało zasobów komputera. Na tej podstawie można łatwo wywnioskować, że dużym usprawnieniem tego sposobu trenowania sztucznych sieci może być zrównoleglenie testów.
 
