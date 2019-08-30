@@ -411,14 +411,11 @@ Porównując otrzymane przez grupę kontrolną wyniki do najlepszego otrzymanego
 
 \chapter{Wnioski}
 
-%
-% Wnioski do przepisania, napisać że widać wyraźny trend wskazujący na powodzenie procesu nauczanie jednak nie jest on tak wydajny jakbym chciał. Poszukać możliwych punktów powodujących problemy(optymalizacja, implementacja operatorów). Wspomnieć o innycyh realizacjach tego pomysłu i ich wynikach.
-%
-Patrząc na wyniki działania aplikacji stworzonej na potrzeby tej pracy można powiedzieć, że algorytmy genetyczne nadają się do trenowania sieci neuronowych aczkolwiek nie jest to najbardziej efektywna z dostępnych metod. Z wykorzystaniem tej metody byłem w stanie wyszkolić sieć neuronową do rozwiązywania konkretnego, abstrakcyjnego zadania jakim było granie w grę komputerową bez wcześniejszego przygotowywania zestawu oczekiwanych danych wyjściowych.
+Patrząc na wyniki działania aplikacji stworzonej na potrzeby tej pracy można powiedzieć, że algorytmy genetyczne nadają się do trenowania sieci neuronowych aczkolwiek nie jest to najbardziej efektywna z dostępnych metod. Z wykorzystaniem tej metody byłem w stanie wyszkolić sieć neuronową do rozwiązywania konkretnego, abstrakcyjnego zadania jakim było granie w grę komputerową bez wcześniejszego przygotowywania zestawu oczekiwanych danych wyjściowych na dość niskim poziomie skuteczności.
 
-Najwięcej czasu podczas działania tej metody algorytm poświęcał na testowanie kolejnych pokoleń generowanych sieci neuronowych jednocześnie zajmując mało zasobów komputera. Na tej podstawie można łatwo wywnioskować, że dużym usprawnieniem tego sposobu trenowania sztucznych sieci może być zrównoleglenie testów.
+Najwięcej czasu podczas działania tej metody algorytm poświęcał na testowanie kolejnych pokoleń generowanych sieci neuronowych jednocześnie zajmując mało zasobów komputera. Na tej podstawie można łatwo wywnioskować, że dużym usprawnieniem tego sposobu trenowania sztucznych sieci może być zrównoleglenie testów. Kolejnym elementem, który mógł wpłynąć negatywnie na wyniki eksperymentu była implementacja operatorów genetycznych na potrzeby algorytmu. Modyfkiacje genotypu rozwiązań utworzonych przez algorytm mogły operować w zbyt prosty sposób przez co dotarcie do optymalnego rozwiązania wymaga wiele czasu. Sama architektura przyjęta dla rozwijanych sieci neuronowych mogłe też być nieoptymalna do postawionego zadania.
 
-Podsumowując tą pracę można śmiało powiedzieć, że algorytmy genetyczne są wydajną i efektywną metodą nauczania sieci bez nauczyciela oraz dalsze badania tej tematyki mogą przynieść ciekawe rezultaty zwłaszcza przy dostatecznym zoptymalizowaniu działania tychże algorytmów.
+Podsumowując tą pracę można powiedzieć, że taka implementacja kombinacji algorytmów genetycznych i sieci neuronowych działa choć jej efekty nie są najlepsze. Wyniki przprowadzonego eksperymentu jasno pokazały, że ta konkretna metoda nauczania przez wzmacnianie w przedstawionym wykonaniu jest wielce nieefektywna czasowo oraz osiągała słabe wyniki w porówaniu do grupy kontrolnej podejmującej to samo wyzwanie.
 
 \pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
