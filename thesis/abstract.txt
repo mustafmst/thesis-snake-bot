@@ -1,0 +1,9 @@
+Nauczanie sieci neuronowych za pomocą algorytmu genetycznego na przykładzie samouczącego się bota do gry zręcznościowej
+
+Teaching neural networks using a genetic algorithm on the example of a self-learning bot for arcade game
+
+Celem tej pracy jest sprawdzenie możliwości algorytmów genetycznych w zadaniu uczenia sieci neuronowych. W pierwszych rozdziałach zostaje przybliżona tematyka sieci neuronowych oraz algorytmów genetycznych. Następnie przedstawiony jest opis eksperymentu polegającego na implementacji za pomocą tych metod samouczącego się bota do komputerowej gry zręcznościowej w "węża".
+
+The purpose of this work is to check the possibilities of genetic algorithms in the task of teaching neural networks. The first chapters focus on the subject of neural networks and genetic algorithms. Then a description of the experiment is presented, involving the implementation of these methods of a self-learning bot for a "snake" computer arcade game.
+
+algorytmy genetyczne sieci neuronowe gry komputerowe sztuczna inteligencjanauczanie maszynowe
