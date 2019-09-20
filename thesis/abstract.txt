@@ -7,3 +7,5 @@ Celem tej pracy jest sprawdzenie możliwości algorytmów genetycznych w zadaniu
 The purpose of this work is to check the possibilities of genetic algorithms in the task of teaching neural networks. The first chapters focus on the subject of neural networks and genetic algorithms. Then a description of the experiment is presented, involving the implementation of these methods of a self-learning bot for a "snake" computer arcade game.
 
 algorytmy genetyczne sieci neuronowe gry komputerowe sztuczna inteligencjanauczanie maszynowe
+
+genetic algorithms neural networks computer games artificial intelligence machine learning
